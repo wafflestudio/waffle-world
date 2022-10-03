@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: argocd
+  name: argocd-external
+  annotations:
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/subnets: subnet-087aa13726bc757a3, subnet-0040edcc601f06fcf
+    alb.ingress.kubernetes.io/group.name: "ingress-external-group"
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}, {"HTTP":80}]'
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:405906814034:certificate/69084f78-4a27-40b8-b6a6-065e27219174
+    alb.ingress.kubernetes.io/ssl-redirect: '443'
+    alb.ingress.kubernetes.io/backend-protocol: HTTPS
+spec:
+  ingressClassName: alb
+  rules:
+    - host: argocd.wafflestudio.com
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+             name: argocd-server
+             port:
+               number: 443
