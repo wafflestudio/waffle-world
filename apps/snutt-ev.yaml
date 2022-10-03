@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   namespace: argocd
-  name: waffle-super-app
+  name: snutt-ev
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/wafflestudio/waffle-world.git
     targetRevision: HEAD
-    path: apps
+    path: apps/snutt-dev/snutt-ev
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
