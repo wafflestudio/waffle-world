@@ -11,6 +11,8 @@ spec:
     repoURL: https://github.com/wafflestudio/waffle-world.git
     targetRevision: HEAD
     path: apps
+    directory:
+      recurse: true
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
