@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: snutt-ev
+  labels:
+    app: snutt-ev
+  namespace: snutt-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: snutt-ev
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: snutt-ev
+    spec:
+      serviceAccountName: snutt-ev
+      containers:
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt/snutt-ev-server:latest-dev
+        imagePullPolicy: Always
+        name: snutt-ev
+        env:
+        - name: JAVA_OPTS
+          value: "-Duser.timezone=UTC"
+        - name: SPRING_PROFILES_ACTIVE
+          value: "dev"
+        ports:
+        - containerPort: 8080

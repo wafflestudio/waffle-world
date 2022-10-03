@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: snutt-ev-web
+  labels:
+    app: snutt-ev-web
+  namespace: snutt-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: snutt-ev-web
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: snutt-ev-web
+    spec:
+      containers:
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt/snutt-ev-web:latest-dev
+        imagePullPolicy: Always
+        name: snutt-ev-web
+        ports:
+        - containerPort: 3000
