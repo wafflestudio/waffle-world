@@ -1,3 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  namespace: argocd
+  name: snutt-ev
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/wafflestudio/waffle-world.git
+    targetRevision: HEAD
+    path: apps/snutt-dev/snutt-ev
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -32,3 +55,24 @@ spec:
           value: "dev"
         ports:
         - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: snutt-dev
+  name: snutt-ev
+spec:
+  type: NodePort
+  selector:
+    app: snutt-ev
+  ports:
+  - port: 80
+    targetPort: 8080
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: snutt-ev
+  namespace: snutt-dev
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/snutt-ev-dev-role
