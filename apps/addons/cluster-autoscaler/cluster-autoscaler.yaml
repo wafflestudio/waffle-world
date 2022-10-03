@@ -9,6 +9,8 @@ metadata:
     k8s-app: cluster-autoscaler
   name: cluster-autoscaler
   namespace: kube-system
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/AmazonEKSClusterAutoscalerRole
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -138,6 +140,7 @@ spec:
       annotations:
         prometheus.io/scrape: 'true'
         prometheus.io/port: '8085'
+        cluster-autoscaler.kubernetes.io/safe-to-evict: 'false'
     spec:
       priorityClassName: system-cluster-critical
       securityContext:
