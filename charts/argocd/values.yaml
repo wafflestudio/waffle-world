@@ -1,5 +1,5 @@
 additionalApplications:
-- name: applications
+- name: waffle-world-apps
   additionalLabels: {}
   additionalAnnotations: {}
   finalizers:
