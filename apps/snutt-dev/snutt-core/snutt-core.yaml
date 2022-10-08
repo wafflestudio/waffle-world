@@ -21,7 +21,7 @@ spec:
         app: snutt-core
     spec:
       containers:
-      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-dev/snutt-core:old-image-tag
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-dev/snutt-core:98
         imagePullPolicy: Always
         name: snutt-core
         ports:
