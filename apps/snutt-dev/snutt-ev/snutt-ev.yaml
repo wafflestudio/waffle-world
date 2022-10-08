@@ -22,7 +22,7 @@ spec:
     spec:
       serviceAccountName: snutt-ev
       containers:
-      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt/snutt-ev-server:latest-dev
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt/snutt-ev-server:new-image-tag
         imagePullPolicy: Always
         name: snutt-ev
         env:
