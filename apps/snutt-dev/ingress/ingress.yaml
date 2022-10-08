@@ -14,7 +14,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-    - host: snutt-api-dev-k8s.wafflestudio.com
+    - host: snutt-api-dev.wafflestudio.com
       http:
         paths:
         - path: /
@@ -24,7 +24,7 @@ spec:
              name: snutt-core
              port:
                number: 80
-    - host: snutt-ev-api-dev-k8s.wafflestudio.com
+    - host: snutt-ev-api-dev.wafflestudio.com
       http:
         paths:
         - path: /
@@ -34,7 +34,7 @@ spec:
              name: snutt-ev
              port:
                number: 80
-    - host: snutt-ev-web-dev-k8s.wafflestudio.com
+    - host: snutt-ev-web-dev.wafflestudio.com
       http:
         paths:
         - path: /
