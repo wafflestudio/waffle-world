@@ -2,21 +2,17 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   namespace: argocd
-  name: waffle-super-app
+  name: snutt-core-dev
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    repoURL: https://github.com/wafflestudio/waffle-world.git
+    repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: HEAD
-    path: apps
+    path: apps/snutt-dev/snutt-core
   destination:
-    server: https://kubernetes.default.svc
+    server: {{ .Values.spec.destination.server }}
     namespace: argocd
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-    - CreateNamespace=true
+    {{- .Values.spec.syncPolicy | toYaml | nindent 4 }}

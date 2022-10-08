@@ -8,15 +8,11 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/wafflestudio/waffle-world.git
+    repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: HEAD
     path: apps/snutt-dev/ingress
   destination:
-    server: https://kubernetes.default.svc
+    server: {{ .Values.spec.destination.server }}
     namespace: argocd
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-    - CreateNamespace=true
+    {{- .Values.spec.syncPolicy | toYaml | nindent 4 }}

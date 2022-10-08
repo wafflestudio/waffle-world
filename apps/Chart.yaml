@@ -1,0 +1,6 @@
+apiVersion: v2
+name: waffle-world-apps
+description: WaffleStudio apps chart
+type: application
+version: 0.1.0
+appVersion: "1.16.0"
