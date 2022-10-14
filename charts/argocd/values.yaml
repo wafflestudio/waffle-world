@@ -2,3 +2,6 @@ argo-cd:
   server:
     extraArgs:
     - --insecure
+  configs:
+    params:
+      timeout.reconciliation: 60

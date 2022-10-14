@@ -6,6 +6,6 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
+  name: istio-ingress
   labels:
     istio-injection: enabled
-  name: istio-ingress

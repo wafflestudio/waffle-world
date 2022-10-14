@@ -8,5 +8,4 @@ spec:
       prune: true
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true
-      - Validate=false
+    - Validate=false
