@@ -39,3 +39,17 @@ spec:
   ports:
   - port: 80
     targetPort: 3000
+---
+apiVersion: networking.k8s.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: snutt-ev-web
+spec:
+  gateways:
+  - istio-ingress/istio-ingressgateway
+  hosts:
+  - snutt-ev-web-dev.wafflestudio.com
+  http:
+  - route:
+    - destination:
+      host: snutt-ev-web
