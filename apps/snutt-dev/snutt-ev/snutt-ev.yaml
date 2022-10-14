@@ -54,9 +54,10 @@ spec:
   - port: 80
     targetPort: 8080
 ---
-apiVersion: networking.k8s.io/v1alpha3
+apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
+  namespace: snutt-dev
   name: snutt-ev
 spec:
   gateways:
@@ -66,4 +67,4 @@ spec:
   http:
   - route:
     - destination:
-      host: snutt-ev
+        host: snutt-ev

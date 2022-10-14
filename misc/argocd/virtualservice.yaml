@@ -1,0 +1,14 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  namespace: argocd
+  name: argocd-server
+spec:
+  gateways:
+  - istio-ingress/istio-ingressgateway
+  hosts:
+  - argocd.wafflestudio.com
+  http:
+  - route:
+    - destination:
+        host: argocd-server
