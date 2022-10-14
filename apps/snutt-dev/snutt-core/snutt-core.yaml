@@ -47,7 +47,7 @@ metadata:
   name: snutt-core
 spec:
   gateways:
-  - istio-ingress/istio-ingressgateway
+  - istio-ingress/waffle-ingressgateway
   hosts:
   - snutt-api-dev.wafflestudio.com
   http:

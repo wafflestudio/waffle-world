@@ -47,7 +47,7 @@ metadata:
   name: snutt-ev-web
 spec:
   gateways:
-  - istio-ingress/istio-ingressgateway
+  - istio-ingress/waffle-ingressgateway
   hosts:
   - snutt-ev-web-dev.wafflestudio.com
   http:
