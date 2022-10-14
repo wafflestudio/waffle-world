@@ -5,7 +5,7 @@ metadata:
   name: argocd-server
 spec:
   gateways:
-  - istio-ingress/istio-ingressgateway
+  - istio-ingress/waffle-ingressgateway
   hosts:
   - argocd.wafflestudio.com
   http:
