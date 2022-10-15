@@ -65,6 +65,9 @@ spec:
   hosts:
   - snutt-ev-api-dev.wafflestudio.com
   http:
-  - route:
+  - match:
+    - uri:
+        prefix: /swagger-ui
+    route:
     - destination:
         host: snutt-ev
