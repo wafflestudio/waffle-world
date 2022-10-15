@@ -68,6 +68,8 @@ spec:
   - match:
     - uri:
         prefix: /swagger-ui
+    - uri:
+        prefix: /v3/api-docs
     route:
     - destination:
         host: snutt-ev
