@@ -20,6 +20,7 @@ spec:
       labels:
         app: account-server
     spec:
+      serviceAccountName: account-server
       containers:
       - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/sso-dev/account-server:30
         imagePullPolicy: Always
