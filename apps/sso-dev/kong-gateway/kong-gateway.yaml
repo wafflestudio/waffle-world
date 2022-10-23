@@ -86,7 +86,7 @@ spec:
     app: kong-gateway
   ports:
   - port: 80
-    targetPort: 3000
+    targetPort: 8000
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
