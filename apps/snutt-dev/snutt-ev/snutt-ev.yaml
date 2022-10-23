@@ -23,7 +23,6 @@ spec:
       serviceAccountName: snutt-ev
       containers:
       - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-dev/snutt-ev:22
-        imagePullPolicy: Always
         name: snutt-ev
         ports:
         - containerPort: 8080
