@@ -51,6 +51,8 @@ spec:
           value: /dev/stderr
         - name: KONG_ROUTER_FLAVOR
           value: traditional
+        - name: KONG_LOG_LEVEL
+          value: debug
         volumeMounts:
         - name: kong-config
           mountPath: /etc/kong
