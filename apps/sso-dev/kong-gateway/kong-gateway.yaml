@@ -21,7 +21,7 @@ spec:
         app: kong-gateway
     spec:
       containers:
-      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/sso-dev/kong-gateway:11
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/sso-dev/kong-gateway:12
         name: kong-gateway
         ports:
         - containerPort: 8000
