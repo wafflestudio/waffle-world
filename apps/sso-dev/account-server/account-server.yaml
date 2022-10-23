@@ -21,7 +21,7 @@ spec:
         app: account-server
     spec:
       containers:
-      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/sso/waffle-account-server:latest-dev
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/sso-dev/account-server:29
         imagePullPolicy: Always
         name: account-server
         ports:

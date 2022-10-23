@@ -50,7 +50,7 @@ spec:
         - name: KONG_DATABASE
           value: "off"
         - name: KONG_DECLARATIVE_CONFIG
-          value: /etc/kong/kong-config.yml
+          value: /etc/kong/kong-config.yaml
         - name: KONG_PROXY_LISTEN
           value: 0.0.0.0:8000
         - name: KONG_PORT_MAPS
@@ -71,9 +71,9 @@ spec:
         - name: kong-config
           mountPath: /etc/kong
       volumes:
-        - name: kong-config
-          configMap:
-            name: kong-config
+      - name: kong-config
+        configMap:
+          name: kong-config
 ---
 apiVersion: v1
 kind: Service
