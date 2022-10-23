@@ -26,6 +26,11 @@ spec:
         name: account-server
         ports:
         - containerPort: 8080
+        env:
+        - name: JAVA_OPTS
+          value: "-Duser.timezone=UTC"
+        - name: SPRING_PROFILES_ACTIVE
+          value: "dev"
 ---
 apiVersion: v1
 kind: ServiceAccount
