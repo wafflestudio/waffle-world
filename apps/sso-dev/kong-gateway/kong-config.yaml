@@ -1,0 +1,9 @@
+_format_version: "3.0"
+
+services:
+- name: account-service
+  url: http://account-server.sso-dev.svc.cluster.local
+  routes:
+  - name: account-service
+    paths:
+    - /account-service/

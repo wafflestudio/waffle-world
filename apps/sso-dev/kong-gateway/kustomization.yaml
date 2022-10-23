@@ -1,0 +1,7 @@
+namespace: sso-dev
+resources:
+- kong-gateway.yaml
+configMapGenerator:
+- name: kong-config
+  files:
+  - kong-config.yaml

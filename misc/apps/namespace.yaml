@@ -18,3 +18,10 @@ metadata:
   name: guam
   labels:
     istio-injection: enabled
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: sso-dev
+  labels:
+    istio-injection: enabled
