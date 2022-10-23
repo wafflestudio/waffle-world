@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: HEAD
-    path: apps/sso-dev/api-gateway
+    path: apps/sso-dev/kong-gateway
   destination:
     server: {{ .Values.spec.destination.server }}
     namespace: argocd
