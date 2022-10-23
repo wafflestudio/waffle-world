@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   namespace: argocd
-  name: sso-api-gateway-dev
+  name: sso-kong-gateway-dev
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
