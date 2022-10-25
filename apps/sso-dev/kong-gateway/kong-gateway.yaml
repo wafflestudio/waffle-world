@@ -100,6 +100,7 @@ spec:
   - istio-ingress/waffle-ingressgateway
   hosts:
   - api-gateway-dev.wafflestudio.com
+  - sso.wafflestudio.com
   http:
   - route:
     - destination:
