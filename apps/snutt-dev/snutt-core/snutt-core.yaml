@@ -22,7 +22,7 @@ spec:
     spec:
       serviceAccountName: snutt-core
       containers:
-      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-dev/snutt-core:105
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-dev/snutt-core:106
         name: snutt-core
         ports:
         - containerPort: 3000
