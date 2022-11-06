@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: snutt-ev
+  labels:
+    app: snutt-ev
+  namespace: snutt-prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: snutt-ev
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: snutt-ev
+    spec:
+      serviceAccountName: snutt-ev
+      containers:
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-ev:53
+        name: snutt-ev
+        ports:
+        - containerPort: 8080
+        env:
+        - name: JAVA_OPTS
+          value: "-Duser.timezone=UTC"
+        - name: SPRING_PROFILES_ACTIVE
+          value: "prod"
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: snutt-ev
+  namespace: snutt-prod
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/snutt-ev-prod-role
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: snutt-prod
+  name: snutt-ev
+spec:
+  type: NodePort
+  selector:
+    app: snutt-ev
+  ports:
+  - port: 80
+    targetPort: 8080
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  namespace: snutt-prod
+  name: snutt-ev
+spec:
+  gateways:
+  - istio-ingress/waffle-ingressgateway
+  hosts:
+  - snutt-ev-api.wafflestudio.com
+  http:
+  - route:
+    - destination:
+        host: snutt-ev
