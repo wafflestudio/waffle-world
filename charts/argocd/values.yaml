@@ -4,6 +4,7 @@ argo-cd:
     - --insecure
     config:
       timeout.reconciliation: 15s
+      url: https://argocd.wafflestudio.com
       dex.config: |
         connectors:
         - type: github
