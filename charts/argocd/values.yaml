@@ -3,7 +3,7 @@ argo-cd:
     extraArgs:
     - --insecure
     config:
-      url: "https://argocd.wafflestudio.com"
+      url: https://argocd.wafflestudio.com
       timeout.reconciliation: 15s
       dex.config: |
         connectors:
