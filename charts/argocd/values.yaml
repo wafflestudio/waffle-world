@@ -3,8 +3,8 @@ argo-cd:
     extraArgs:
     - --insecure
     config:
+      url: "https://argocd.wafflestudio.com"
       timeout.reconciliation: 15s
-      url: https://argocd.wafflestudio.com
       dex.config: |
         connectors:
         - type: github
