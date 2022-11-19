@@ -20,7 +20,7 @@ data:
     - groups:
       - system:masters
       userarn: arn:aws:iam::405906814034:user/zlzlqlzl1@wafflestudio.com
-      username: jhvictor4@wafflestudio.com
+      username: zlzlqlzl1@wafflestudio.com
     - groups:
       - system:masters
       userarn: arn:aws:iam::405906814034:user/jhvictor4@wafflestudio.com
