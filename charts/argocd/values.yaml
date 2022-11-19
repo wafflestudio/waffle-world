@@ -3,4 +3,25 @@ argo-cd:
     extraArgs:
     - --insecure
     config:
+      url: https://argocd.wafflestudio.com
       timeout.reconciliation: 15s
+      dex.config: |
+        connectors:
+        - type: github
+          id: github
+          name: GitHub
+          config:
+            clientID: fa41a9ad8f42f7e4be31
+            clientSecret: $dex.github.clientSecret
+            orgs:
+            - name: wafflestudio
+    rbacConfig:
+      policy.default: role:readonly
+      policy.csv: |
+        p, role:waffle-k8s-admin, applications, *, */*, allow
+        p, role:waffle-k8s-admin, clusters, get, *, allow
+        p, role:waffle-k8s-admin, repositories, get, *, allow
+        p, role:waffle-k8s-admin, repositories, create, *, allow
+        p, role:waffle-k8s-admin, repositories, update, *, allow
+        p, role:waffle-k8s-admin, repositories, delete, *, allow
+        g, wafflestudio:waffle-k8s-admin, role:waffle-k8s-admin
