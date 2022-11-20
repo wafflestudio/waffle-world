@@ -15,7 +15,7 @@ argo-cd:
             clientSecret: $dex.github.clientSecret
             orgs:
             - name: wafflestudio
-      admin.enabled: false
+      admin.enabled: "false"
     rbacConfig:
       policy.default: role:readonly
       policy.csv: |
