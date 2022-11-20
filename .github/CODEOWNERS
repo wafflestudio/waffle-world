@@ -1,7 +1,7 @@
 # https://help.github.com/articles/about-codeowners/
 
-* @davin111
+* @davin111 # @wafflestudio/waffle-k8s-admin
 apps/snutt-dev/ @wafflestudio/snutt-server
 apps/snutt-prod/ @wafflestudio/snutt-server
 apps/sso-dev/ @wafflestudio/sso
-apps/guam/ @wafflestudio/Guam
+apps/guam/ @wafflestudio/guam
