@@ -23,7 +23,7 @@ spec:
     spec:
       serviceAccountName: account-server
       containers:
-      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/sso-dev/account-server:31
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/sso-dev/account-server:32
         name: account-server
         ports:
         - containerPort: 8080
