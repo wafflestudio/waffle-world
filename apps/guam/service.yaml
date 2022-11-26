@@ -1,8 +1,6 @@
 apiVersion: v1
 kind: Service
 metadata:
-  labels:
-    app.kubernetes.io/instance: guam-user
   name: user-api
   namespace: guam
 spec:
@@ -13,19 +11,30 @@ spec:
   selector:
     app: user-api
 ---
-apiVersion: networking.istio.io/v1alpha3
-kind: VirtualService
+apiVersion: v1
+kind: Service
 metadata:
-  name: user-api
+  name: favorite-api
   namespace: guam
 spec:
-  hosts:
-    - "guam.jon-snow-korea.com"
-    - "guam-user.jon-snow-korea.com"
-    - "guam-immigration.jon-snow-korea.com"
-  gateways:
-    - istio-ingress/waffle-ingressgateway
-  http:
-    - route:
-        - destination:
-            host: user-api
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+  selector:
+    app: favorite-api
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: community-api
+  namespace: guam
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+  selector:
+    app: community-api
+---
+
