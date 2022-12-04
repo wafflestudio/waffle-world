@@ -1,0 +1,14 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  namespace: prometheus
+  name: prometheus-grafana
+spec:
+  gateways:
+  - istio-ingress/waffle-ingressgateway
+  hosts:
+  - grafana.wafflestudio.com
+  http:
+  - route:
+    - destination:
+        host: prometheus-grafana
