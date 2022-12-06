@@ -5,4 +5,4 @@ apps/snutt-dev/ @wafflestudio/snutt-server @wafflestudio/snutt-frontend
 apps/snutt-prod/ @wafflestudio/snutt-server @wafflestudio/snutt-frontend
 apps/sso-dev/ @wafflestudio/sso
 apps/guam/ @wafflestudio/guam
-apps/seminar/ @sanggggg
+apps/seminar/ @wafflestudio/seminar
