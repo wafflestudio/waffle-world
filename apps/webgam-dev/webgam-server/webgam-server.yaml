@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webgam-server
+  labels:
+    app: webgam-server
+  namespace: webgam-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webgam-server
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  revisionHistoryLimit: 4
+  template:
+    metadata:
+      labels:
+        app: webgam-server
+    spec:
+      serviceAccountName: webgam-server
+      containers:
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/webgam-dev/webgam-server:1
+        name: webgam-server
+        ports:
+        - containerPort: 80
+        env:
+        - name: DJANGO_SETTINGS_MODULE
+          value: "web_editor.settings.dev"
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: webgam-server
+  namespace: webgam-dev
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/webgam-server-dev-role
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: webgam-dev
+  name: webgam-server
+spec:
+  type: NodePort
+  selector:
+    app: webgam-server
+  ports:
+  - port: 80
+    targetPort: 80
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  namespace: webgam-dev
+  name: webgam-server
+spec:
+  gateways:
+  - istio-ingress/waffle-ingressgateway
+  hosts:
+  - webgam-api-dev.wafflestudio.com
+  http:
+  - route:
+    - destination:
+        host: webgam-server
