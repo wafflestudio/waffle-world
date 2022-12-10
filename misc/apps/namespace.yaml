@@ -39,3 +39,10 @@ metadata:
   name: seminar
   labels:
     istio-injection: enabled
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: webgam-dev
+  labels:
+    istio-injection: enabled

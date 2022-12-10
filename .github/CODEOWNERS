@@ -6,3 +6,4 @@ apps/snutt-prod/ @wafflestudio/snutt-server @wafflestudio/snutt-frontend
 apps/sso-dev/ @wafflestudio/sso
 apps/guam/ @wafflestudio/guam
 apps/seminar/ @wafflestudio/seminar
+apps/webgam-dev/ @wafflestudio/interactive-web
