@@ -23,7 +23,7 @@ spec:
     spec:
       serviceAccountName: webgam-server
       containers:
-      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/webgam-dev/webgam-server:1
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/webgam-dev/webgam-server:117
         name: webgam-server
         ports:
         - containerPort: 80
