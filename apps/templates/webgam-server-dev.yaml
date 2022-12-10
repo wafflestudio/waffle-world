@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   namespace: argocd
-  name: webgam-dev
+  name: webgam-server-dev
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
