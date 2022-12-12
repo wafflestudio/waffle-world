@@ -7,7 +7,7 @@ metadata:
   namespace: snutt-prod
 spec:
   concurrencyPolicy: Forbid
-  schedule: "0 1,12 * * *"
+  schedule: "0 19 * * *"
   successfulJobsHistoryLimit: 2
   failedJobsHistoryLimit: 3
   jobTemplate:
@@ -32,6 +32,9 @@ metadata:
   namespace: snutt-prod
 spec:
   concurrencyPolicy: Forbid
+  suspend: true
+  # 실행 방법
+  # kubectl create job snutt-ev-batch-snuev-migration --from=cronjob/snutt-ev-batch-snuev-migration
   schedule: "0 0 31 2 *"
   successfulJobsHistoryLimit: 2
   failedJobsHistoryLimit: 3
@@ -39,7 +42,6 @@ spec:
     spec:
       template:
         spec:
-          shareProcessNamespace: true
           restartPolicy: OnFailure
           containers:
             - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-ev-batch:56
