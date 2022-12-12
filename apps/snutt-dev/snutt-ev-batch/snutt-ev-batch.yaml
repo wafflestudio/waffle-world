@@ -1,0 +1,52 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: snutt-ev-batch-lecture-sync
+  labels:
+    app: snutt-ev-batch-lecture-sync
+  namespace: snutt-dev
+spec:
+  concurrencyPolicy: Forbid
+  schedule: "0 19 * * *"
+  successfulJobsHistoryLimit: 2
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          shareProcessNamespace: true
+          restartPolicy: OnFailure
+          containers:
+            - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-dev/snutt-ev-batch:34
+              name: snutt-ev-batch-lecture-sync
+              env:
+                - name: JOB_NAMES
+                  value: SYNC_JOB
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: snutt-ev-batch-snuev-migration
+  labels:
+    app: snutt-ev-batch-snuev-migration
+  namespace: snutt-dev
+spec:
+  concurrencyPolicy: Forbid
+  suspend: true
+  # 실행 방법
+  # kubectl create job snutt-ev-batch-snuev-migration --from=cronjob/snutt-ev-batch-snuev-migration
+  schedule: "0 0 31 2 *"
+  successfulJobsHistoryLimit: 2
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-dev/snutt-ev-batch:34
+              imagePullPolicy: IfNotPresent
+              name: snutt-ev-batch-snuev-migration
+              env:
+                - name: JOB_NAMES
+                  value: SNUEV_MIGRATION_JOB
