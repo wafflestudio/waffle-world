@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-api
+  namespace: guam
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+  selector:
+    app: user-api
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: favorite-api
+  namespace: guam
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+  selector:
+    app: favorite-api
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: community-api
+  namespace: guam
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+  selector:
+    app: community-api
+---
+
