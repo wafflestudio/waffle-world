@@ -46,3 +46,10 @@ metadata:
   name: webgam-dev
   labels:
     istio-injection: enabled
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: feelin-dev
+  labels:
+    istio-injection: enabled
