@@ -14,14 +14,18 @@ spec:
     spec:
       template:
         spec:
-          shareProcessNamespace: true
           restartPolicy: OnFailure
+          serviceAccountName: snutt-ev-batch
           containers:
-            - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-ev-batch:57
-              name: snutt-ev-batch-lecture-sync
-              env:
-                - name: JOB_NAMES
-                  value: SYNC_JOB
+          - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-ev-batch:57
+            name: snutt-ev-batch-lecture-sync
+            env:
+            - name: JOB_NAMES
+              value: "SYNC_JOB"
+            - name: JAVA_OPTS
+              value: "-Duser.timezone=UTC"
+            - name: SPRING_PROFILES_ACTIVE
+              value: "prod"
 ---
 apiVersion: batch/v1beta1
 kind: CronJob
@@ -43,9 +47,22 @@ spec:
       template:
         spec:
           restartPolicy: OnFailure
+          serviceAccountName: snutt-ev-batch
           containers:
-            - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-ev-batch:57
-              name: snutt-ev-batch-snuev-migration
-              env:
-                - name: JOB_NAMES
-                  value: SNUEV_MIGRATION_JOB
+          - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-ev-batch:57
+            name: snutt-ev-batch-snuev-migration
+            env:
+            - name: JOB_NAMES
+              value: "SNUEV_MIGRATION_JOB"
+            - name: JAVA_OPTS
+              value: "-Duser.timezone=UTC"
+            - name: SPRING_PROFILES_ACTIVE
+              value: "prod"
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: snutt-ev-batch
+  namespace: snutt-prod
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/snutt-ev-cron-prod-role
