@@ -1,8 +1,10 @@
 # https://help.github.com/articles/about-codeowners/
 
 * @davin111 @wafflestudio/waffle-k8s-admin
-apps/snutt-dev/ @wafflestudio/snutt-server @wafflestudio/snutt-frontend
-apps/snutt-prod/ @wafflestudio/snutt-server @wafflestudio/snutt-frontend
+apps/snutt-dev/ @wafflestudio/snutt-server
+apps/snutt-dev/snutt-ev-web/ @wafflestudio/snutt-frontend
+apps/snutt-prod/ @wafflestudio/snutt-server
+apps/snutt-prod/snutt-ev-web/ @wafflestudio/snutt-frontend
 apps/sso-dev/ @wafflestudio/sso
 apps/guam/ @wafflestudio/guam
 apps/seminar/ @wafflestudio/seminar
