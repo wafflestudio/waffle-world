@@ -23,16 +23,10 @@ spec:
     spec:
       serviceAccountName: feelin-core-server
       containers:
-        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/feelin-dev/feelin-core-server:9
-          name: feelin-core-server
-          ports:
-            - containerPort: 80
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: feelin-core-server
-  namespace: feelin-dev
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/feelin-dev/feelin-core-server:9
+        name: feelin-core-server
+        ports:
+        - containerPort: 3000
 ---
 apiVersion: v1
 kind: Service
@@ -44,8 +38,8 @@ spec:
   selector:
     app: feelin-core-server
   ports:
-    - port: 80
-      targetPort: 80
+  - port: 80
+    targetPort: 3000
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
@@ -54,10 +48,10 @@ metadata:
   name: feelin-core-server
 spec:
   gateways:
-    - istio-ingress/waffle-ingressgateway
+  - istio-ingress/waffle-ingressgateway
   hosts:
-    - feelin-core-api-dev.wafflestudio.com
+  - feelin-api-dev.wafflestudio.com
   http:
-    - route:
-        - destination:
-            host: feelin-core-server
+  - route:
+    - destination:
+        host: feelin-core-server
