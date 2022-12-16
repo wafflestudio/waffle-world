@@ -17,7 +17,7 @@ spec:
           shareProcessNamespace: true
           restartPolicy: OnFailure
           containers:
-            - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-ev-batch:56
+            - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-ev-batch:57
               name: snutt-ev-batch-lecture-sync
               env:
                 - name: JOB_NAMES
@@ -44,7 +44,7 @@ spec:
         spec:
           restartPolicy: OnFailure
           containers:
-            - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-ev-batch:56
+            - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-ev-batch:57
               name: snutt-ev-batch-snuev-migration
               env:
                 - name: JOB_NAMES
