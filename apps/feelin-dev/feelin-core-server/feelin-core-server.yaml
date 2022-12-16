@@ -21,7 +21,6 @@ spec:
       labels:
         app: feelin-core-server
     spec:
-      serviceAccountName: feelin-core-server
       containers:
       - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/feelin-dev/feelin-core-server:9
         name: feelin-core-server
