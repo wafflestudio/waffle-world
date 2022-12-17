@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   namespace: argocd
-  name: android-project-backend
+  name: seminar-android-project-backend
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
