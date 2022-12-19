@@ -13,6 +13,9 @@ spec:
   jobTemplate:
     spec:
       template:
+        metadata:
+          annotations:
+            sidecar.istio.io/inject: "false"
         spec:
           restartPolicy: OnFailure
           serviceAccountName: snutt-ev-batch
@@ -45,6 +48,9 @@ spec:
   jobTemplate:
     spec:
       template:
+        metadata:
+          annotations:
+            sidecar.istio.io/inject: "false"
         spec:
           restartPolicy: OnFailure
           serviceAccountName: snutt-ev-batch
@@ -65,4 +71,4 @@ metadata:
   name: snutt-ev-batch
   namespace: snutt-prod
   annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/snutt-ev-cron-prod-role
+    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/snutt-ev-batch-prod-role
