@@ -49,7 +49,7 @@ spec:
   gateways:
     - istio-ingress/waffle-ingressgateway
   hosts:
-    - feelin-api-dev.wafflestudio.com
+    - feelin-social-api-dev.wafflestudio.com
   http:
     - route:
         - destination:
