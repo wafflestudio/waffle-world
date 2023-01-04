@@ -10,4 +10,4 @@ apps/guam/ @wafflestudio/guam
 apps/seminar/ @wafflestudio/seminar
 apps/webgam-dev/ @wafflestudio/interactive-web
 apps/feelin-dev/ @wafflestudio/music-sns
-apps/siksha-prod/ @wafflestudio/siksha-api
+apps/siksha-prod/ @wafflestudio/siksha
