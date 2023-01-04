@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   namespace: argocd
-  name: siksha-api-server
+  name: siksha-api-server-prod
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
@@ -15,4 +15,4 @@ spec:
     server: {{ .Values.spec.destination.server }}
     namespace: argocd
   syncPolicy: 
-    {{ - .Values.spec.syncPolicy | toYaml | nindent 4 }}
+    {{- .Values.spec.syncPolicy | toYaml | nindent 4 }}
