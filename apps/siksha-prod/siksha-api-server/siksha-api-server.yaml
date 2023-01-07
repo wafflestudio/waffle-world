@@ -21,6 +21,7 @@ spec:
       labels:
         app: siksha-api-server
     spec:
+      serviceAccountName: siksha-api-server
       containers:
         - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/siksha-prod/siksha-api-server:9
           name: siksha-api-server
@@ -33,7 +34,7 @@ metadata:
   name: siksha-api-server
   namespace: siksha-prod
   annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/siksha-api-server-role
+    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/siksha-api-server-prod-role
 ---
 apiVersion: v1
 kind: Service
