@@ -43,3 +43,11 @@ data:
       userarn: arn:aws:iam::405906814034:user/subeenpark-io
       groups:
       - snutt-developers
+    - username: woohm404@wafflestudio.com
+      userarn: arn:aws:iam::405906814034:user/woohm404@wafflestudio.com
+      groups:
+      - snutt-developers
+    - username: ars-ki-00
+      userarn: arn:aws:iam::405906814034:user/ars-ki-00
+      groups:
+      - snutt-developers
