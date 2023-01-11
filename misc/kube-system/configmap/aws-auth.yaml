@@ -13,27 +13,41 @@ data:
   mapUsers:
     # cluster_creator: arn:aws:iam::405906814034:user/bdv111@wafflestudio.com
     |
-    - groups:
-      - system:masters
+    - username: jon.snow@wafflestudio.com
       userarn: arn:aws:iam::405906814034:user/jon.snow@wafflestudio.com
-      username: jon.snow@wafflestudio.com
-    - groups:
+      groups:
       - system:masters
+    - username: zlzlqlzl1@wafflestudio.com
       userarn: arn:aws:iam::405906814034:user/zlzlqlzl1@wafflestudio.com
-      username: zlzlqlzl1@wafflestudio.com
-    - groups:
+      groups:
       - system:masters
+      - snutt-developers
+    - username: jhvictor4@wafflestudio.com
       userarn: arn:aws:iam::405906814034:user/jhvictor4@wafflestudio.com
-      username: jhvictor4@wafflestudio.com
-    - groups:
+      groups:
       - system:masters
+    - username: marcel@wafflestudio.com
       userarn: arn:aws:iam::405906814034:user/marcel@wafflestudio.com
-      username: marcel@wafflestudio.com
-    - groups:
+      groups:
       - system:masters
+    - username: shp7724
       userarn: arn:aws:iam::405906814034:user/shp7724
-      username: shp7724
-    - groups:
+      groups:
       - system:masters
+    - username: ganzidaeyong@wafflestudio.com
       userarn: arn:aws:iam::405906814034:user/ganzidaeyong@wafflestudio.com
-      username: ganzidaeyong@wafflestudio.com
+      groups:
+      - system:masters
+    
+    - username: subeenpark-io
+      userarn: arn:aws:iam::405906814034:user/subeenpark-io
+      groups:
+      - snutt-developers
+    - username: woohm404@wafflestudio.com
+      userarn: arn:aws:iam::405906814034:user/woohm404@wafflestudio.com
+      groups:
+      - snutt-developers
+    - username: ars-ki-00
+      userarn: arn:aws:iam::405906814034:user/ars-ki-00
+      groups:
+      - snutt-developers
