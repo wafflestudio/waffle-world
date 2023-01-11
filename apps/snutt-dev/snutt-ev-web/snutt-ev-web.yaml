@@ -22,7 +22,7 @@ spec:
         app: snutt-ev-web
     spec:
       containers:
-      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-dev/snutt-ev-web:224
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-dev/snutt-ev-web:225
         name: snutt-ev-web
         ports:
         - containerPort: 3000
