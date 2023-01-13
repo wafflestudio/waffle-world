@@ -61,10 +61,10 @@ metadata:
   name: snutt-timetable
 spec:
   gateways:
-    - istio-ingress/waffle-ingressgateway
+  - istio-ingress/waffle-ingressgateway
   hosts:
-    - snu4t-api-dev.wafflestudio.com
+  - snu4t-api-dev.wafflestudio.com
   http:
   - route:
     - destination:
-      host: snutt-timetable
+        host: snutt-timetable

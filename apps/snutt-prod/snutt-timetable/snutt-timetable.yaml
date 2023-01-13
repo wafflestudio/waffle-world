@@ -67,4 +67,4 @@ spec:
   http:
   - route:
     - destination:
-      host: snutt-timetable
+        host: snutt-timetable
