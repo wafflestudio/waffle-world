@@ -53,3 +53,17 @@ metadata:
   name: feelin-dev
   labels:
     istio-injection: enabled
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: siksha-dev
+  labels:
+    istio-injection: enabled
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: siksha-prod
+  labels:
+    istio-injection: enabled
