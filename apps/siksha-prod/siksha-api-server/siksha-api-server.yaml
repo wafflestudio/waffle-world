@@ -58,7 +58,7 @@ spec:
   gateways:
   - istio-ingress/waffle-ingressgateway
   hosts:
-  - siksha-api-k8s.wafflestudio.com
+  - siksha-api.wafflestudio.com
   http:
   - route:
     - destination:
