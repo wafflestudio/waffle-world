@@ -56,26 +56,41 @@ metadata:
   name: snutt-core
 spec:
   gateways:
-  - istio-ingress/waffle-ingressgateway
+    - istio-ingress/waffle-ingressgateway
   hosts:
-  - snutt-api-dev.wafflestudio.com
+    - snutt-api-dev.wafflestudio.com
   http:
-  - name: "snut4t-route"
-    match:
-      - uri:
-          exact: "/tables"
-      - uri:
-          exact: "/v1/tables"
-      - uri:
-          exact: "/auth/register_local"
-      - uri:
-          exact: "/v1/auth/register_local"
-    route:
-      - destination:
-          host: snutt-timetable.snutt-dev.svc.cluster.local
-  - route:
-    - destination:
-        host: snutt-core
+    - corsPolicy:
+        allowHeaders:
+          - x-access-apikey
+          - x-access-token
+        allowMethods:
+          - POST
+          - GET
+          - PUT
+          - DELETE
+        allowOrigins:
+          - exact: 'https://snutt-dev.wafflestudio.com'
+      match:
+        - method:
+            exact: GET
+          uri:
+            exact: /tables
+        - method:
+            exact: GET
+          uri:
+            exact: /v1/tables
+        - uri:
+            exact: /auth/register_local
+        - uri:
+            exact: /v1/auth/register_local
+      name: snut4t-route
+      route:
+        - destination:
+            host: snutt-timetable
+    - route:
+        - destination:
+            host: snutt-core
 ---
 apiVersion: batch/v1beta1
 kind: CronJob
