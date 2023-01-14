@@ -9,7 +9,6 @@ spec:
   project: default
   source:
     repoURL: {{ .Values.spec.source.repoURL }}
-    targetRevision: HEAD
     path: apps/snutt-dev/snutt-core
   destination:
     server: {{ .Values.spec.destination.server }}

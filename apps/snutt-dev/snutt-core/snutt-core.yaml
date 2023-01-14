@@ -60,6 +60,19 @@ spec:
   hosts:
   - snutt-api-dev.wafflestudio.com
   http:
+  - name: "snut4t-route"
+    match:
+      - uri:
+          exact: "/tables"
+      - uri:
+          exact: "/v1/tables"
+      - uri:
+          exact: "/auth/register_local"
+      - uri:
+          exact: "/v1/auth/register_local"
+    route:
+      - destination:
+          host: snutt-timetable.snutt-dev.svc.cluster.local
   - route:
     - destination:
         host: snutt-core
