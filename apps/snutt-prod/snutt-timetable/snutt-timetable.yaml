@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: snutt-timetable
+  labels:
+    app: snutt-timetable
+  namespace: snutt-prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: snutt-timetable
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  revisionHistoryLimit: 4
+  template:
+    metadata:
+      labels:
+        app: snutt-timetable
+    spec:
+      serviceAccountName: snutt-timetable
+      containers:
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-timetable:11
+        name: snutt-timetable
+        ports:
+        - containerPort: 8080
+        env:
+        - name: JAVA_OPTS
+          value: "-Duser.timezone=UTC"
+        - name: SPRING_PROFILES_ACTIVE
+          value: "prod"
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: snutt-timetable
+  namespace: snutt-prod
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/snutt-timetable-prod-role
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: snutt-prod
+  name: snutt-timetable
+spec:
+  type: ClusterIP
+  selector:
+    app: snutt-timetable
+  ports:
+  - port: 80
+    targetPort: 8080
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  namespace: snutt-prod
+  name: snutt-timetable
+spec:
+  gateways:
+  - istio-ingress/waffle-ingressgateway
+  hosts:
+  - snu4t-api.wafflestudio.com
+  http:
+  - route:
+    - destination:
+        host: snutt-timetable
