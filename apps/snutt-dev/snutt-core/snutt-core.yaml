@@ -69,15 +69,16 @@ spec:
           - GET
           - PUT
           - DELETE
+          - OPTIONS
         allowOrigins:
           - exact: 'https://snutt-dev.wafflestudio.com'
       match:
         - method:
-            exact: GET
+            regex: ^(GET|OPTIONS)
           uri:
             exact: /tables
         - method:
-            exact: GET
+            exact: ^(GET|OPTIONS)
           uri:
             exact: /v1/tables
         - uri:
