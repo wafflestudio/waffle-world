@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: truffle
+  labels:
+    app: truffle
+  namespace: truffle-prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: truffle
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  revisionHistoryLimit: 4
+  template:
+    metadata:
+      labels:
+        app: truffle
+    spec:
+      serviceAccountName: truffle
+      containers:
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/truffle-prod/truffle:1
+        name: truffle
+        ports:
+        - containerPort: 8080
+        env:
+        - name: JAVA_OPTS
+          value: "-Duser.timezone=UTC"
+        - name: SPRING_PROFILES_ACTIVE
+          value: "prod"
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: truffle
+  namespace: truffle-prod
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/truffle-prod-role
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: truffle-prod
+  name: truffle
+spec:
+  type: ClusterIP
+  selector:
+    app: truffle
+  ports:
+    - port: 80
+      targetPort: 8080
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  namespace: truffle-prod
+  name: truffle
+spec:
+  gateways:
+  - istio-ingress/waffle-ingressgateway
+  hosts:
+  - truffle-api.wafflestudio.com
+  http:
+  - route:
+    - destination:
+        host: truffle
