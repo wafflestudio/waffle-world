@@ -84,7 +84,7 @@ spec:
         - uri:
             regex: ^\/bookmarks(\/.*)?$
         - uri:
-            regex: ^\/bookmarks(\/.*)?$
+            regex: ^\/v1\/bookmarks(\/.*)?$
         - uri:
             exact: /auth/register_local
         - uri:
