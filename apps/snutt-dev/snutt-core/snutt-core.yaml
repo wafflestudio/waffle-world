@@ -82,9 +82,9 @@ spec:
           uri:
             exact: /v1/tables
         - uri:
-            regex: /bookmarks/.*
+            regex: /bookmarks.*
         - uri:
-            regex: /v1/bookmarks/.*
+            regex: /v1/bookmarks.*
         - uri:
             exact: /auth/register_local
         - uri:
