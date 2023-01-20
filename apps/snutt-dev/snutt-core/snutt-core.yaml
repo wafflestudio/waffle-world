@@ -74,13 +74,17 @@ spec:
           - exact: 'https://snutt-dev.wafflestudio.com'
       match:
         - method:
-            regex: GET
+            exact: GET
           uri:
             exact: /tables
         - method:
             exact: GET
           uri:
             exact: /v1/tables
+        - uri:
+            regex: /bookmarks/.*
+        - uri:
+            regex: /v1/bookmarks/.*
         - uri:
             exact: /auth/register_local
         - uri:
