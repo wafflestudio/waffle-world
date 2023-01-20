@@ -74,11 +74,11 @@ spec:
           - exact: 'https://snutt-dev.wafflestudio.com'
       match:
         - method:
-            regex: ^(GET|OPTIONS)
+            regex: GET
           uri:
             exact: /tables
         - method:
-            exact: ^(GET|OPTIONS)
+            exact: GET
           uri:
             exact: /v1/tables
         - uri:
