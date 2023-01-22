@@ -65,6 +65,15 @@ spec:
   hosts:
   - truffle-api.wafflestudio.com
   http:
-  - route:
-    - destination:
-        host: truffle
+    - corsPolicy:
+        allowHeaders:
+          - x-api-key
+          - content-type
+        allowMethods:
+          - POST
+          - OPTIONS
+        allowOrigin:
+          - "*"
+      route:
+        - destination:
+            host: truffle
