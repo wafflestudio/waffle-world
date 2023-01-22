@@ -23,7 +23,7 @@ spec:
     spec:
       serviceAccountName: truffle
       containers:
-      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/truffle-prod/truffle:1
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/truffle-prod/truffle:2
         name: truffle
         ports:
         - containerPort: 8080
