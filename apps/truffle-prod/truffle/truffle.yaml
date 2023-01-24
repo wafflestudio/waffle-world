@@ -67,8 +67,8 @@ spec:
   http:
     - corsPolicy:
         allowHeaders:
-          - x-api-key
           - content-type
+          - x-api-key
         allowMethods:
           - POST
           - OPTIONS
