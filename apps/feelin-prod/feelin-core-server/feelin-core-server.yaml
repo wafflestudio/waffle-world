@@ -33,7 +33,7 @@ metadata:
   namespace: feelin-prod
   name: feelin-core-server
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: feelin-core-server
   ports:

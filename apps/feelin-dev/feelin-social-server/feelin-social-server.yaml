@@ -33,7 +33,7 @@ metadata:
   namespace: feelin-dev
   name: feelin-social-server
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: feelin-social-server
   ports:
