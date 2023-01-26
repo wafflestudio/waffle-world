@@ -22,7 +22,7 @@ spec:
         app: feelin-core-server
     spec:
       containers:
-      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/feelin-prod/feelin-core-server:1
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/feelin-prod/feelin-core-server:2
         name: feelin-core-server
         ports:
         - containerPort: 3000
