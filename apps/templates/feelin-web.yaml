@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   namespace: argocd
-  name: feelin-web-prod
+  name: feelin-web
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
