@@ -4,7 +4,7 @@ metadata:
   name: feelin-social-server
   labels:
     app: feelin-social-server
-  namespace: feelin-dev
+  namespace: feelin-prod
 spec:
   replicas: 1
   selector:
@@ -22,7 +22,7 @@ spec:
         app: feelin-social-server
     spec:
       containers:
-        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/feelin-dev/feelin-social-server:166
+        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/feelin-prod/feelin-social-server:1
           name: feelin-social-server
           ports:
             - containerPort: 8080
@@ -30,7 +30,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: feelin-dev
+  namespace: feelin-prod
   name: feelin-social-server
 spec:
   type: ClusterIP
@@ -43,13 +43,13 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  namespace: feelin-dev
+  namespace: feelin-prod
   name: feelin-social-server
 spec:
   gateways:
     - istio-ingress/waffle-ingressgateway
   hosts:
-    - feelin-social-api-dev.wafflestudio.com
+    - feelin-social-api.wafflestudio.com
   http:
     - route:
         - destination:

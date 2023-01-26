@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: feelin-core-server
+  name: feelin-web
   labels:
-    app: feelin-core-server
-  namespace: feelin-dev
+    app: feelin-web
+  namespace: feelin-prod
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: feelin-core-server
+      app: feelin-web
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -19,23 +19,23 @@ spec:
   template:
     metadata:
       labels:
-        app: feelin-core-server
+        app: feelin-web
     spec:
       containers:
-      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/feelin-dev/feelin-core-server:39
-        name: feelin-core-server
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/feelin-prod/feelin-web:6
+        name: feelin-web
         ports:
         - containerPort: 3000
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: feelin-dev
-  name: feelin-core-server
+  namespace: feelin-prod
+  name: feelin-web
 spec:
   type: ClusterIP
   selector:
-    app: feelin-core-server
+    app: feelin-web
   ports:
   - port: 80
     targetPort: 3000
@@ -43,14 +43,14 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  namespace: feelin-dev
-  name: feelin-core-server
+  namespace: feelin-prod
+  name: feelin-web
 spec:
   gateways:
   - istio-ingress/waffle-ingressgateway
   hosts:
-  - feelin-api-dev.wafflestudio.com
+  - feelin.wafflestudio.com
   http:
   - route:
     - destination:
-        host: feelin-core-server
+        host: feelin-web

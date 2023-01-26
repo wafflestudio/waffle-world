@@ -4,7 +4,7 @@ metadata:
   name: feelin-core-server
   labels:
     app: feelin-core-server
-  namespace: feelin-dev
+  namespace: feelin-prod
 spec:
   replicas: 1
   selector:
@@ -22,7 +22,7 @@ spec:
         app: feelin-core-server
     spec:
       containers:
-      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/feelin-dev/feelin-core-server:39
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/feelin-prod/feelin-core-server:1
         name: feelin-core-server
         ports:
         - containerPort: 3000
@@ -30,7 +30,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: feelin-dev
+  namespace: feelin-prod
   name: feelin-core-server
 spec:
   type: ClusterIP
@@ -43,13 +43,13 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  namespace: feelin-dev
+  namespace: feelin-prod
   name: feelin-core-server
 spec:
   gateways:
   - istio-ingress/waffle-ingressgateway
   hosts:
-  - feelin-api-dev.wafflestudio.com
+  - feelin-api.wafflestudio.com
   http:
   - route:
     - destination:
