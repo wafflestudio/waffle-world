@@ -33,7 +33,7 @@ metadata:
   namespace: snutt-prod
   name: snutt-ev-web
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: snutt-ev-web
   ports:

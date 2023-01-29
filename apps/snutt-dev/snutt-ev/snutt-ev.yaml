@@ -47,7 +47,7 @@ metadata:
   namespace: snutt-dev
   name: snutt-ev
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: snutt-ev
   ports:

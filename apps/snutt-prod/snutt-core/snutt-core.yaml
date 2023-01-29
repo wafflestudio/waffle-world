@@ -42,7 +42,7 @@ metadata:
   namespace: snutt-prod
   name: snutt-core
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: snutt-core
   ports:
@@ -60,6 +60,13 @@ spec:
   hosts:
   - snutt-api.wafflestudio.com
   http:
+  - match:
+    - uri:
+        regex: ^\/v1\/bookmarks(\/.*)?$
+      name: snut4t-route
+      route:
+      - destination:
+          host: snutt-timetable
   - route:
     - destination:
         host: snutt-core
