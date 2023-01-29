@@ -60,10 +60,6 @@ spec:
   hosts:
     - snutt-api-dev.wafflestudio.com
   http:
-  - name: "snutt-core-route"
-    route:
-    - destination:
-        host: snutt-core
   - name: "snutt-timetable-route"
     match:
     - method:
@@ -96,6 +92,10 @@ spec:
       - OPTIONS
       allowOrigins:
       - exact: 'https://snutt-dev.wafflestudio.com'
+  - name: "snutt-core-route"
+    route:
+    - destination:
+        host: snutt-core
 ---
 apiVersion: batch/v1beta1
 kind: CronJob
