@@ -60,16 +60,17 @@ spec:
   hosts:
   - snutt-api.wafflestudio.com
   http:
-  - match:
-    - uri:
-        regex: ^\/v1\/bookmarks(\/.*)?$
-      name: snut4t-route
-      route:
-      - destination:
-          host: snutt-timetable
-  - route:
+  - name: "snutt-core-route"
+    route:
     - destination:
         host: snutt-core
+  - name: "snutt-timetable-route"
+    match:
+    - uri:
+        regex: ^\/v1\/bookmarks(\/.*)?$
+    route:
+    - destination:
+        host: snutt-timetable
 ---
 apiVersion: batch/v1beta1
 kind: CronJob
