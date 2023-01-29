@@ -42,7 +42,7 @@ metadata:
   namespace: snutt-prod
   name: snutt-core
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: snutt-core
   ports:
@@ -60,9 +60,17 @@ spec:
   hosts:
   - snutt-api.wafflestudio.com
   http:
-  - route:
+  - name: "snutt-core-route"
+    route:
     - destination:
         host: snutt-core
+  - name: "snutt-timetable-route"
+    match:
+    - uri:
+        regex: ^\/v1\/bookmarks(\/.*)?$
+    route:
+    - destination:
+        host: snutt-timetable
 ---
 apiVersion: batch/v1beta1
 kind: CronJob
