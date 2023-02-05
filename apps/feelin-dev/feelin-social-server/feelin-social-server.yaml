@@ -22,7 +22,7 @@ spec:
         app: feelin-social-server
     spec:
       containers:
-        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/feelin-dev/feelin-social-server:19
+        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/feelin-dev/feelin-social-server:20
           name: feelin-social-server
           ports:
             - containerPort: 8080
