@@ -26,10 +26,10 @@ spec:
       - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/webgam-dev/webgam-server:1
         name: webgam-server
         ports:
-        - containerPort: 80
+        - containerPort: 8080
         env:
-        - name: DJANGO_SETTINGS_MODULE
-          value: "web_editor.settings.dev"
+        - name: SPRING_PROFILES_ACTIVE
+          value: dev
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -50,7 +50,7 @@ spec:
     app: webgam-server
   ports:
   - port: 80
-    targetPort: 80
+    targetPort: 8080
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
