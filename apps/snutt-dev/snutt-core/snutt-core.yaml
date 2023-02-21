@@ -23,7 +23,7 @@ spec:
     spec:
       serviceAccountName: snutt-core
       containers:
-      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-dev/snutt-core:128
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-dev/snutt-core:129
         name: snutt-core
         ports:
         - containerPort: 3000
@@ -119,7 +119,7 @@ spec:
           restartPolicy: OnFailure
           serviceAccountName: snutt-core-batch
           containers:
-          - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-dev/snutt-core:128
+          - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-dev/snutt-core:129
             name: snutt-core-batch-coursebook
             command:
             - "npm"
