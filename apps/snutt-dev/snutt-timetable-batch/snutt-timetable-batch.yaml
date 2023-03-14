@@ -18,7 +18,7 @@ spec:
             sidecar.istio.io/inject: "false"
         spec:
           restartPolicy: OnFailure
-          serviceAccountName: snutt-timetable
+          serviceAccountName: snutt-timetable-batch
           containers:
           - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-dev/snutt-timetable-batch:23
             name: snutt-timetable-batch-coursebook
