@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   namespace: argocd
-  name: snutt-timetable-batch
+  name: snutt-timetable-batch-dev
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
