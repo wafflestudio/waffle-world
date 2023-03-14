@@ -29,3 +29,11 @@ spec:
               value: "-Duser.timezone=UTC"
             - name: SPRING_PROFILES_ACTIVE
               value: "dev"
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: snutt-timetable-batch
+  namespace: snutt-dev
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/snutt-timetable-batch-dev-role
