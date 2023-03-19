@@ -1,0 +1,39 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: snutt-timetable-batch-coursebook
+  labels:
+    app: snutt-timetable-batch-coursebook
+  namespace: snutt-prod
+spec:
+  concurrencyPolicy: Forbid
+  schedule: "45 */12 * * *"
+  successfulJobsHistoryLimit: 2
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          annotations:
+            sidecar.istio.io/inject: "false"
+        spec:
+          restartPolicy: OnFailure
+          serviceAccountName: snutt-timetable-batch
+          containers:
+          - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-timetable-batch:14
+            name: snutt-timetable-batch-coursebook
+            env:
+            - name: JOB_NAME
+              value: "sugangSnuMigrationJob"
+            - name: JAVA_OPTS
+              value: "-Duser.timezone=UTC"
+            - name: SPRING_PROFILES_ACTIVE
+              value: "prod"
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: snutt-timetable-batch
+  namespace: snutt-prod
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/snutt-timetable-batch-prod-role
