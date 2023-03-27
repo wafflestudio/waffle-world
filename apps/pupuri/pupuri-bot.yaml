@@ -49,7 +49,7 @@ spec:
   gateways:
     - istio-ingress/waffle-ingressgateway
   hosts:
-    - pupuri.wafflestudio.com
+    - pupuri-api.wafflestudio.com
   http:
     - route:
         - destination:
