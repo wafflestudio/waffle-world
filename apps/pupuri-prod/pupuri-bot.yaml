@@ -22,7 +22,7 @@ spec:
         app: pupuri-bot
     spec:
       containers:
-        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/pupuri-prod/pupuri-bot:3
+        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/pupuri-prod/pupuri-bot:6
           name: pupuri-bot
           ports:
             - containerPort: 3000
