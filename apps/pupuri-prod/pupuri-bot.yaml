@@ -4,7 +4,7 @@ metadata:
   name: pupuri-bot
   labels:
     app: pupuri-bot
-  namespace: pupuri
+  namespace: pupuri-prod
 spec:
   replicas: 1
   selector:
@@ -22,7 +22,7 @@ spec:
         app: pupuri-bot
     spec:
       containers:
-        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/pupuri/pupuri-bot:2
+        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/pupuri-prod/pupuri-bot:3
           name: pupuri-bot
           ports:
             - containerPort: 3000
@@ -30,7 +30,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: pupuri
+  namespace: pupuri-prod
   name: pupuri-bot
 spec:
   type: ClusterIP
@@ -43,7 +43,7 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  namespace: pupuri
+  namespace: pupuri-prod
   name: pupuri-bot
 spec:
   gateways:

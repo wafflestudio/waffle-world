@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: { { .Values.spec.source.repoURL } }
     targetRevision: HEAD
-    path: apps/pupuri/pupuri-bot
+    path: apps/pupuri-prod/pupuri-bot
   destination:
     server: { { .Values.spec.destination.server } }
     namespace: argocd
