@@ -73,7 +73,7 @@ spec:
     - method:
         exact: GET
       uri:
-        regex: ^\/v1/tables/(\w+)/links$
+        regex: ^\/v1\/tables\/(\w+)\/links$
     - uri:
         regex: ^\/v1\/bookmarks(\/.*)?$
     - uri:
