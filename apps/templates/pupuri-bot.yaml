@@ -8,10 +8,10 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: { { .Values.spec.source.repoURL } }
+    repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: HEAD
     path: apps/pupuri-prod/pupuri-bot
   destination:
-    server: { { .Values.spec.destination.server } }
+    server: {{ .Values.spec.destination.server }}
     namespace: argocd
-  syncPolicy: { { - .Values.spec.syncPolicy | toYaml | nindent 4 } }
+  syncPolicy: {{- .Values.spec.syncPolicy | toYaml | nindent 4 }}
