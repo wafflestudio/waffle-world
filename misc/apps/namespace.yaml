@@ -88,3 +88,10 @@ metadata:
   name: truffle-prod
   labels:
     istio-injection: enabled
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: pupuri-prod
+  labels:
+    istio-injection: enabled
