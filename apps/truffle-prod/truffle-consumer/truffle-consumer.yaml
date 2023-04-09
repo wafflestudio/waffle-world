@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: truffle-consumer
+  labels:
+    app: truffle-consumer
+  namespace: truffle-prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: truffle-consumer
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  revisionHistoryLimit: 4
+  template:
+    metadata:
+      labels:
+        app: truffle-consumer
+    spec:
+      serviceAccountName: truffle
+      containers:
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/truffle-prod/truffle-consumer:1
+        name: truffle-consumer
+        ports:
+        - containerPort: 8080
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "prod"
+        envFrom:
+          - secretRef:
+              name: truffle-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: truffle-prod
+  name: truffle-consumer
+spec:
+  type: ClusterIP
+  selector:
+    app: truffle-consumer
+  ports:
+    - port: 80
+      targetPort: 8080
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  namespace: truffle-prod
+  name: truffle-consumer
+spec:
+  gateways:
+  - istio-ingress/waffle-ingressgateway
+  hosts:
+  - truffle-api.wafflestudio.com
+  http:
+    - corsPolicy:
+        allowHeaders:
+          - content-type
+          - x-api-key
+        allowMethods:
+          - POST
+          - OPTIONS
+        allowOrigin:
+          - "*"
+      route:
+        - destination:
+            host: truffle
