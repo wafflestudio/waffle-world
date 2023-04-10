@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   namespace: argocd
-  name: truffle
+  name: truffle-consumer
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
