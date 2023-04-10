@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: HEAD
-    path: apps/truffle-prod/truffle
+    path: apps/truffle-prod/truffle-dashboard
   destination:
     server: {{ .Values.spec.destination.server }}
     namespace: argocd
