@@ -69,4 +69,4 @@ spec:
           - "*"
       route:
         - destination:
-            host: truffle
+            host: truffle-consumer
