@@ -23,7 +23,7 @@ spec:
     spec:
       serviceAccountName: snutt-timetable
       containers:
-      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-dev/snutt-timetable:49
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-dev/snutt-timetable:50
         name: snutt-timetable
         ports:
         - containerPort: 8080
