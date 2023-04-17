@@ -20,7 +20,7 @@ spec:
           restartPolicy: OnFailure
           serviceAccountName: snutt-ev-batch
           containers:
-          - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-dev/snutt-ev-batch:35
+          - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-dev/snutt-ev-batch:36
             name: snutt-ev-batch-lecture-sync
             env:
             - name: JOB_NAMES
@@ -55,7 +55,7 @@ spec:
           restartPolicy: OnFailure
           serviceAccountName: snutt-ev-batch
           containers:
-          - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-dev/snutt-ev-batch:35
+          - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-dev/snutt-ev-batch:36
             imagePullPolicy: IfNotPresent
             name: snutt-ev-batch-snuev-migration
             env:
