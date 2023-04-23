@@ -25,7 +25,7 @@ spec:
         - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/nostalgia-dev/nostalgia-server:3
           name: nostalgia-server
           ports:
-            - containerPort: 3000
+            - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
@@ -38,7 +38,7 @@ spec:
     app: nostalgia-server
   ports:
     - port: 80
-      targetPort: 3000
+      targetPort: 8080
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
