@@ -6,7 +6,7 @@ metadata:
     app: android-project-backend
   namespace: seminar
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: android-project-backend
