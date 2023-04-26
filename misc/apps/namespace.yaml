@@ -95,3 +95,10 @@ metadata:
   name: pupuri-prod
   labels:
     istio-injection: enabled
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: nostalgia-dev
+  labels:
+    istio-injection: enabled
