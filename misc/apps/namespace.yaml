@@ -99,6 +99,6 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: nostalgia-dev
+  name: ggzz-dev
   labels:
     istio-injection: enabled
