@@ -1,73 +1,87 @@
 ## Using default values from https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
 ##
-grafana:
-  enabled: true
-  defaultDashboardsTimezone: Asia/Seoul
-  adminPassword: #
+kube-prometheus-stack:
+  grafana:
+    enabled: true
+    defaultDashboardsTimezone: Asia/Seoul
+    adminPassword: # secret
+    grafana.ini:
+      server:
+        root_url: https://grafana.wafflestudio.com
+      auth.github:
+        enabled: true
+        allow_sign_up: true
+        scopes: user:email,read:org
+        auth_url: https://github.com/login/oauth/authorize
+        token_url: https://github.com/login/oauth/access_token
+        api_url: https://api.github.com/user
+        allowed_organizations: wafflestudio
+        client_id: 75c8b088348e91be1e97
+        client_secret: # secret
 
-## Deploy a Prometheus instance
-##
-prometheus:
-  enabled: true
-
-  ## Settings affecting prometheusSpec
-  ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#prometheusspec
+  ## Deploy a Prometheus instance
   ##
-  prometheusSpec:
-    ## How long to retain metrics
+  prometheus:
+    enabled: true
+
+    ## Settings affecting prometheusSpec
+    ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#prometheusspec
     ##
-    retention: 10d
-    resources:
-      requests:
-        memory: 400Mi
-      limits:
-        memory: 1Gi
-    additionalScrapeConfigs:
-      - job_name: 'istiod'
-        kubernetes_sd_configs:
-          - role: endpoints
-            namespaces:
-              names:
-                - istio-system
-        relabel_configs:
-          - source_labels: [ __meta_kubernetes_service_name, __meta_kubernetes_endpoint_port_name ]
-            action: keep
-            regex: istiod;http-monitoring
-      - job_name: 'envoy-stats'
-        metrics_path: /stats/prometheus
-        kubernetes_sd_configs:
-          - role: pod
-        relabel_configs:
-          - source_labels: [ __meta_kubernetes_pod_container_port_name ]
-            action: keep
-            regex: '.*-envoy-prom'
-      - job_name: 'istio-mesh'
-        kubernetes_sd_configs:
-          - role: endpoints
-            namespaces:
-              names:
-                - istio-system
-        relabel_configs:
-          - source_labels: [ __meta_kubernetes_service_name, __meta_kubernetes_endpoint_port_name ]
-            action: keep
-            regex: istio-telemetry;prometheus
-      - job_name: 'istio-telemetry'
-        kubernetes_sd_configs:
-          - role: endpoints
-            namespaces:
-              names:
-                - istio-system
-        relabel_configs:
-          - source_labels: [ __meta_kubernetes_service_name, __meta_kubernetes_endpoint_port_name ]
-            action: keep
-            regex: istio-telemetry;http-monitoring
-      - job_name: 'istio-policy'
-        kubernetes_sd_configs:
-          - role: endpoints
-            namespaces:
-              names:
-                - istio-system
-        relabel_configs:
-          - source_labels: [ __meta_kubernetes_service_name, __meta_kubernetes_endpoint_port_name ]
-            action: keep
-            regex: istio-policy;http-policy-monitoring
+    prometheusSpec:
+      ## How long to retain metrics
+      ##
+      retention: 10d
+      resources:
+        requests:
+          memory: 400Mi
+        limits:
+          memory: 1Gi
+      additionalScrapeConfigs:
+        - job_name: 'istiod'
+          kubernetes_sd_configs:
+            - role: endpoints
+              namespaces:
+                names:
+                  - istio-system
+          relabel_configs:
+            - source_labels: [ __meta_kubernetes_service_name, __meta_kubernetes_endpoint_port_name ]
+              action: keep
+              regex: istiod;http-monitoring
+        - job_name: 'envoy-stats'
+          metrics_path: /stats/prometheus
+          kubernetes_sd_configs:
+            - role: pod
+          relabel_configs:
+            - source_labels: [ __meta_kubernetes_pod_container_port_name ]
+              action: keep
+              regex: '.*-envoy-prom'
+        - job_name: 'istio-mesh'
+          kubernetes_sd_configs:
+            - role: endpoints
+              namespaces:
+                names:
+                  - istio-system
+          relabel_configs:
+            - source_labels: [ __meta_kubernetes_service_name, __meta_kubernetes_endpoint_port_name ]
+              action: keep
+              regex: istio-telemetry;prometheus
+        - job_name: 'istio-telemetry'
+          kubernetes_sd_configs:
+            - role: endpoints
+              namespaces:
+                names:
+                  - istio-system
+          relabel_configs:
+            - source_labels: [ __meta_kubernetes_service_name, __meta_kubernetes_endpoint_port_name ]
+              action: keep
+              regex: istio-telemetry;http-monitoring
+        - job_name: 'istio-policy'
+          kubernetes_sd_configs:
+            - role: endpoints
+              namespaces:
+                names:
+                  - istio-system
+          relabel_configs:
+            - source_labels: [ __meta_kubernetes_service_name, __meta_kubernetes_endpoint_port_name ]
+              action: keep
+              regex: istio-policy;http-policy-monitoring
