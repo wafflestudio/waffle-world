@@ -1,4 +1,4 @@
-# Prometheus + Isio + Grafana
+# Prometheus + Istio + Grafana
 
 ###  Install
 
