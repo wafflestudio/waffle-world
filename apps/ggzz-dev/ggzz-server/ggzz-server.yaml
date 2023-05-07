@@ -21,6 +21,7 @@ spec:
       labels:
         app: ggzz-server
     spec:
+      serviceAccountName: ggzz-server
       containers:
         - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/ggzz-dev/ggzz-server:4
           name: ggzz-server
