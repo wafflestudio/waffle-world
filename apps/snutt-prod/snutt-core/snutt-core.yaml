@@ -64,6 +64,10 @@ spec:
     match:
     - uri:
         regex: ^\/v1\/bookmarks(\/.*)?$
+    - uri:
+        regex: ^(?:\/v1)?\/auth\/register_local\/?$
+    - uri:
+        regex: ^(?:\/v1)?\/auth\/login_local\/?$
     route:
     - destination:
         host: snutt-timetable
