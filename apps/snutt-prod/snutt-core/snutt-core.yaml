@@ -71,6 +71,19 @@ spec:
     route:
     - destination:
         host: snutt-timetable
+    corsPolicy:
+      allowHeaders:
+        - content-type
+        - x-access-apikey
+        - x-access-token
+      allowMethods:
+        - POST
+        - GET
+        - PUT
+        - DELETE
+        - OPTIONS
+      allowOrigins:
+        - exact: 'https://snutt.wafflestudio.com'
   - name: "snutt-core-route"
     route:
     - destination:

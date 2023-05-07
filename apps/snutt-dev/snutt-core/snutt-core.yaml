@@ -65,19 +65,13 @@ spec:
     - method:
         exact: GET
       uri:
-        exact: /tables
-    - method:
-        exact: GET
-      uri:
-        exact: /v1/tables
+        regex: ^(?:\/v1)?\/tables\/?$
     - method:
         exact: GET
       uri:
         regex: ^\/v1\/tables\/(\w{24})\/links$
     - uri:
         regex: ^\/v1\/bookmarks(\/.*)?$
-    - uri:
-        exact: /auth/register_local
     - uri:
         regex: ^(?:\/v1)?\/auth\/register_local\/?$
     - uri:
