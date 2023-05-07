@@ -79,7 +79,9 @@ spec:
     - uri:
         exact: /auth/register_local
     - uri:
-        exact: /v1/auth/register_local
+        regex: ^(?:\/v1)?\/auth\/register_local\/?$
+    - uri:
+        regex: ^(?:\/v1)?\/auth\/login_local\/?$
     - uri:
         regex: ^\/v1\/shared-tables(\/.*)?$
     route:
