@@ -56,76 +56,76 @@ metadata:
   name: snutt-core
 spec:
   gateways:
-  - istio-ingress/waffle-ingressgateway
+    - istio-ingress/waffle-ingressgateway
   hosts:
-  - snutt-api-dev.wafflestudio.com
+    - snutt-api-dev.wafflestudio.com
   http:
   - name: "snutt-timetable-route"
     match:
-    - uri:
-        regex: ^\/v1\/bookmarks(\/.*)?$
-    - uri:
-        regex: ^\/v1\/shared-tables(\/.*)?$
-    - method:
-        exact: GET
-      uri:
-        regex: ^\/v1\/tables\/(\w{24})\/links$
-    route:
-    - destination:
-        host: snutt-timetable
-  - match:
-    - uri:
-        regex: ^(?:\/v1)?\/auth\/register_local\/?$
-    rewrite:
-      uri: /v1/auth/register_local
-    route:
-    - destination:
-        host: snutt-timetable
-    corsPolicy:
-      allowHeaders:
-      - content-type
-      - x-access-apikey
-      - x-access-token
-      allowMethods:
-      - POST
-      - GET
-      - PUT
-      - DELETE
-      - OPTIONS
-      allowOrigins:
-      - exact: 'https://snutt-dev.wafflestudio.com'
-  - match:
-    - uri:
-        regex: ^(?:\/v1)?\/auth\/login_local\/?$
-    rewrite:
-      uri: /v1/auth/login_local
-    route:
-    - destination:
-        host: snutt-timetable
-    corsPolicy:
-      allowHeaders:
-      - content-type
-      - x-access-apikey
-      - x-access-token
-      allowMethods:
-      - POST
-      - GET
-      - PUT
-      - DELETE
-      - OPTIONS
-      allowOrigins:
-      - exact: 'https://snutt-dev.wafflestudio.com'
-  - match:
     - method:
         exact: GET
       uri:
         regex: ^(?:\/v1)?\/tables\/?$
-    rewrite:
-      uri: /v1/tables
+    - method:
+        exact: GET
+      uri:
+        regex: ^\/v1\/tables\/(\w{24})\/links$
+    - uri:
+        regex: ^\/v1\/bookmarks(\/.*)?$
+    - uri:
+        regex: ^(?:\/v1)?\/auth\/register_local\/?$
+    - uri:
+        regex: ^(?:\/v1)?\/auth\/login_local\/?$
+    - uri:
+        regex: ^\/v1\/shared-tables(\/.*)?$
     route:
     - destination:
         host: snutt-timetable
+    corsPolicy:
+      allowHeaders:
+      - content-type
+      - x-access-apikey
+      - x-access-token
+      allowMethods:
+      - POST
+      - GET
+      - PUT
+      - DELETE
+      - OPTIONS
+      allowOrigins:
+      - exact: 'https://snutt-dev.wafflestudio.com'
   - name: "snutt-core-route"
     route:
     - destination:
         host: snutt-core
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: EnvoyFilter
+metadata:
+  namespace: snutt-dev
+  name: snutt-core
+spec:
+  configPatches:
+  - applyTo: HTTP_FILTER
+    match:
+      context: GATEWAY
+      listener:
+        filterChain:
+          filter:
+            name: envoy.filters.network.http_connection_manager
+            subFilter:
+              name: 'envoy.filters.http.router'
+        portNumber: 80
+    patch:
+      operation: INSERT_BEFORE
+      value:
+        name: envoy.lua
+        typed_config:
+          '@type': 'type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua'
+          inlineCode: |
+            function envoy_on_request(request_handle)
+              local path = request_handle:headers():get(":path")
+              local path_without_trailing_slash = string.match(path, "(.*)\/$")
+              request_handle:headers():replace(":path", path_without_trailing_slash)
+            end
+
