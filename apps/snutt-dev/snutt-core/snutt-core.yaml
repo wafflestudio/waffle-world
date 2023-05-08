@@ -102,8 +102,8 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: EnvoyFilter
 metadata:
-  namespace: snutt-dev
-  name: snutt-core
+  namespace: istio-ingress
+  name: dev-snutt-trailing-slash-filter
 spec:
   configPatches:
   - applyTo: HTTP_FILTER
@@ -124,10 +124,13 @@ spec:
           '@type': 'type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua'
           inlineCode: |
             function envoy_on_request(request_handle)
-              local path = request_handle:headers():get(":path")
-              local path_without_trailing_slash = string.match(path, "(.*)\/$")
-              if (path_without_trailing_slash ~= nil) then
-                request_handle:headers():replace(":path", path_without_trailing_slash)
+              local host = request_handle:headers():get(":host")
+              if (host == "snutt-api-dev.wafflestudio.com") then
+                local path = request_handle:headers():get(":path")
+                local path_without_trailing_slash = string.match(path, "(.*)\/$")
+                if (path_without_trailing_slash ~= nil) then
+                  request_handle:headers():replace(":path", path_without_trailing_slash)
+                end
               end
             end
 
