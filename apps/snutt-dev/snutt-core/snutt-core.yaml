@@ -108,29 +108,44 @@ spec:
   configPatches:
   - applyTo: HTTP_FILTER
     match:
-      context: GATEWAY
       listener:
         filterChain:
           filter:
             name: envoy.filters.network.http_connection_manager
             subFilter:
-              name: 'envoy.filters.http.router'
-        portNumber: 80
+              name: envoy.filters.http.router
     patch:
       operation: INSERT_BEFORE
       value:
         name: envoy.lua
         typed_config:
-          '@type': 'type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua'
+          '@type': type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua
           inlineCode: |
             function envoy_on_request(request_handle)
-              local host = request_handle:headers():get(":host")
-              if (host == "snutt-api-dev.wafflestudio.com") then
-                local path = request_handle:headers():get(":path")
-                local path_without_trailing_slash = string.match(path, "(.*)\/$")
-                if (path_without_trailing_slash ~= nil) then
-                  request_handle:headers():replace(":path", path_without_trailing_slash)
-                end
-              end
+              -- Empty lua function
             end
+  - applyTo: HTTP_ROUTE
+    match:
+      context: GATEWAY
+      routeConfiguration:
+        vhost:
+          route:
+            name: snutt-timetable-route
+    patch:
+      operation: MERGE
+      value:
+        name: envoy.lua
+        typed_per_filter_config:
+          envoy.filters.http.lua:
+            '@type': type.googleapis.com/envoy.extensions.filters.http.lua.v3.LuaPerRoute
+            source_code:
+              inline_string: |
+                function envoy_on_request(request_handle)
+                  local path = request_handle:headers():get(":path")
+                  local path_without_trailing_slash = string.match(path, "(.*)\/$")
+                  if path_without_trailing_slash ~= nil
+                  then
+                    request_handle:headers():replace(":path", path_without_trailing_slash)
+                  end
+                end
 
