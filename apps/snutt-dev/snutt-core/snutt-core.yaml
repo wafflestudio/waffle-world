@@ -66,6 +66,8 @@ spec:
         exact: GET
       uri:
         regex: ^(?:\/v1)?\/tables\/?$
+      rewrite:
+        uri: /v1/tables
     - method:
         exact: GET
       uri:
@@ -74,8 +76,12 @@ spec:
         regex: ^\/v1\/bookmarks(\/.*)?$
     - uri:
         regex: ^(?:\/v1)?\/auth\/register_local\/?$
+      rewrite:
+        uri: /v1/auth/register_local
     - uri:
         regex: ^(?:\/v1)?\/auth\/login_local\/?$
+      rewrite:
+        uri: /v1/auth/login_local
     - uri:
         regex: ^\/v1\/shared-tables(\/.*)?$
     route:
