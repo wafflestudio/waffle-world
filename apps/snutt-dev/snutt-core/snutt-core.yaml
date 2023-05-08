@@ -56,9 +56,9 @@ metadata:
   name: snutt-core
 spec:
   gateways:
-    - istio-ingress/waffle-ingressgateway
+  - istio-ingress/waffle-ingressgateway
   hosts:
-    - snutt-api-dev.wafflestudio.com
+  - snutt-api-dev.wafflestudio.com
   http:
   - name: "snutt-timetable-route"
     match:
@@ -83,17 +83,17 @@ spec:
         host: snutt-timetable
     corsPolicy:
       allowHeaders:
-        - content-type
-        - x-access-apikey
-        - x-access-token
+      - content-type
+      - x-access-apikey
+      - x-access-token
       allowMethods:
-        - POST
-        - GET
-        - PUT
-        - DELETE
-        - OPTIONS
+      - POST
+      - GET
+      - PUT
+      - DELETE
+      - OPTIONS
       allowOrigins:
-        - exact: 'https://snutt-dev.wafflestudio.com'
+      - exact: 'https://snutt-dev.wafflestudio.com'
   - match:
     - uri:
         regex: ^(?:\/v1)?\/auth\/login_local\/?$
@@ -104,17 +104,17 @@ spec:
         host: snutt-timetable
     corsPolicy:
       allowHeaders:
-        - content-type
-        - x-access-apikey
-        - x-access-token
+      - content-type
+      - x-access-apikey
+      - x-access-token
       allowMethods:
-        - POST
-        - GET
-        - PUT
-        - DELETE
-        - OPTIONS
+      - POST
+      - GET
+      - PUT
+      - DELETE
+      - OPTIONS
       allowOrigins:
-        - exact: 'https://snutt-dev.wafflestudio.com'
+      - exact: 'https://snutt-dev.wafflestudio.com'
   - match:
     - method:
         exact: GET
