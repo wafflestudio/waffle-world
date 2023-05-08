@@ -56,34 +56,28 @@ metadata:
   name: snutt-core
 spec:
   gateways:
-    - istio-ingress/waffle-ingressgateway
+  - istio-ingress/waffle-ingressgateway
   hosts:
-    - snutt-api-dev.wafflestudio.com
+  - snutt-api-dev.wafflestudio.com
   http:
   - name: "snutt-timetable-route"
     match:
-    - method:
-        exact: GET
-      uri:
-        regex: ^(?:\/v1)?\/tables\/?$
-      rewrite:
-        uri: /v1/tables
+    - uri:
+        regex: ^\/v1\/bookmarks(\/.*)?$
+    - uri:
+        regex: ^\/v1\/shared-tables(\/.*)?$
     - method:
         exact: GET
       uri:
         regex: ^\/v1\/tables\/(\w{24})\/links$
-    - uri:
-        regex: ^\/v1\/bookmarks(\/.*)?$
+    route:
+    - destination:
+        host: snutt-timetable
+  - match:
     - uri:
         regex: ^(?:\/v1)?\/auth\/register_local\/?$
-      rewrite:
-        uri: /v1/auth/register_local
-    - uri:
-        regex: ^(?:\/v1)?\/auth\/login_local\/?$
-      rewrite:
-        uri: /v1/auth/login_local
-    - uri:
-        regex: ^\/v1\/shared-tables(\/.*)?$
+    rewrite:
+      uri: /v1/auth/register_local
     route:
     - destination:
         host: snutt-timetable
@@ -100,6 +94,37 @@ spec:
       - OPTIONS
       allowOrigins:
       - exact: 'https://snutt-dev.wafflestudio.com'
+  - match:
+    - uri:
+        regex: ^(?:\/v1)?\/auth\/login_local\/?$
+    rewrite:
+      uri: /v1/auth/login_local
+    route:
+    - destination:
+        host: snutt-timetable
+    corsPolicy:
+      allowHeaders:
+      - content-type
+      - x-access-apikey
+      - x-access-token
+      allowMethods:
+      - POST
+      - GET
+      - PUT
+      - DELETE
+      - OPTIONS
+      allowOrigins:
+      - exact: 'https://snutt-dev.wafflestudio.com'
+  - match:
+    - method:
+        exact: GET
+      uri:
+        regex: ^(?:\/v1)?\/tables\/?$
+    rewrite:
+      uri: /v1/tables
+    route:
+    - destination:
+        host: snutt-timetable
   - name: "snutt-core-route"
     route:
     - destination:
