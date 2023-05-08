@@ -99,6 +99,7 @@ spec:
     - destination:
         host: snutt-core
 ---
+# https://istio.io/latest/docs/reference/config/networking/envoy-filter/#EnvoyFilter-RouteConfigurationMatch-RouteMatch
 apiVersion: networking.istio.io/v1alpha3
 kind: EnvoyFilter
 metadata:
@@ -142,7 +143,7 @@ spec:
               inline_string: |
                 function envoy_on_request(request_handle)
                   local path = request_handle:headers():get(":path")
-                  local path_without_trailing_slash = string.match(path, "(.*)\/$")
+                  local path_without_trailing_slash = string.match(path, "(.*)/$")
                   if path_without_trailing_slash ~= nil
                   then
                     request_handle:headers():replace(":path", path_without_trailing_slash)
