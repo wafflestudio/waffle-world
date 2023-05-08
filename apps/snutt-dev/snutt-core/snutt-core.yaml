@@ -126,6 +126,8 @@ spec:
             function envoy_on_request(request_handle)
               local path = request_handle:headers():get(":path")
               local path_without_trailing_slash = string.match(path, "(.*)\/$")
-              request_handle:headers():replace(":path", path_without_trailing_slash)
+              if (path_without_trailing_slash ~= nil) then
+                request_handle:headers():replace(":path", path_without_trailing_slash)
+              end
             end
 
