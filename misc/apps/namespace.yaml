@@ -102,10 +102,3 @@ metadata:
   name: ggzz-dev
   labels:
     istio-injection: enabled
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: test
-  labels:
-    istio-injection: enabled
