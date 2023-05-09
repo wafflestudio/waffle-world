@@ -60,7 +60,7 @@ spec:
   hosts:
   - snutt-api.wafflestudio.com
   http:
-  - name: "snutt-timetable-route"
+  - name: "prod-snutt-timetable-route"
     match:
     - uri:
         regex: ^\/v1\/bookmarks(\/.*)?$

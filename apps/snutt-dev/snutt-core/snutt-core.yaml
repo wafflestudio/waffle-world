@@ -60,7 +60,7 @@ spec:
   hosts:
     - snutt-api-dev.wafflestudio.com
   http:
-  - name: "snutt-timetable-route"
+  - name: "dev-snutt-timetable-route"
     match:
     - method:
         exact: GET
@@ -98,55 +98,3 @@ spec:
     route:
     - destination:
         host: snutt-core
----
-# https://istio.io/latest/docs/reference/config/networking/envoy-filter/#EnvoyFilter-RouteConfigurationMatch-RouteMatch
-apiVersion: networking.istio.io/v1alpha3
-kind: EnvoyFilter
-metadata:
-  namespace: istio-ingress
-  name: dev-snutt-trailing-slash-filter
-spec:
-  configPatches:
-  - applyTo: HTTP_FILTER
-    match:
-      listener:
-        filterChain:
-          filter:
-            name: envoy.filters.network.http_connection_manager
-            subFilter:
-              name: envoy.filters.http.router
-    patch:
-      operation: INSERT_BEFORE
-      value:
-        name: envoy.lua
-        typed_config:
-          '@type': type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua
-          inlineCode: |
-            function envoy_on_request(request_handle)
-              -- Empty lua function
-            end
-  - applyTo: HTTP_ROUTE
-    match:
-      context: GATEWAY
-      routeConfiguration:
-        vhost:
-          route:
-            name: snutt-timetable-route
-    patch:
-      operation: MERGE
-      value:
-        name: envoy.lua
-        typed_per_filter_config:
-          envoy.filters.http.lua:
-            '@type': type.googleapis.com/envoy.extensions.filters.http.lua.v3.LuaPerRoute
-            source_code:
-              inline_string: |
-                function envoy_on_request(request_handle)
-                  local path = request_handle:headers():get(":path")
-                  local path_without_trailing_slash = string.match(path, "(.*)/$")
-                  if path_without_trailing_slash ~= nil
-                  then
-                    request_handle:headers():replace(":path", path_without_trailing_slash)
-                  end
-                end
-
