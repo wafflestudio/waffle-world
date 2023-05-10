@@ -5,6 +5,24 @@ metadata:
   name: dev-snutt-trailing-slash-filter
 spec:
   configPatches:
+  - applyTo: HTTP_FILTER
+    match:
+      listener:
+        filterChain:
+          filter:
+            name: envoy.filters.network.http_connection_manager
+            subFilter:
+              name: envoy.filters.http.router
+    patch:
+      operation: INSERT_BEFORE
+      value:
+        name: envoy.lua
+        typed_config:
+          '@type': type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua
+          inlineCode: |
+            function envoy_on_request(request_handle)
+              -- Empty lua function
+            end
   - applyTo: HTTP_ROUTE
     match:
       context: GATEWAY
@@ -37,6 +55,24 @@ metadata:
   name: prod-snutt-trailing-slash-filter
 spec:
   configPatches:
+  - applyTo: HTTP_FILTER
+    match:
+      listener:
+        filterChain:
+          filter:
+            name: envoy.filters.network.http_connection_manager
+            subFilter:
+              name: envoy.filters.http.router
+    patch:
+      operation: INSERT_BEFORE
+      value:
+        name: envoy.lua
+        typed_config:
+          '@type': type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua
+          inlineCode: |
+            function envoy_on_request(request_handle)
+              -- Empty lua function
+            end
   - applyTo: HTTP_ROUTE
     match:
       context: GATEWAY
