@@ -13,6 +13,7 @@ apps/seminar/ @wafflestudio/seminar
 apps/webgam-dev/ @wafflestudio/interactive-web
 apps/feelin-dev/ @wafflestudio/music-sns
 apps/feelin-prod/ @wafflestudio/music-sns
+apps/siksha-dev/ @wafflestudio/siksha
 apps/siksha-prod/ @wafflestudio/siksha
 apps/pupuri-prod/ @woohm402
 apps/ggzz-dev/ @wafflestudio/ggzz
