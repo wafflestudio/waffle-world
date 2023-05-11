@@ -78,6 +78,10 @@ spec:
         regex: ^(?:\/v1)?\/auth\/login_local\/?$
     - uri:
         regex: ^\/v1\/shared-tables(\/.*)?$
+    - method:
+        exact: POST
+      uri:
+        regex: ^\/v1\/search_query\/?$
     route:
     - destination:
         host: snutt-timetable
