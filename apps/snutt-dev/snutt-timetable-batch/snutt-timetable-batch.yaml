@@ -39,7 +39,7 @@ metadata:
   namespace: snutt-dev
 spec:
   concurrencyPolicy: Forbid
-  schedule: "30 23 * * *"
+  schedule: "30 23 * * 1-5"
   successfulJobsHistoryLimit: 2
   failedJobsHistoryLimit: 3
   jobTemplate:
