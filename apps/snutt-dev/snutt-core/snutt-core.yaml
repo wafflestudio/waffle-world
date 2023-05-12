@@ -81,7 +81,7 @@ spec:
     - method:
         exact: POST
       uri:
-        regex: ^\/v1\/search_query\/?$
+        regex: ^(?:\/v1)?\/search_query\/?$
     route:
     - destination:
         host: snutt-timetable
