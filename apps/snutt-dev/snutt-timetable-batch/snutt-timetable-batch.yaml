@@ -56,7 +56,7 @@ spec:
             name: snutt-timetable-batch-seat-noti
             env:
             - name: JOB_NAME
-              value: "availableSeatsNotifier"
+              value: "vacancyNotificationJob"
             - name: JAVA_OPTS
               value: "-Duser.timezone=UTC"
             - name: SPRING_PROFILES_ACTIVE
