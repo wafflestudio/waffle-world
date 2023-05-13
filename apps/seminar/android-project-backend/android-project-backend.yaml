@@ -33,7 +33,7 @@ metadata:
   namespace: seminar
   name: android-project-backend
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: android-project-backend
   ports:
