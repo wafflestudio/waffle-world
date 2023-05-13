@@ -47,7 +47,7 @@ metadata:
   namespace: sso-dev
   name: account-server
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: account-server
   ports:

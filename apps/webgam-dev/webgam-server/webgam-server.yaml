@@ -45,7 +45,7 @@ metadata:
   namespace: webgam-dev
   name: webgam-server
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: webgam-server
   ports:

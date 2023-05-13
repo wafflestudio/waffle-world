@@ -84,7 +84,7 @@ metadata:
   namespace: sso-dev
   name: kong-gateway
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: kong-gateway
   ports:
