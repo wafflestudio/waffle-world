@@ -62,12 +62,16 @@ spec:
   http:
   - name: "prod-snutt-timetable-route"
     match:
-    - uri:
-        regex: ^\/v1\/bookmarks(\/.*)?$
+    - method:
+        exact: GET
+      uri:
+        regex: ^(?:\/v1)?\/tables\/?$
     - uri:
         regex: ^(?:\/v1)?\/auth\/register_local\/?$
     - uri:
         regex: ^(?:\/v1)?\/auth\/login_local\/?$
+    - uri:
+        regex: ^\/v1\/bookmarks(\/.*)?$
     route:
     - destination:
         host: snutt-timetable
