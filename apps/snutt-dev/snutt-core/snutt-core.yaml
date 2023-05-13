@@ -42,7 +42,7 @@ metadata:
   namespace: snutt-dev
   name: snutt-core
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: snutt-core
   ports:
