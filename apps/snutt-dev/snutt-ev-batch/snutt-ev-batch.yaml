@@ -23,7 +23,7 @@ spec:
           - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-dev/snutt-ev-batch:36
             name: snutt-ev-batch-lecture-sync
             env:
-            - name: JOB_NAMES
+            - name: JOB_NAME
               value: "SYNC_JOB"
             - name: JAVA_OPTS
               value: "-Duser.timezone=UTC"
@@ -59,7 +59,7 @@ spec:
             imagePullPolicy: IfNotPresent
             name: snutt-ev-batch-snuev-migration
             env:
-            - name: JOB_NAMES
+            - name: JOB_NAME
               value: "SNUEV_MIGRATION_JOB"
             - name: JAVA_OPTS
               value: "-Duser.timezone=UTC"
