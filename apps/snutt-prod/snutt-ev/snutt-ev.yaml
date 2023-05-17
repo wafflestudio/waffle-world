@@ -23,7 +23,7 @@ spec:
     spec:
       serviceAccountName: snutt-ev
       containers:
-      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-ev:58
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-ev:59
         name: snutt-ev
         ports:
         - containerPort: 8080
