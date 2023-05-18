@@ -32,6 +32,8 @@ spec:
           value: "-Duser.timezone=UTC"
         - name: SPRING_PROFILES_ACTIVE
           value: "dev"
+        - name: TRUFFLE_ENABLED
+          value: "true"
 ---
 apiVersion: v1
 kind: ServiceAccount

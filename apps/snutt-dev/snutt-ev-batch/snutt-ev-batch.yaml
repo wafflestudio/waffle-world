@@ -29,6 +29,8 @@ spec:
               value: "-Duser.timezone=UTC"
             - name: SPRING_PROFILES_ACTIVE
               value: "dev"
+            - name: TRUFFLE_ENABLED
+              value: "true"
 ---
 apiVersion: batch/v1beta1
 kind: CronJob
@@ -65,6 +67,8 @@ spec:
               value: "-Duser.timezone=UTC"
             - name: SPRING_PROFILES_ACTIVE
               value: "dev"
+            - name: TRUFFLE_ENABLED
+              value: "true"
 ---
 apiVersion: v1
 kind: ServiceAccount
