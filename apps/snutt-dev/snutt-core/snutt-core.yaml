@@ -61,7 +61,7 @@ spec:
     - snutt-api-dev.wafflestudio.com
   http:
   - name: "dev-snutt-timetable-route"
-    timeout: 30s
+    timeout: 10s
     match:
     - method:
         exact: GET
@@ -100,7 +100,7 @@ spec:
       allowOrigins:
       - exact: 'https://snutt-dev.wafflestudio.com'
   - name: "snutt-core-route"
-    timeout: 30s
+    timeout: 10s
     route:
     - destination:
         host: snutt-core

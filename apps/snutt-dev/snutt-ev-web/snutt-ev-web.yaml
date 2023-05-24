@@ -51,7 +51,7 @@ spec:
   hosts:
   - snutt-ev-web-dev.wafflestudio.com
   http:
-  - timeout: 30s
+  - timeout: 10s
     route:
     - destination:
         host: snutt-ev-web

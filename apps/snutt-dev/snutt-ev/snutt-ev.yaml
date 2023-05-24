@@ -67,7 +67,7 @@ spec:
   hosts:
   - snutt-ev-api-dev.wafflestudio.com
   http:
-  - timeout: 30s
+  - timeout: 10s
     match:
     - uri:
         prefix: /swagger-ui
