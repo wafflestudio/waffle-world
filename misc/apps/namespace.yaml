@@ -102,3 +102,10 @@ metadata:
   name: ggzz-dev
   labels:
     istio-injection: enabled
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: waffledotcom-dev
+  labels:
+    istio-injection: enabled
