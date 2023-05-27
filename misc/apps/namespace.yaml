@@ -109,3 +109,10 @@ metadata:
   name: waffledotcom-dev
   labels:
     istio-injection: enabled
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: waffledotcom-prod
+  labels:
+    istio-injection: enabled

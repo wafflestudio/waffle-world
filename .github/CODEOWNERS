@@ -16,5 +16,6 @@ apps/feelin-prod/ @wafflestudio/music-sns
 apps/siksha-dev/ @wafflestudio/siksha
 apps/siksha-prod/ @wafflestudio/siksha
 apps/waffledotcom-dev/waffledotcom-server @wafflestudio/waffledotcom-backend
+apps/waffledotcom-prod/waffledotcom-server @wafflestudio/waffledotcom-backend
 apps/pupuri-prod/ @woohm402
 apps/ggzz-dev/ @wafflestudio/ggzz
