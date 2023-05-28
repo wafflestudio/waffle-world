@@ -4,14 +4,15 @@ metadata:
   namespace: argocd
   name: waffledotcom-server-dev
   finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    repoURL: { { .Values.spec.source.repoURL } }
+    repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: HEAD
     path: apps/waffledotcom-dev/waffledotcom-server
   destination:
-    server: { { .Values.spec.destination.server } }
+    server: {{ .Values.spec.destination.server }}
     namespace: argocd
-  syncPolicy: { { - .Values.spec.syncPolicy | toYaml | nindent 4 } }
+  syncPolicy:
+    {{- .Values.spec.syncPolicy | toYaml | nindent 4 }}
