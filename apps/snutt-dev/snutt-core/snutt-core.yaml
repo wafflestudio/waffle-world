@@ -81,6 +81,10 @@ spec:
         regex: ^\/v1\/tables\/(\w{24})\/links$
     - uri:
         regex: ^\/v1\/bookmarks(\/.*)?$
+    - method:
+        exact: GET
+      uri:
+        regex: ^(?:\/v1)?\/notification\/?$
     - uri:
         regex: ^\/v1\/shared-tables(\/.*)?$
     route:
