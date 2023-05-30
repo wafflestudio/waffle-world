@@ -63,6 +63,7 @@ spec:
   - name: "dev-snutt-timetable-route"
     timeout: 10s
     match:
+    ############## migrated apis ############
     - method:
         exact: GET
       uri:
@@ -78,13 +79,14 @@ spec:
     - method:
         exact: GET
       uri:
-        regex: ^\/v1\/tables\/(\w{24})\/links$
-    - uri:
-        regex: ^\/v1\/bookmarks(\/.*)?$
+        regex: ^(?:\/v1)?\/notification\/?$
+    ################# new apis ##############
     - method:
         exact: GET
       uri:
-        regex: ^(?:\/v1)?\/notification\/?$
+        regex: ^\/v1\/tables\/(\w{24})\/links$
+    - uri:
+        regex: ^\/v1\/bookmarks(\/.*)?$
     - uri:
         regex: ^\/v1\/shared-tables(\/.*)?$
     route:
