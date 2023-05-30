@@ -63,6 +63,7 @@ spec:
   - name: "dev-snutt-timetable-route"
     timeout: 10s
     match:
+    ############## migrated apis ############
     - method:
         exact: GET
       uri:
@@ -75,6 +76,11 @@ spec:
         exact: POST
       uri:
         regex: ^(?:\/v1)?\/search_query\/?$
+    - method:
+        exact: GET
+      uri:
+        regex: ^(?:\/v1)?\/notification\/?$
+    ################# new apis ##############
     - method:
         exact: GET
       uri:
