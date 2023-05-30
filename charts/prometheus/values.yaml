@@ -36,14 +36,14 @@ kube-prometheus-stack:
           memory: 400Mi
         limits:
           memory: 1Gi
-      storage:
+      storageSpec:
         volumeClaimTemplate:
           spec:
             storageClassName: gp2
             accessModes: [ "ReadWriteOnce" ]
             resources:
               requests:
-              storage: 20Gi
+                storage: 20Gi
       additionalScrapeConfigs:
         - job_name: 'istiod'
           kubernetes_sd_configs:
