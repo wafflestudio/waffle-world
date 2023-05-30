@@ -39,7 +39,6 @@ kube-prometheus-stack:
       storage:
         volumeClaimTemplate:
           spec:
-            # fixme (?) default storage class (aws ebs)
             storageClassName: gp2
             accessModes: [ "ReadWriteOnce" ]
             resources:
