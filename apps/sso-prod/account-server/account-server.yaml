@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: account-server
+  labels:
+    app: account-server
+  namespace: sso-prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: account-server
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  revisionHistoryLimit: 4
+  template:
+    metadata:
+      labels:
+        app: account-server
+    spec:
+      serviceAccountName: account-server
+      containers:
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/sso-prod/account-server:1
+        name: account-server
+        ports:
+        - containerPort: 8080
+        env:
+        - name: JAVA_OPTS
+          value: "-Duser.timezone=UTC"
+        - name: SPRING_PROFILES_ACTIVE
+          value: "prod"
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: account-server
+  namespace: sso-prod
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/account-server-prod-role
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: sso-prod
+  name: account-server
+spec:
+  type: ClusterIP
+  selector:
+    app: account-server
+  ports:
+  - port: 80
+    targetPort: 8080
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  namespace: sso-prod
+  name: account-server
+spec:
+  gateways:
+  - istio-ingress/waffle-ingressgateway
+  hosts:
+  - account-api.wafflestudio.com
+  http:
+  - match:
+    - uri:
+        exact: /docs/index.html
+    route:
+    - destination:
+        host: account-server
