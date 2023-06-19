@@ -60,8 +60,6 @@ spec:
   http:
     - match:
         - uri:
-            prefix: /api
-        - uri:
             prefix: /swagger-ui
         - uri:
             prefix: /v3/api-docs
