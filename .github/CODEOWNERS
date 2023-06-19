@@ -8,6 +8,7 @@ apps/snutt-prod/ @wafflestudio/snutt-server
 apps/snutt-prod/snutt-ev-web/ @wafflestudio/snutt-frontend
 apps/truffle-prod/ @davin111 @PFCJeong
 apps/sso-dev/ @wafflestudio/sso
+apps/sso-prod/ @wafflestudio/sso
 apps/guam/ @wafflestudio/guam
 apps/seminar/ @wafflestudio/seminar
 apps/webgam-dev/ @wafflestudio/interactive-web

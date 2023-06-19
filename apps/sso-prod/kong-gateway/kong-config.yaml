@@ -2,14 +2,14 @@ _format_version: "3.0"
 
 services:
 - name: account-service
-  url: http://account-server.sso-dev.svc.cluster.local
+  url: http://account-server.sso-prod.svc.cluster.local
   routes:
   - name: account-service
     paths:
     - /account-service/
   - name: account-web-cf
     hosts:
-    - sso-dev.wafflestudio.com
+    - sso.wafflestudio.com
     paths:
     - /api/account-service/
   plugins:
