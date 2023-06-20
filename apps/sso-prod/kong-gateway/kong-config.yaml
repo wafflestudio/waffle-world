@@ -20,8 +20,8 @@ services:
   routes:
   - name: truffle-web-cf
     hosts:
-      - truffle.wafflestudio.com
+    - truffle.wafflestudio.com
     paths:
-      - /api/
+    - /api/
   plugins:
-    - name: waffle-jwt-authorizer
+  - name: waffle-jwt-authorizer
