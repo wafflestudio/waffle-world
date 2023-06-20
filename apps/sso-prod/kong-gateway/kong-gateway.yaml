@@ -102,6 +102,7 @@ spec:
   hosts:
   - api-gateway.wafflestudio.com
   - sso.wafflestudio.com
+  - truffle.wafflestudio.com
   http:
   - route:
     - destination:
