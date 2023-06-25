@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wacruit-judge-worder
+  labels:
+    app: wacruit-judge-worder
+  namespace: wacruit-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wacruit-judge-worder
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  revisionHistoryLimit: 4
+  template:
+    metadata:
+      labels:
+        app: wacruit-judge-worder
+    spec:
+      serviceAccountName: wacruit-judge-worder
+      containers:
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/wacruit-dev/wacruit-judge:latest
+        name: wacruit-judge-worder
+        command: ["./scripts/workers"]
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: wacruit-judge-worder
+  namespace: wacruit-dev
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/wacruit-judge-dev-role
