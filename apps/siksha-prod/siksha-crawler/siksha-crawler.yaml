@@ -1,0 +1,32 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: siksha-crawler
+  labels:
+    app: siksha-crawler
+  namespace: siksha-prod
+spec:
+  concurrencyPolicy: Forbid
+  schedule: "0 20 * * *" # UTC 20 -> KST 5:00
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          annotations:
+            sidecar.istio.io/inject: "false"
+        spec:
+          restartPolicy: OnFailure
+          serviceAccountName: siksha-crawler 
+          containers:
+          - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/siksha-prod/siksha-crawler:1
+            name: siksha-crawler
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: siksha-crawler
+  namespace: siksha-prod
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/siksha-crawler-prod-role
