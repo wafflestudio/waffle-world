@@ -18,7 +18,6 @@ spec:
             sidecar.istio.io/inject: "false"
         spec:
           restartPolicy: OnFailure
-          serviceAccountName: siksha-crawler 
           containers:
           - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/siksha-prod/siksha-crawler:1
             name: siksha-crawler
