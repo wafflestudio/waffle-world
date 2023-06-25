@@ -24,6 +24,13 @@ spec:
       containers:
       - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-ev-web:101
         name: snutt-ev-web
+        resources:
+          requests:
+            cpu: 200m
+            memory: 256Mi
+          limits:
+            cpu: 200m
+            memory: 256Mi
         ports:
         - containerPort: 3000
 ---

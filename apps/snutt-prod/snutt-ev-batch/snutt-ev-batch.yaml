@@ -22,11 +22,18 @@ spec:
           containers:
           - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-ev-batch:2
             name: snutt-ev-batch-lecture-sync
+            resources:
+              requests:
+                cpu: 200m
+                memory: 1Gi
+              limits:
+                cpu: 1000m
+                memory: 1Gi
             env:
             - name: JOB_NAME
               value: "SYNC_JOB"
             - name: JAVA_OPTS
-              value: "-Duser.timezone=UTC"
+              value: "-XX:InitialRAMPercentage=80.0 -XX:MaxRAMPercentage=80.0 -Duser.timezone=UTC"
             - name: SPRING_PROFILES_ACTIVE
               value: "prod"
             - name: TRUFFLE_ENABLED
@@ -59,11 +66,18 @@ spec:
           containers:
           - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-ev-batch:2
             name: snutt-ev-batch-snuev-migration
+            resources:
+              requests:
+                cpu: 200m
+                memory: 1Gi
+              limits:
+                cpu: 1000m
+                memory: 1Gi
             env:
             - name: JOB_NAME
               value: "SNUEV_MIGRATION_JOB"
             - name: JAVA_OPTS
-              value: "-Duser.timezone=UTC"
+              value: "-XX:InitialRAMPercentage=80.0 -XX:MaxRAMPercentage=80.0 -Duser.timezone=UTC"
             - name: SPRING_PROFILES_ACTIVE
               value: "prod"
             - name: TRUFFLE_ENABLED
