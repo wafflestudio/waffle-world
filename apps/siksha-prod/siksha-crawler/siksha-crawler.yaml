@@ -22,11 +22,3 @@ spec:
           containers:
           - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/siksha-prod/siksha-crawler:1
             name: siksha-crawler
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: siksha-crawler
-  namespace: siksha-prod
-  annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/siksha-crawler-prod-role
