@@ -16,3 +16,4 @@ spec:
     namespace: argocd
   syncPolicy:
     {{- .Values.spec.syncPolicy | toYaml | nindent 4 }}
+    
