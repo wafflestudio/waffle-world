@@ -7,7 +7,7 @@ metadata:
   namespace: siksha-prod
 spec:
   concurrencyPolicy: Forbid
-  schedule: "0 20 * * *" # UTC 20 -> KST 5:00
+  schedule: "0 20 * * *" 
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 3
   jobTemplate:
