@@ -1,0 +1,61 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wacruit-judge-mysql
+  labels:
+    app: wacruit-judge-mysql
+  namespace: wacruit-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wacruit-judge-mysql
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  revisionHistoryLimit: 4
+  template:
+    metadata:
+      labels:
+        app: wacruit-judge-mysql
+    spec:
+      serviceAccountName: wacruit-judge-mysql
+      containers:
+      - image: mysql:8.0.29
+        imagePullPolicy: Never
+        name: wacruit-judge-mysql
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: wacruit
+        - name: MYSQL_DATABASE
+          value: wacruit
+        - name: MYSQL_USER
+          value: wacruit
+        - name: MYSQL_PASSWORD
+          value: wacruit
+        ports:
+        - containerPort: 3306
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: wacruit-judge-mysql
+  namespace: wacruit-dev
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/wacruit-judge-dev-role
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: wacruit-dev
+  name: wacruit-judge-mysql
+spec:
+  type: ClusterIP
+  selector:
+    app: wacruit-judge-mysql
+  ports:
+  - port: 3306
+    targetPort: 3306

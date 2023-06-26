@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wacruit-judge-config
+  namespace: wacruit-dev
+data:
+  REDIS_HOST: wacruit-judge-redis.wacruit-dev.svc.cluster.local
+  REDIS_PASSWORD: wacruit
+  MYSQL_HOST: wacruit-judge-mysql.wacruit-dev.svc.cluster.local
+  MYSQL_PORT: "3306"
+  MYSQL_USER: wacruit
+  MYSQL_PASSWORD: wacruit
+  MYSQL_DATABASE: wacruit

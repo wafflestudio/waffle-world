@@ -23,10 +23,14 @@ spec:
     spec:
       serviceAccountName: wacruit-judge-server
       containers:
-      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/wacruit-dev/wacruit-judge:latest
+      - image: waffledotcom-judge:latest
+        imagePullPolicy: Never
         name: wacruit-judge-server
         ports:
         - containerPort: 2358
+        envFrom:
+        - configMapRef:
+            name: wacruit-judge-config
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -42,27 +46,34 @@ metadata:
   namespace: wacruit-dev
   name: wacruit-judge-server
 spec:
-  type: ClusterIP
+  # type: ClusterIP
+  # selector:
+  #   app: wacruit-judge-server
+  # ports:
+  # - port: 80
+  #   targetPort: 2358
+  type: NodePort
   selector:
     app: wacruit-judge-server
   ports:
-  - port: 80
+  - port: 2358
     targetPort: 2358
----
-apiVersion: networking.istio.io/v1alpha3
-kind: VirtualService
-metadata:
-  namespace: wacruit-dev
-  name: wacruit-judge-server
-spec:
-  gateways:
-  - istio-ingress/waffle-ingressgateway
-  hosts:
-  - wacruit-judge-dev.wafflestudio.com
-  http:
-  - match:
-    - uri:
-        exact: /docs/index.html
-    route:
-    - destination:
-        host: wacruit-judge-server
+    nodePort: 30000
+# ---
+# apiVersion: networking.istio.io/v1alpha3
+# kind: VirtualService
+# metadata:
+#   namespace: wacruit-dev
+#   name: wacruit-judge-server
+# spec:
+#   gateways:
+#   - istio-ingress/waffle-ingressgateway
+#   hosts:
+#   - wacruit-judge-dev.wafflestudio.com
+#   http:
+#   - match:
+#     - uri:
+#         exact: /docs/index.html
+#     route:
+#     - destination:
+#         host: wacruit-judge-server
