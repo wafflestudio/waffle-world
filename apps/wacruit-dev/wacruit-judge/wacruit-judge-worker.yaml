@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wacruit-judge-worder
+  name: wacruit-judge-worker
   labels:
-    app: wacruit-judge-worder
+    app: wacruit-judge-worker
   namespace: wacruit-dev
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: wacruit-judge-worder
+      app: wacruit-judge-worker
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -19,22 +19,15 @@ spec:
   template:
     metadata:
       labels:
-        app: wacruit-judge-worder
+        app: wacruit-judge-worker
     spec:
-      serviceAccountName: wacruit-judge-worder
       containers:
       - image: waffledotcom-judge:latest
         imagePullPolicy: Never
-        name: wacruit-judge-worder
+        name: wacruit-judge-worker
         command: ["./scripts/workers"]
         envFrom:
         - configMapRef:
             name: wacruit-judge-config
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: wacruit-judge-worder
-  namespace: wacruit-dev
-  annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/wacruit-judge-dev-role
+        securityContext:
+          privileged: true

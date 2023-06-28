@@ -6,8 +6,8 @@ metadata:
 data:
   REDIS_HOST: wacruit-judge-redis.wacruit-dev.svc.cluster.local
   REDIS_PASSWORD: wacruit
-  MYSQL_HOST: wacruit-judge-mysql.wacruit-dev.svc.cluster.local
+  MYSQL_HOST: wafflestudio-mysql-202107.caxwrw8c4qqq.ap-northeast-2.rds.amazonaws.com
   MYSQL_PORT: "3306"
-  MYSQL_USER: wacruit
-  MYSQL_PASSWORD: wacruit
-  MYSQL_DATABASE: wacruit
+  MYSQL_DATABASE: wacruit_dev
+  MYSQL_USER: wacruit-dev
+  MYSQL_PASSWORD: q.O3mzes/r5U9eYgu,db
