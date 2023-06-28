@@ -22,7 +22,8 @@ spec:
         app: wacruit-judge-worker
     spec:
       containers:
-      - image: waffledotcom-judge:latest
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/wacruit-dev/wacruit-judge:latest
+      # - image: waffledotcom-judge:latest
         imagePullPolicy: Never
         name: wacruit-judge-worker
         command: ["./scripts/workers"]
