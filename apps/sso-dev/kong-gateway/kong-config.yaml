@@ -14,3 +14,14 @@ services:
     - /api/account-service/
   plugins:
   - name: waffle-jwt-authorizer
+
+- name: wacruit-service
+  url: http://wacruit-server.wacruit-dev.svc.cluster.local
+  routes:
+  - name: wacruit-service
+    hosts:
+    - wacruit-api-dev.wafflestudio.com
+    paths:
+    - /api/
+  plugins:
+  - name: waffle-jwt-authorizer

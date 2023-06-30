@@ -103,6 +103,7 @@ spec:
   - api-gateway.wafflestudio.com
   - sso.wafflestudio.com
   - truffle.wafflestudio.com
+  - wacruit-api.wafflestudio.com
   http:
   - route:
     - destination:
