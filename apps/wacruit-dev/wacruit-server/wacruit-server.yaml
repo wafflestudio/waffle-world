@@ -33,7 +33,7 @@ metadata:
   name: wacruit-server
   namespace: wacruit-dev
   annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/wacruit-server-dev-role
+    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/wacruit-dev-role
 ---
 apiVersion: v1
 kind: Service
