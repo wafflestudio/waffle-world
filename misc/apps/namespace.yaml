@@ -123,3 +123,10 @@ metadata:
   name: wacruit-dev
   labels:
     istio-injection: enabled
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: wacruit-prod
+  labels:
+    istio-injection: enabled
