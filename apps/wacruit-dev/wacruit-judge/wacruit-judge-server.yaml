@@ -23,14 +23,10 @@ spec:
     spec:
       serviceAccountName: wacruit-judge-server
       containers:
-      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/wacruit-dev/wacruit-judge:latest
-        imagePullPolicy: Never
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/wacruit-dev/wacruit-judge-server:1
         name: wacruit-judge-server
         ports:
         - containerPort: 2358
-        envFrom:
-        - secretRef:
-            name: wacruit-judge-secret
         resources:
           requests:
             memory: 512Mi
@@ -43,7 +39,7 @@ metadata:
   name: wacruit-judge-server
   namespace: wacruit-dev
   annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/wacruit-judge-dev-role
+    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/wacruit-dev-role
 ---
 apiVersion: v1
 kind: Service
@@ -57,21 +53,3 @@ spec:
   ports:
   - port: 80
     targetPort: 2358
----
-apiVersion: networking.istio.io/v1alpha3
-kind: VirtualService
-metadata:
-  namespace: wacruit-dev
-  name: wacruit-judge-server
-spec:
-  gateways:
-  - istio-ingress/waffle-ingressgateway
-  hosts:
-  - wacruit-judge-dev.wafflestudio.com
-  http:
-  - match:
-    - uri:
-        exact: /docs/index.html
-    route:
-    - destination:
-        host: wacruit-judge-server
