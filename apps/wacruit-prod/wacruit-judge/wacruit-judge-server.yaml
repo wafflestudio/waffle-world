@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wacruit-judge-server
+  labels:
+    app: wacruit-judge-server
+  namespace: wacruit-prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wacruit-judge-server
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  revisionHistoryLimit: 4
+  template:
+    metadata:
+      labels:
+        app: wacruit-judge-server
+    spec:
+      serviceAccountName: wacruit-judge-server
+      containers:
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/wacruit-prod/wacruit-judge-server:1
+        name: wacruit-judge-server
+        ports:
+        - containerPort: 2358
+        resources:
+          requests:
+            memory: 512Mi
+          limits:
+            memory: 1Gi
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: wacruit-judge-server
+  namespace: wacruit-prod
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/wacruit-prod-role
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: wacruit-prod
+  name: wacruit-judge-server
+spec:
+  type: ClusterIP
+  selector:
+    app: wacruit-judge-server
+  ports:
+  - port: 80
+    targetPort: 2358
