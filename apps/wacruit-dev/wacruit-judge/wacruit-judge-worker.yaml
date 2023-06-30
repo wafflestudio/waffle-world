@@ -31,3 +31,10 @@ spec:
             name: wacruit-judge-secret
         securityContext:
           privileged: true
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 512Mi
+          limits:
+            cpu: 1000m
+            memory: 1Gi
