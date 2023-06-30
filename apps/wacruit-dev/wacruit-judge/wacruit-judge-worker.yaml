@@ -23,12 +23,11 @@ spec:
     spec:
       containers:
       - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/wacruit-dev/wacruit-judge:latest
-      # - image: waffledotcom-judge:latest
         imagePullPolicy: Never
         name: wacruit-judge-worker
         command: ["./scripts/workers"]
         envFrom:
-        - configMapRef:
-            name: wacruit-judge-config
+        - secretRef:
+            name: wacruit-judge-secret
         securityContext:
           privileged: true
