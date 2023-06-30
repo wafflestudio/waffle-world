@@ -21,6 +21,7 @@ spec:
       labels:
         app: wacruit-server
     spec:
+      serviceAccountName: wacruit-server
       containers:
         - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/wacruit-dev/wacruit-server:3
           name: wacruit-server
