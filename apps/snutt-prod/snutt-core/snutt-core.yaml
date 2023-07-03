@@ -78,6 +78,10 @@ spec:
         regex: ^(?:\/v1)?\/auth\/register_local\/?$
     - uri:
         regex: ^(?:\/v1)?\/auth\/login_local\/?$
+    - method:
+        exact: POST
+      uri:
+        regex: ^(?:\/v1)?\/search_query\/?$
     - uri:
         regex: ^\/v1\/bookmarks(\/.*)?$
     route:
