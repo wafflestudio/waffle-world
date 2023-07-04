@@ -26,10 +26,10 @@ spec:
         name: snutt-ev-web
         resources:
           requests:
-            cpu: 100m
+            cpu: 150m
             memory: 192Mi
           limits:
-            cpu: 100m
+            cpu: 150m
             memory: 192Mi
         ports:
         - containerPort: 3000
