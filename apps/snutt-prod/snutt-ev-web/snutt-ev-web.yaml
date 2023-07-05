@@ -38,6 +38,9 @@ apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
   name: snutt-ev-web-hpa
+  labels:
+    app: snutt-ev-web
+  namespace: snutt-prod
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
