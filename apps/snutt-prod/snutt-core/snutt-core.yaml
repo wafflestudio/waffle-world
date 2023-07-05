@@ -81,9 +81,7 @@ spec:
         regex: ^(?:\/v1)?\/auth\/login_local\/?$
     - uri:
         regex: ^(?:\/v1)?\/auth\/logout\/?$
-    - method:
-        exact: POST
-      uri:
+    - uri:
         regex: ^(?:\/v1)?\/search_query\/?$
     - uri:
         regex: ^(?:\/v1)?\/user\/device(\/.*)?$
