@@ -70,6 +70,7 @@ spec:
   - name: "prod-snutt-timetable-route"
     timeout: 10s
     match:
+    ############## migrated apis ############
     - method:
         exact: GET
       uri:
@@ -78,10 +79,19 @@ spec:
         regex: ^(?:\/v1)?\/auth\/register_local\/?$
     - uri:
         regex: ^(?:\/v1)?\/auth\/login_local\/?$
+    - uri:
+        regex: ^(?:\/v1)?\/auth\/logout\/?$
     - method:
         exact: POST
       uri:
         regex: ^(?:\/v1)?\/search_query\/?$
+    - uri:
+        regex: ^(?:\/v1)?\/user\/device(\/.*)?$
+    - uri:
+        regex: ^(?:\/v1)?\/notification(\/.*)?$
+    - uri:
+        regex: ^(?:\/v1)?\/admin/insert_noti\/?$
+    ################# new apis ##############
     - uri:
         regex: ^\/v1\/bookmarks(\/.*)?$
     route:
