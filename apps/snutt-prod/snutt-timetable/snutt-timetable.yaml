@@ -46,6 +46,9 @@ apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
   name: snutt-timetable-hpa
+  labels:
+    app: snutt-timetable
+  namespace: snutt-prod
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
