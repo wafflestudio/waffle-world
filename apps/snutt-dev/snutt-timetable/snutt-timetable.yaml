@@ -34,6 +34,14 @@ spec:
             memory: 512Mi
         ports:
         - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /health-check
+            port: 8080
+        readinessProbe:
+          httpGet:
+            path: /health-check
+            port: 8080
         env:
         - name: JAVA_OPTS
           value: "-XX:InitialRAMPercentage=80.0 -XX:MaxRAMPercentage=80.0 -Duser.timezone=UTC"

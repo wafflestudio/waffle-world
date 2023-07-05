@@ -33,6 +33,14 @@ spec:
             memory: 384Mi
         ports:
         - containerPort: 3000
+        livenessProbe:
+          httpGet:
+            path: /api/health-check
+            port: 3000
+        readinessProbe:
+          httpGet:
+            path: /api/health-check
+            port: 3000
 ---
 apiVersion: v1
 kind: Service
