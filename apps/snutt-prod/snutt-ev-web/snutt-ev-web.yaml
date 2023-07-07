@@ -43,9 +43,9 @@ spec:
             port: 3000
         startupProbe:
           httpGet:
-            path: /health-check
+            path: /api/health-check
             port: 3000
-          failureThreshold: 5
+          failureThreshold: 10
 ---
 apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
