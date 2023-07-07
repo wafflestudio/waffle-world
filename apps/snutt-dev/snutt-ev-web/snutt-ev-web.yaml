@@ -44,7 +44,7 @@ spec:
         startupProbe:
           httpGet:
             path: /health-check
-            port: 8080
+            port: 3000
           failureThreshold: 5
 ---
 apiVersion: v1
