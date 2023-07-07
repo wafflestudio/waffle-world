@@ -38,12 +38,15 @@ spec:
           httpGet:
             path: /health-check
             port: 8080
-          timeoutSeconds: 3
         readinessProbe:
           httpGet:
             path: /health-check
             port: 8080
-          timeoutSeconds: 3
+        startupProbe:
+          httpGet:
+            path: /health-check
+            port: 8080
+          failureThreshold: 5
         env:
         - name: JAVA_OPTS
           value: "-XX:InitialRAMPercentage=80.0 -XX:MaxRAMPercentage=80.0 -Duser.timezone=UTC"
