@@ -8,7 +8,6 @@ apps/snutt-prod/ @wafflestudio/snutt-server
 apps/snutt-prod/snutt-ev-web/ @wafflestudio/snutt-frontend
 apps/truffle-prod/ @davin111 @PFCJeong
 apps/sso-dev/ @wafflestudio/sso
-apps/guam/ @wafflestudio/guam
 apps/seminar/ @wafflestudio/seminar
 apps/webgam-dev/ @wafflestudio/interactive-web
 apps/feelin-dev/ @wafflestudio/music-sns
@@ -17,3 +16,4 @@ apps/siksha-dev/ @wafflestudio/siksha
 apps/siksha-prod/ @wafflestudio/siksha
 apps/pupuri-prod/ @woohm402
 apps/ggzz-dev/ @wafflestudio/ggzz
+apps/k8s-monitoring/ @PFCJeong
