@@ -87,21 +87,21 @@ spec:
         regex: ^(?:\/v1)?\/auth\/register_local\/?$
     - uri:
         regex: ^(?:\/v1)?\/auth\/login_local\/?$
-    - method:
-        exact: POST
-      uri:
+    - uri:
+        regex: ^(?:\/v1)?\/auth\/logout\/?$
+    - uri:
         regex: ^(?:\/v1)?\/search_query\/?$
-    - method:
-        exact: GET
-      uri:
-        regex: ^(?:\/v1)?\/notification\/?$
+    - uri:
+        regex: ^(?:\/v1)?\/user\/device(\/.*)?$
+    - uri:
+        regex: ^(?:\/v1)?\/notification(\/.*)?$
+    - uri:
+        regex: ^(?:\/v1)?\/admin/insert_noti\/?$
     ################# new apis ##############
-    - method:
-        exact: GET
-      uri:
-        regex: ^\/v1\/tables\/(\w{24})\/links$
     - uri:
         regex: ^\/v1\/bookmarks(\/.*)?$
+    - uri:
+        regex: ^\/v1\/tables\/(\w{24})\/links$
     - uri:
         regex: ^\/v1\/shared-tables(\/.*)?$
     route:
