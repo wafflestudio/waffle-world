@@ -48,18 +48,3 @@ spec:
   ports:
     - port: 80
       targetPort: 8080
----
-apiVersion: networking.istio.io/v1alpha3
-kind: VirtualService
-metadata:
-  namespace: wacruit-dev
-  name: wacruit-server
-spec:
-  gateways:
-    - istio-ingress/waffle-ingressgateway
-  hosts:
-    - wacruit-api-dev.wafflestudio.com
-  http:
-    - route:
-        - destination:
-            host: wacruit-server
