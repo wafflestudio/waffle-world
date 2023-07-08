@@ -25,6 +25,13 @@ spec:
       containers:
         - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/wacruit-dev/wacruit-server:3
           name: wacruit-server
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi
           ports:
             - containerPort: 8080
 ---
