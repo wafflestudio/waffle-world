@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ggzz-server
+  name: waffledotcom-server
   labels:
-    app: ggzz-server
-  namespace: ggzz-dev
+    app: waffledotcom-server
+  namespace: waffledotcom-dev
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ggzz-server
+      app: waffledotcom-server
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -19,32 +19,23 @@ spec:
   template:
     metadata:
       labels:
-        app: ggzz-server
+        app: waffledotcom-server
     spec:
-      serviceAccountName: ggzz-server
       containers:
-        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/ggzz-dev/ggzz-server:15
-          name: ggzz-server
+        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/waffledotcom-dev/waffledotcom-server:2
+          name: waffledotcom-server
           ports:
             - containerPort: 8080
 ---
 apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: ggzz-server
-  namespace: ggzz-dev
-  annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/ggzz-dev-role
----
-apiVersion: v1
 kind: Service
 metadata:
-  namespace: ggzz-dev
-  name: ggzz-server
+  namespace: waffledotcom-dev
+  name: waffledotcom-server
 spec:
   type: ClusterIP
   selector:
-    app: ggzz-server
+    app: waffledotcom-server
   ports:
     - port: 80
       targetPort: 8080
@@ -52,14 +43,14 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  namespace: ggzz-dev
-  name: ggzz-server
+  namespace: waffledotcom-dev
+  name: waffledotcom-server
 spec:
   gateways:
     - istio-ingress/waffle-ingressgateway
   hosts:
-    - ggzz-api-dev.wafflestudio.com
+    - wadot-api-dev.wafflestudio.com
   http:
     - route:
         - destination:
-            host: ggzz-server
+            host: waffledotcom-server

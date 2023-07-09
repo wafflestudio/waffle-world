@@ -1,0 +1,28 @@
+_format_version: "3.0"
+
+services:
+- name: account-service
+  url: http://account-server.sso-prod.svc.cluster.local
+  routes:
+  - name: account-service
+    paths:
+    - /account-service/
+  - name: account-web-cf
+    hosts:
+    - sso.wafflestudio.com
+    paths:
+    - /api/account-service/
+  plugins:
+  - name: waffle-jwt-authorizer
+
+- name: truffle-service
+  url: http://truffle-dashboard.truffle-prod.svc.cluster.local
+  routes:
+  - name: truffle-web-cf
+    hosts:
+    - truffle.wafflestudio.com
+    paths:
+    - /api/
+    strip_path: false
+  plugins:
+  - name: waffle-jwt-authorizer
