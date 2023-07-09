@@ -39,6 +39,9 @@ cluster 의 **현 상태를 정확하고 투명**하게 파악하며, **누가 �
   3. This Lambda function updates the image tag of the corresponding manifest file in [waffle-world](https://github.com/wafflestudio/waffle-world)
   4. ArgoCD detects the change in the manifest file and deploys the new image
 
+  ### [k8s-monitoring](https://github.com/wafflestudio/k8s-monitoring)
+  - 주기적인 모니터링을 통해, Pod, Job 의 동작 실패 시 지정된 wafflestudio Slack 채널로 메시지를 전송합니다.
+
   ### [waffle-kong-gateway](https://github.com/wafflestudio/waffle-kong-gateway)
   - 일부 서비스는 유저 인증 관련 부분을 [waffle-account-server](https://github.com/wafflestudio/waffle-account-server) 에 위임하여 와플스튜디오 SSO 를 사용합니다.
   - 해당 서비스 서버를 kong-gateway 뒤에 위치시켜 waffle-account-server 에서 발급한 access token 을 검증하고 이를 내부에서 사용 가능한 `waffle-user-id` 헤더로 바꿔주는 plugin 을 활용할 수 있습니다.
