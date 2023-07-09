@@ -1,4 +1,4 @@
-apiVersion: batch/v1beta1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: snutt-ev-batch-lecture-sync
@@ -39,7 +39,7 @@ spec:
             - name: TRUFFLE_ENABLED
               value: "true"
 ---
-apiVersion: batch/v1beta1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: snutt-ev-batch-snuev-migration

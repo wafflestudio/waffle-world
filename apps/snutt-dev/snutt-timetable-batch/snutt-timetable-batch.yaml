@@ -1,4 +1,4 @@
-apiVersion: batch/v1beta1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: snutt-timetable-batch-coursebook
@@ -39,7 +39,7 @@ spec:
             - name: TRUFFLE_ENABLED
               value: "true"
 ---
-apiVersion: batch/v1beta1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: snutt-timetable-batch-seat-noti
