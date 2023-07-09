@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: k8s-monitoring
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/wafflestudio/waffle-world.git
+    targetRevision: HEAD
+    path: apps/k8s-monitoring/k8s-monitoring-app
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: k8s-monitoring
