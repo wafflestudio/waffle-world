@@ -57,6 +57,7 @@ metadata:
 spec:
   gateways:
   - istio-ingress/waffle-ingressgateway
+  - mesh
   hosts:
   - siksha-api.wafflestudio.com
   http:

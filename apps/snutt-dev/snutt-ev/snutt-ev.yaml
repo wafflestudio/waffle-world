@@ -84,6 +84,7 @@ metadata:
 spec:
   gateways:
   - istio-ingress/waffle-ingressgateway
+  - mesh
   hosts:
   - snutt-ev-api-dev.wafflestudio.com
   http:
