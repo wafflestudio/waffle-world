@@ -55,6 +55,7 @@ metadata:
 spec:
   gateways:
     - istio-ingress/waffle-ingressgateway
+    - mesh
   hosts:
     - truffle.wafflestudio.com
   http:

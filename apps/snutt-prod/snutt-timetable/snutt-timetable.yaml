@@ -106,6 +106,7 @@ metadata:
 spec:
   gateways:
   - istio-ingress/waffle-ingressgateway
+  - mesh
   hosts:
   - snu4t-api.wafflestudio.com
   http:

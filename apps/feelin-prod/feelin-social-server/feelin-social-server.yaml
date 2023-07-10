@@ -48,6 +48,7 @@ metadata:
 spec:
   gateways:
     - istio-ingress/waffle-ingressgateway
+    - mesh
   hosts:
     - feelin-social-api.wafflestudio.com
   http:
