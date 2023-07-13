@@ -66,10 +66,10 @@ spec:
             resources:
               requests:
                 cpu: 200m
-                memory: 768Mi
+                memory: 1Gi
               limits:
                 cpu: 1000m
-                memory: 768Mi
+                memory: 1Gi
             env:
             - name: JOB_NAME
               value: "vacancyNotificationJob"
