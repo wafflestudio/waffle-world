@@ -1,15 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: snutt-core
+  name: snutt-core-main
   labels:
     app: snutt-core
+    subset: main
   namespace: snutt-prod
 spec:
   # replicas: HPA
   selector:
     matchLabels:
       app: snutt-core
+      subset: main
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -20,6 +22,7 @@ spec:
     metadata:
       labels:
         app: snutt-core
+        subset: main
     spec:
       serviceAccountName: snutt-core
       containers:
@@ -43,6 +46,69 @@ spec:
             path: /health-check
             port: 3000
 ---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: snutt-core-canary
+  labels:
+    app: snutt-core
+    subset: canary
+  namespace: snutt-prod
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: snutt-core
+      subset: canary
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  revisionHistoryLimit: 4
+  template:
+    metadata:
+      labels:
+        app: snutt-core
+        subset: canary
+    spec:
+      serviceAccountName: snutt-core
+      containers:
+        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-core:79
+          name: snutt-core
+          resources:
+            requests:
+              cpu: 200m
+              memory: 256Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi
+          ports:
+            - containerPort: 3000
+          livenessProbe:
+            httpGet:
+              path: /health-check
+              port: 3000
+          readinessProbe:
+            httpGet:
+              path: /health-check
+              port: 3000
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: snutt-core-destination-rule
+  namespace: snutt-prod
+spec:
+  host: snutt-core
+  subsets:
+    - labels:
+        subset: main
+      name: main
+    - labels:
+        subset: canary
+      name: canary
+---
 apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
@@ -54,7 +120,7 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: snutt-core
+    name: snutt-core-main
   minReplicas: 1
   maxReplicas: 3
   metrics:
@@ -142,5 +208,11 @@ spec:
   - name: "snutt-core-route"
     timeout: 10s
     route:
-    - destination:
-        host: snutt-core
+      - destination:
+          host: snutt-core
+          subset: main
+        weight: 100
+      - destination:
+          host: snutt-core
+          subset: canary
+        weight: 0
