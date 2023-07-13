@@ -20,7 +20,7 @@ spec:
           restartPolicy: OnFailure
           serviceAccountName: snutt-timetable-batch
           containers:
-          - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-timetable-batch:26
+          - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-timetable-batch:27
             name: snutt-timetable-batch-coursebook
             resources:
               requests:
