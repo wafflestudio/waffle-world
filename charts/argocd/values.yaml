@@ -34,3 +34,59 @@ argo-cd:
         p, role:waffle-k8s-admin, repositories, update, *, allow
         p, role:waffle-k8s-admin, repositories, delete, *, allow
         g, wafflestudio:waffle-k8s-admin, role:waffle-k8s-admin
+    resources:
+      requests:
+        cpu: 50m
+        memory: 64Mi
+      limits:
+        cpu: 100m
+        memory: 64Mi
+  controller:
+    resources:
+      requests:
+        cpu: 250m
+        memory: 256Mi
+      limits:
+        cpu: 500m
+        memory: 256Mi
+  applicationSet:
+    resources:
+      requests:
+        cpu: 50m
+        memory: 64Mi
+      limits:
+        cpu: 100m
+        memory: 64Mi
+  notifications:
+    resources:
+      requests:
+        cpu: 50m
+        memory: 64Mi
+      limits:
+        cpu: 100m
+        memory: 64Mi
+  repoServer:
+    resources:
+      requests:
+        cpu: 10m
+        memory: 64Mi
+      limits:
+        cpu: 50m
+        memory: 64Mi
+  dex:
+    resources:
+      requests:
+        cpu: 10m
+        memory: 32Mi
+      limits:
+        cpu: 50m
+        memory: 32Mi
+  redis:
+    resources:
+      requests:
+        cpu: 100m
+        memory: 64Mi
+      limits:
+        cpu: 200m
+        memory: 64Mi
+
