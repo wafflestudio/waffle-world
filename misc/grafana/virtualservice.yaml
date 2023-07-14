@@ -8,6 +8,7 @@ spec:
   - istio-ingress/waffle-ingressgateway
   hosts:
   - grafana.wafflestudio.com
+  - mesh
   http:
   - route:
     - destination:
