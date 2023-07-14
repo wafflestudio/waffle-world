@@ -26,3 +26,25 @@ services:
     strip_path: false
   plugins:
   - name: waffle-jwt-authorizer
+
+- name: wacruit-service
+  url: http://wacruit-server.wacruit-prod.svc.cluster.local
+  routes:
+  - name: wacruit-web-cf
+    hosts:
+    - wacruit.wafflestudio.com
+    paths:
+    - /api/
+  plugins:
+  - name: waffle-jwt-authorizer
+
+- name: wacruit-service-dev
+  url: http://wacruit-server.wacruit-dev.svc.cluster.local
+  routes:
+  - name: wacruit-web-cf
+    hosts:
+    - wacruit-dev.wafflestudio.com
+    paths:
+    - /api/
+  plugins:
+  - name: waffle-jwt-authorizer

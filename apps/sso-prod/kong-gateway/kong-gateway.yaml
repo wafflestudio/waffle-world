@@ -104,6 +104,8 @@ spec:
   - api-gateway.wafflestudio.com
   - sso.wafflestudio.com
   - truffle.wafflestudio.com
+  - wacruit.wafflestudio.com
+  - wacruit-dev.wafflestudio.com
   http:
   - route:
     - destination:
