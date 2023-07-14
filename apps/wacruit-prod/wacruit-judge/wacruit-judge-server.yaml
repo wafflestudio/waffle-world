@@ -6,7 +6,7 @@ metadata:
     app: wacruit-judge-server
   namespace: wacruit-prod
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: wacruit-judge-server
@@ -25,13 +25,15 @@ spec:
       containers:
       - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/wacruit-prod/wacruit-judge-server:1
         name: wacruit-judge-server
-        ports:
-        - containerPort: 2358
         resources:
           requests:
-            memory: 512Mi
+            cpu: 200m
+            memory: 256Mi
           limits:
-            memory: 1Gi
+            cpu: 400m
+            memory: 256Mi
+        ports:
+          - containerPort: 2358
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -62,8 +64,9 @@ metadata:
 spec:
   gateways:
   - istio-ingress/waffle-ingressgateway
+  - mesh
   hosts:
-  - wacruit-judge.wafflestudio.com
+  - wacruit-judge-server.wacruit-prod.svc.cluster.local
   http:
   - route:
     - destination:

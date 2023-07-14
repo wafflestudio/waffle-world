@@ -6,7 +6,7 @@ metadata:
     app: wacruit-judge-worker
   namespace: wacruit-prod
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: wacruit-judge-worker
@@ -31,7 +31,7 @@ spec:
         resources:
           requests:
             cpu: 1000m
-            memory: 512Mi
+            memory: 1Gi
           limits:
             cpu: 1000m
             memory: 1Gi

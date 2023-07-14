@@ -23,18 +23,18 @@ spec:
     spec:
       serviceAccountName: wacruit-judge-worker
       containers:
-      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/wacruit-dev/wacruit-judge-server:1
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/wacruit-dev/wacruit-judge-server:3
         name: wacruit-judge-worker
         command: ["./scripts/workers"]
         securityContext:
           privileged: true
         resources:
           requests:
-            cpu: 1000m
+            cpu: 500m
             memory: 512Mi
           limits:
-            cpu: 1000m
-            memory: 1Gi
+            cpu: 500m
+            memory: 512Mi
 ---
 apiVersion: v1
 kind: ServiceAccount
