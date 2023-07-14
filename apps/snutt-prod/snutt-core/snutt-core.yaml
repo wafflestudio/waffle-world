@@ -22,6 +22,13 @@ spec:
         app: snutt-core
     spec:
       serviceAccountName: snutt-core
+      nodeSelector:
+        phase: prod
+      tolerations:
+        - effect: NoSchedule
+          key: phase
+          operator: Equal
+          value: prod
       containers:
       - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-core:79
         name: snutt-core
