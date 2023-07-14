@@ -18,9 +18,9 @@ services:
 - name: wacruit-service
   url: http://wacruit-server.wacruit-dev.svc.cluster.local
   routes:
-  - name: wacruit-service
+  - name: wacruit-web-cf
     hosts:
-    - wacruit-api-dev.wafflestudio.com
+    - wacruit-dev.wafflestudio.com
     paths:
     - /api/
   plugins:

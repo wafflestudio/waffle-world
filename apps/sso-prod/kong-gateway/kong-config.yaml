@@ -37,14 +37,3 @@ services:
     - /api/
   plugins:
   - name: waffle-jwt-authorizer
-
-- name: wacruit-service-dev
-  url: http://wacruit-server.wacruit-dev.svc.cluster.local
-  routes:
-  - name: wacruit-web-cf
-    hosts:
-    - wacruit-dev.wafflestudio.com
-    paths:
-    - /api/
-  plugins:
-  - name: waffle-jwt-authorizer
