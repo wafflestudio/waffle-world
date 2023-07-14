@@ -7,10 +7,8 @@ argo-cd:
         key: phase
         operator: Equal
         value: prod
-  server:
-    extraArgs:
-    - --insecure
-    config:
+  configs:
+    cm:
       url: https://argocd.wafflestudio.com
       timeout.reconciliation: 15s
       dex.config: |
@@ -24,7 +22,7 @@ argo-cd:
             orgs:
             - name: wafflestudio
       admin.enabled: "false"
-    rbacConfig:
+    rbac:
       policy.default: role:readonly
       policy.csv: |
         p, role:waffle-k8s-admin, applications, *, */*, allow
@@ -34,6 +32,9 @@ argo-cd:
         p, role:waffle-k8s-admin, repositories, update, *, allow
         p, role:waffle-k8s-admin, repositories, delete, *, allow
         g, wafflestudio:waffle-k8s-admin, role:waffle-k8s-admin
+    params:
+      server.insecure: true
+  server:
     resources:
       requests:
         cpu: 50m
@@ -77,10 +78,10 @@ argo-cd:
     resources:
       requests:
         cpu: 10m
-        memory: 32Mi
+        memory: 64Mi
       limits:
         cpu: 50m
-        memory: 32Mi
+        memory: 64Mi
   redis:
     resources:
       requests:
