@@ -23,7 +23,7 @@ spec:
     spec:
       serviceAccountName: ggzz-server
       containers:
-        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/ggzz-dev/ggzz-server:14
+        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/ggzz-dev/ggzz-server:19
           name: ggzz-server
           ports:
             - containerPort: 8080
@@ -57,6 +57,7 @@ metadata:
 spec:
   gateways:
     - istio-ingress/waffle-ingressgateway
+    - mesh
   hosts:
     - ggzz-api-dev.wafflestudio.com
   http:

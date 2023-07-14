@@ -22,10 +22,30 @@ spec:
         app: snutt-ev-web
     spec:
       containers:
-      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-dev/snutt-ev-web:244
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-dev/snutt-ev-web:251
         name: snutt-ev-web
+        resources:
+          requests:
+            cpu: 200m
+            memory: 256Mi
+          limits:
+            cpu: 200m
+            memory: 256Mi
         ports:
         - containerPort: 3000
+        livenessProbe:
+          httpGet:
+            path: /api/health-check
+            port: 3000
+        readinessProbe:
+          httpGet:
+            path: /api/health-check
+            port: 3000
+        startupProbe:
+          httpGet:
+            path: /api/health-check
+            port: 3000
+          failureThreshold: 10
 ---
 apiVersion: v1
 kind: Service
@@ -48,6 +68,7 @@ metadata:
 spec:
   gateways:
   - istio-ingress/waffle-ingressgateway
+  - mesh
   hosts:
   - snutt-ev-web-dev.wafflestudio.com
   http:

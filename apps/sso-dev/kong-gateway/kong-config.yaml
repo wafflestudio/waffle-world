@@ -9,7 +9,7 @@ services:
     - /account-service/
   - name: account-web-cf
     hosts:
-    - sso.wafflestudio.com
+    - sso-dev.wafflestudio.com
     paths:
     - /api/account-service/
   plugins:

@@ -4,7 +4,7 @@ metadata:
   name: kong-gateway
   labels:
     app: kong-gateway
-  namespace: sso-dev
+  namespace: sso-prod
 spec:
   replicas: 1
   selector:
@@ -22,7 +22,7 @@ spec:
         app: kong-gateway
     spec:
       containers:
-      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/sso-dev/kong-gateway:30
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/sso-prod/kong-gateway:1
         name: kong-gateway
         ports:
         - containerPort: 8000
@@ -81,7 +81,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: sso-dev
+  namespace: sso-prod
   name: kong-gateway
 spec:
   type: ClusterIP
@@ -94,15 +94,16 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  namespace: sso-dev
+  namespace: sso-prod
   name: kong-gateway
 spec:
   gateways:
   - istio-ingress/waffle-ingressgateway
   - mesh
   hosts:
-  - api-gateway-dev.wafflestudio.com
-  - sso-dev.wafflestudio.com
+  - api-gateway.wafflestudio.com
+  - sso.wafflestudio.com
+  - truffle.wafflestudio.com
   http:
   - route:
     - destination:

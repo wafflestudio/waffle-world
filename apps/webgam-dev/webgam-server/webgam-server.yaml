@@ -60,6 +60,7 @@ metadata:
 spec:
   gateways:
   - istio-ingress/waffle-ingressgateway
+  - mesh
   hosts:
   - webgam-api-dev.wafflestudio.com
   http:

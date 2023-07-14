@@ -4,7 +4,7 @@ metadata:
   name: account-server
   labels:
     app: account-server
-  namespace: sso-dev
+  namespace: sso-prod
 spec:
   replicas: 1
   selector:
@@ -23,7 +23,7 @@ spec:
     spec:
       serviceAccountName: account-server
       containers:
-      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/sso-dev/account-server:39
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/sso-prod/account-server:2
         name: account-server
         ports:
         - containerPort: 8080
@@ -31,20 +31,20 @@ spec:
         - name: JAVA_OPTS
           value: "-Duser.timezone=UTC"
         - name: SPRING_PROFILES_ACTIVE
-          value: "dev"
+          value: "prod"
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: account-server
-  namespace: sso-dev
+  namespace: sso-prod
   annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/account-server-dev-role
+    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/account-server-prod-role
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: sso-dev
+  namespace: sso-prod
   name: account-server
 spec:
   type: ClusterIP
@@ -57,14 +57,14 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  namespace: sso-dev
+  namespace: sso-prod
   name: account-server
 spec:
   gateways:
   - istio-ingress/waffle-ingressgateway
   - mesh
   hosts:
-  - account-api-dev.wafflestudio.com
+  - account-api.wafflestudio.com
   http:
   - match:
     - uri:

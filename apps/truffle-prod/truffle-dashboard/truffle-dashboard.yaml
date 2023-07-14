@@ -55,12 +55,11 @@ metadata:
 spec:
   gateways:
     - istio-ingress/waffle-ingressgateway
+    - mesh
   hosts:
     - truffle.wafflestudio.com
   http:
     - match:
-        - uri:
-            prefix: /api
         - uri:
             prefix: /swagger-ui
         - uri:
