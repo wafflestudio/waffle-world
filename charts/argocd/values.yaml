@@ -1,4 +1,12 @@
 argo-cd:
+  global:
+    nodeSelector:
+      phase: prod
+    tolerations:
+      - effect: NoSchedule
+        key: phase
+        operator: Equal
+        value: prod
   server:
     extraArgs:
     - --insecure
