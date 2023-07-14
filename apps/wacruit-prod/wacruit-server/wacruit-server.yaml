@@ -6,7 +6,7 @@ metadata:
     app: wacruit-server
   namespace: wacruit-prod
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: wacruit-server
@@ -55,3 +55,19 @@ spec:
   ports:
     - port: 80
       targetPort: 8080
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  namespace: wacruit-prod
+  name: wacruit-server
+spec:
+  gateways:
+  - istio-ingress/waffle-ingressgateway
+  - mesh
+  hosts:
+  - wacruit-server.wacruit-prod.svc.cluster.local
+  http:
+  - route:
+    - destination:
+        host: wacruit-server

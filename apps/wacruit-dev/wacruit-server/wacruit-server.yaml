@@ -23,7 +23,7 @@ spec:
     spec:
       serviceAccountName: wacruit-server
       containers:
-        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/wacruit-dev/wacruit-server:3
+        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/wacruit-dev/wacruit-server:5
           name: wacruit-server
           resources:
             requests:
@@ -55,3 +55,19 @@ spec:
   ports:
     - port: 80
       targetPort: 8080
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  namespace: wacruit-dev
+  name: wacruit-server
+spec:
+  gateways:
+  - istio-ingress/waffle-ingressgateway
+  - mesh
+  hosts:
+  - wacruit-server.wacruit-dev.svc.cluster.local
+  http:
+  - route:
+    - destination:
+        host: wacruit-server
