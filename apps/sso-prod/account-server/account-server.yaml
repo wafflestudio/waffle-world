@@ -62,6 +62,7 @@ metadata:
 spec:
   gateways:
   - istio-ingress/waffle-ingressgateway
+  - mesh
   hosts:
   - account-api.wafflestudio.com
   http:

@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wacruit-judge-worker
+  labels:
+    app: wacruit-judge-worker
+  namespace: wacruit-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wacruit-judge-worker
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  revisionHistoryLimit: 4
+  template:
+    metadata:
+      labels:
+        app: wacruit-judge-worker
+    spec:
+      serviceAccountName: wacruit-judge-worker
+      containers:
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/wacruit-dev/wacruit-judge-server:3
+        name: wacruit-judge-worker
+        command: ["./scripts/workers"]
+        securityContext:
+          privileged: true
+        resources:
+          requests:
+            cpu: 500m
+            memory: 512Mi
+          limits:
+            cpu: 500m
+            memory: 512Mi
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: wacruit-judge-worker
+  namespace: wacruit-dev
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/wacruit-dev-role

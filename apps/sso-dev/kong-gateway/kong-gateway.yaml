@@ -99,6 +99,7 @@ metadata:
 spec:
   gateways:
   - istio-ingress/waffle-ingressgateway
+  - mesh
   hosts:
   - api-gateway-dev.wafflestudio.com
   - sso-dev.wafflestudio.com

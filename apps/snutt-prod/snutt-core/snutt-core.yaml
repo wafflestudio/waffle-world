@@ -6,7 +6,7 @@ metadata:
     app: snutt-core
   namespace: snutt-prod
 spec:
-  replicas: 1
+  # replicas: HPA
   selector:
     matchLabels:
       app: snutt-core
@@ -22,8 +22,15 @@ spec:
         app: snutt-core
     spec:
       serviceAccountName: snutt-core
+      nodeSelector:
+        phase: prod
+      tolerations:
+        - effect: NoSchedule
+          key: phase
+          operator: Equal
+          value: prod
       containers:
-      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-core:74
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-core:79
         name: snutt-core
         resources:
           requests:
@@ -34,6 +41,36 @@ spec:
             memory: 256Mi
         ports:
         - containerPort: 3000
+        livenessProbe:
+          httpGet:
+            path: /health-check
+            port: 3000
+        readinessProbe:
+          httpGet:
+            path: /health-check
+            port: 3000
+---
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: snutt-core-hpa
+  labels:
+    app: snutt-core
+  namespace: snutt-prod
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: snutt-core
+  minReplicas: 1
+  maxReplicas: 3
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 80
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -64,12 +101,14 @@ metadata:
 spec:
   gateways:
   - istio-ingress/waffle-ingressgateway
+  - mesh
   hosts:
   - snutt-api.wafflestudio.com
   http:
   - name: "prod-snutt-timetable-route"
     timeout: 10s
     match:
+    ############## migrated apis ############
     - method:
         exact: GET
       uri:
@@ -78,6 +117,17 @@ spec:
         regex: ^(?:\/v1)?\/auth\/register_local\/?$
     - uri:
         regex: ^(?:\/v1)?\/auth\/login_local\/?$
+    - uri:
+        regex: ^(?:\/v1)?\/auth\/logout\/?$
+    - uri:
+        regex: ^(?:\/v1)?\/search_query\/?$
+    - uri:
+        regex: ^(?:\/v1)?\/user\/device(\/.*)?$
+    - uri:
+        regex: ^(?:\/v1)?\/notification(\/.*)?$
+    - uri:
+        regex: ^(?:\/v1)?\/admin/insert_noti\/?$
+    ################# new apis ##############
     - uri:
         regex: ^\/v1\/bookmarks(\/.*)?$
     route:

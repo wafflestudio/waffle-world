@@ -23,7 +23,7 @@ spec:
     spec:
       serviceAccountName: siksha-api-server
       containers:
-      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/siksha-dev/siksha-api-server:15
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/siksha-dev/siksha-api-server:18
         name: siksha-api-server
         ports:
         - containerPort: 8000
@@ -57,6 +57,7 @@ metadata:
 spec:
   gateways:
   - istio-ingress/waffle-ingressgateway
+  - mesh
   hosts:
   - siksha-api-dev.wafflestudio.com
   http:

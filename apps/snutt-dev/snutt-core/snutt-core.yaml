@@ -23,7 +23,7 @@ spec:
     spec:
       serviceAccountName: snutt-core
       containers:
-      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-dev/snutt-core:151
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-dev/snutt-core:158
         name: snutt-core
         resources:
           requests:
@@ -34,6 +34,14 @@ spec:
             memory: 192Mi
         ports:
         - containerPort: 3000
+        livenessProbe:
+          httpGet:
+            path: /health-check
+            port: 3000
+        readinessProbe:
+          httpGet:
+            path: /health-check
+            port: 3000
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -64,6 +72,7 @@ metadata:
 spec:
   gateways:
     - istio-ingress/waffle-ingressgateway
+    - mesh
   hosts:
     - snutt-api-dev.wafflestudio.com
   http:
@@ -79,21 +88,21 @@ spec:
         regex: ^(?:\/v1)?\/auth\/register_local\/?$
     - uri:
         regex: ^(?:\/v1)?\/auth\/login_local\/?$
-    - method:
-        exact: POST
-      uri:
+    - uri:
+        regex: ^(?:\/v1)?\/auth\/logout\/?$
+    - uri:
         regex: ^(?:\/v1)?\/search_query\/?$
-    - method:
-        exact: GET
-      uri:
-        regex: ^(?:\/v1)?\/notification\/?$
+    - uri:
+        regex: ^(?:\/v1)?\/user\/device(\/.*)?$
+    - uri:
+        regex: ^(?:\/v1)?\/notification(\/.*)?$
+    - uri:
+        regex: ^(?:\/v1)?\/admin/insert_noti\/?$
     ################# new apis ##############
-    - method:
-        exact: GET
-      uri:
-        regex: ^\/v1\/tables\/(\w{24})\/links$
     - uri:
         regex: ^\/v1\/bookmarks(\/.*)?$
+    - uri:
+        regex: ^\/v1\/tables\/(\w{24})\/links$
     - uri:
         regex: ^\/v1\/shared-tables(\/.*)?$
     route:
