@@ -23,7 +23,7 @@ spec:
     spec:
       serviceAccountName: wacruit-judge-worker
       containers:
-      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/wacruit-prod/wacruit-judge-server:1
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/wacruit-prod/wacruit-judge-server:2
         name: wacruit-judge-worker
         command: ["./scripts/workers"]
         securityContext:
