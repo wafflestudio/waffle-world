@@ -23,7 +23,7 @@ spec:
     spec:
       serviceAccountName: wacruit-server
       containers:
-        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/wacruit-dev/wacruit-server:5
+        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/wacruit-dev/wacruit-server:6
           name: wacruit-server
           resources:
             requests:
