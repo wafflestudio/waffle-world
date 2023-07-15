@@ -21,9 +21,23 @@ spec:
       labels:
         app: feelin-core-server
     spec:
+      nodeSelector:
+        phase: prod
+      tolerations:
+        - effect: NoSchedule
+          key: phase
+          operator: Equal
+          value: prod
       containers:
       - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/feelin-prod/feelin-core-server:10
         name: feelin-core-server
+        resources:
+          requests:
+            cpu: 100m
+            memory: 192Mi
+          limits:
+            cpu: 100m
+            memory: 192Mi
         ports:
         - containerPort: 3000
 ---
