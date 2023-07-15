@@ -22,7 +22,7 @@ spec:
         app: feelin-social-server
     spec:
       containers:
-      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/feelin-dev/feelin-social-server:29
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/feelin-dev/feelin-social-server:30
         name: feelin-social-server
         resources:
           requests:
