@@ -6,7 +6,7 @@ metadata:
     app: feelin-web
   namespace: feelin-dev
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: feelin-web
@@ -24,6 +24,13 @@ spec:
       containers:
       - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/feelin-dev/feelin-web:16
         name: feelin-web
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 100m
+            memory: 128Mi
         ports:
         - containerPort: 3000
 ---
