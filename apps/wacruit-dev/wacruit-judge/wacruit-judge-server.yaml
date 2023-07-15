@@ -67,7 +67,7 @@ spec:
   - mesh
   hosts:
   - wacruit-judge-server.wacruit-dev.svc.cluster.local
-  - wacruit-judge-dev.wafflestudio.com # TODO: For debugging, remove before 2023/08/04
+  - wacruit-judge-api-dev.wafflestudio.com # TODO: For debugging, remove before 2023/08/04
   http:
   - route:
     - destination:
