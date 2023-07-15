@@ -23,7 +23,7 @@ spec:
     spec:
       serviceAccountName: wacruit-judge-server
       containers:
-      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/wacruit-dev/wacruit-judge-server:11
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/wacruit-dev/wacruit-judge-server:12
         name: wacruit-judge-server
         resources:
           requests:
