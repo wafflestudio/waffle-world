@@ -35,5 +35,6 @@ services:
     - wacruit.wafflestudio.com
     paths:
     - /api/
+    strip_path: false
   plugins:
   - name: waffle-jwt-authorizer
