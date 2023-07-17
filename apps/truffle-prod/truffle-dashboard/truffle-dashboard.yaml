@@ -6,7 +6,7 @@ metadata:
     app: truffle-dashboard
   namespace: truffle-prod
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: truffle-dashboard
@@ -22,9 +22,23 @@ spec:
         app: truffle-dashboard
     spec:
       serviceAccountName: truffle
+      nodeSelector:
+        phase: prod
+      tolerations:
+        - effect: NoSchedule
+          key: phase
+          operator: Equal
+          value: prod
       containers:
         - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/truffle-prod/truffle-dashboard:10
           name: truffle-dashboard
+          resources:
+            requests:
+              cpu: 100m
+              memory: 384Mi
+            limits:
+              cpu: 200m
+              memory: 384Mi
           ports:
             - containerPort: 8080
           env:
