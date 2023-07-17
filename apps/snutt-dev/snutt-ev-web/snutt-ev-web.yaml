@@ -21,6 +21,13 @@ spec:
       labels:
         app: snutt-ev-web
     spec:
+      nodeSelector:
+        phase: dev
+      tolerations:
+        - effect: NoSchedule
+          key: phase
+          operator: Equal
+          value: dev
       containers:
       - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-dev/snutt-ev-web:251
         name: snutt-ev-web
