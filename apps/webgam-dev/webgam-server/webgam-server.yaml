@@ -22,9 +22,23 @@ spec:
         app: webgam-server
     spec:
       serviceAccountName: webgam-server
+      nodeSelector:
+        phase: dev
+      tolerations:
+        - effect: NoSchedule
+          key: phase
+          operator: Equal
+          value: dev
       containers:
       - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/webgam-dev/webgam-server:4
         name: webgam-server
+        resources:
+          requests:
+            cpu: 100m
+            memory: 480Mi
+          limits:
+            cpu: 200m
+            memory: 480Mi
         ports:
         - containerPort: 8080
         env:
