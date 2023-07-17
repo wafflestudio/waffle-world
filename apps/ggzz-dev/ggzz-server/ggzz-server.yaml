@@ -22,9 +22,23 @@ spec:
         app: ggzz-server
     spec:
       serviceAccountName: ggzz-server
+      nodeSelector:
+        phase: dev
+      tolerations:
+        - effect: NoSchedule
+          key: phase
+          operator: Equal
+          value: dev
       containers:
         - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/ggzz-dev/ggzz-server:19
           name: ggzz-server
+          resources:
+            requests:
+              cpu: 100m
+              memory: 458Mi
+            limits:
+              cpu: 200m
+              memory: 458Mi
           ports:
             - containerPort: 8080
 ---
