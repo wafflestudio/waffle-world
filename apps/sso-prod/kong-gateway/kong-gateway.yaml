@@ -21,9 +21,23 @@ spec:
       labels:
         app: kong-gateway
     spec:
+      nodeSelector:
+        phase: prod
+      tolerations:
+        - effect: NoSchedule
+          key: phase
+          operator: Equal
+          value: prod
       containers:
       - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/sso-prod/kong-gateway:1
         name: kong-gateway
+        resources:
+          requests:
+            cpu: 100m
+            memory: 512Mi
+          limits:
+            cpu: 200m
+            memory: 512Mi
         ports:
         - containerPort: 8000
           name: proxy
