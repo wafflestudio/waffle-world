@@ -20,10 +20,24 @@ spec:
     metadata:
       labels:
         app: kong-gateway
+    nodeSelector:
+      phase: dev
+    tolerations:
+      - effect: NoSchedule
+        key: phase
+        operator: Equal
+        value: dev
     spec:
       containers:
       - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/sso-dev/kong-gateway:30
         name: kong-gateway
+        resources:
+          requests:
+            cpu: 100m
+            memory: 512Mi
+          limits:
+            cpu: 200m
+            memory: 512Mi
         ports:
         - containerPort: 8000
           name: proxy

@@ -21,6 +21,13 @@ spec:
       labels:
         app: feelin-social-server
     spec:
+      nodeSelector:
+        phase: dev
+      tolerations:
+        - effect: NoSchedule
+          key: phase
+          operator: Equal
+          value: dev
       containers:
       - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/feelin-dev/feelin-social-server:30
         name: feelin-social-server
