@@ -38,18 +38,18 @@ argo-cd:
     resources:
       requests:
         cpu: 50m
-        memory: 64Mi
+        memory: 96Mi
       limits:
         cpu: 100m
-        memory: 64Mi
+        memory: 96Mi
   controller:
     resources:
       requests:
         cpu: 250m
-        memory: 256Mi
+        memory: 384Mi
       limits:
         cpu: 500m
-        memory: 256Mi
+        memory: 384Mi
   applicationSet:
     resources:
       requests:
