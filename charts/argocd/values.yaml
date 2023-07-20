@@ -1,12 +1,12 @@
 argo-cd:
   global:
     nodeSelector:
-      phase: prod
+      phase: infra
     tolerations:
       - effect: NoSchedule
         key: phase
         operator: Equal
-        value: prod
+        value: infra
   configs:
     cm:
       url: https://argocd.wafflestudio.com

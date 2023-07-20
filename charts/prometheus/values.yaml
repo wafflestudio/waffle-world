@@ -1,8 +1,13 @@
-## Using default values from https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
-##
 kube-prometheus-stack:
   grafana:
     enabled: true
+    nodeSelector:
+      phase: infra
+    tolerations:
+      - effect: NoSchedule
+        key: phase
+        operator: Equal
+        value: infra
     defaultDashboardsTimezone: Asia/Seoul
     adminPassword: # secret
     grafana.ini:
@@ -19,17 +24,54 @@ kube-prometheus-stack:
         client_id: 75c8b088348e91be1e97
         client_secret: # secret
 
-  ## Deploy a Prometheus instance
-  ##
+  kube-state-metrics:
+    nodeSelector:
+      phase: infra
+    tolerations:
+      - effect: NoSchedule
+        key: phase
+        operator: Equal
+        value: infra
+
+  alertmanager:
+    alertmanagerSpec:
+      nodeSelector:
+        phase: infra
+      tolerations:
+        - effect: NoSchedule
+          key: phase
+          operator: Equal
+          value: infra
+
+  prometheusOperator:
+    nodeSelector:
+      phase: infra
+    tolerations:
+      - effect: NoSchedule
+        key: phase
+        operator: Equal
+        value: infra
+
+    admissionWebhooks:
+      patch:
+        nodeSelector:
+          phase: infra
+        tolerations:
+          - effect: NoSchedule
+            key: phase
+            operator: Equal
+            value: infra
+
   prometheus:
     enabled: true
-
-    ## Settings affecting prometheusSpec
-    ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#prometheusspec
-    ##
     prometheusSpec:
-      ## How long to retain metrics
-      ##
+      nodeSelector:
+        phase: infra
+      tolerations:
+        - effect: NoSchedule
+          key: phase
+          operator: Equal
+          value: infra
       retention: 10d
       resources:
         requests:
