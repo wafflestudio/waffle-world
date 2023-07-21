@@ -33,10 +33,6 @@ argo-cd:
         p, role:waffle-k8s-admin, repositories, update, *, allow
         p, role:waffle-k8s-admin, repositories, delete, *, allow
 
-        g, wafflestudio:snutt-frontend, role:snutt-frontend
-        p, role:snutt-frontend, applications, *, default/snutt-ev-web, allow
-        p, role:snutt-frontend, applications, *, default/snutt-ev-web-dev, allow
-
         g, wafflestudio:snutt-server, role:snutt-server
         p, role:snutt-server, applications, *, default/snutt-core, allow
         p, role:snutt-server, applications, *, default/snutt-core-dev, allow
@@ -49,17 +45,9 @@ argo-cd:
         p, role:snutt-server, applications, *, default/snutt-timetable-batch, allow
         p, role:snutt-server, applications, *, default/snutt-timetable-batch-dev, allow
         
-        g, wafflestudio:snutt-server, role:snutt-server
-        p, role:snutt-server, applications, *, default/snutt-core, allow
-        p, role:snutt-server, applications, *, default/snutt-core-dev, allow
-        p, role:snutt-server, applications, *, default/snutt-ev, allow
-        p, role:snutt-server, applications, *, default/snutt-ev-dev, allow
-        p, role:snutt-server, applications, *, default/snutt-ev-batch, allow
-        p, role:snutt-server, applications, *, default/snutt-ev-batch-dev, allow
-        p, role:snutt-server, applications, *, default/snutt-timetable, allow
-        p, role:snutt-server, applications, *, default/snutt-timetable-dev, allow
-        p, role:snutt-server, applications, *, default/snutt-timetable-batch, allow
-        p, role:snutt-server, applications, *, default/snutt-timetable-batch-dev, allow
+        g, wafflestudio:snutt-frontend, role:snutt-frontend
+        p, role:snutt-frontend, applications, *, default/snutt-ev-web, allow
+        p, role:snutt-frontend, applications, *, default/snutt-ev-web-dev, allow
         
         g, wafflestudio:waffledotcom-backend, role:waffledotcom-backend
         p, role:waffledotcom-backend, applications, *, default/waffledotcom-server, allow
