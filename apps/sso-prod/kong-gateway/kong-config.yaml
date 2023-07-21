@@ -36,5 +36,6 @@ services:
     paths:
     - /api/
     strip_path: false
+    preserve_host: true
   plugins:
   - name: waffle-jwt-authorizer
