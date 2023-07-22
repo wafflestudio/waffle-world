@@ -1,5 +1,3 @@
-# https://help.github.com/articles/about-codeowners/
-
 * @davin111 @wafflestudio/waffle-k8s-admin
 apps/istio-util/ @wafflestudio/waffle-k8s-admin
 apps/snutt-dev/ @wafflestudio/snutt-server
@@ -19,6 +17,6 @@ apps/waffledotcom-dev/ @wafflestudio/waffledotcom-backend
 apps/waffledotcom-prod/ @wafflestudio/waffledotcom-backend
 apps/wacruit-dev/ @wafflestudio/waffledotcom-backend
 apps/wacruit-prod/ @wafflestudio/waffledotcom-backend
-apps/pupuri-prod/ @woohm402
+apps/pupuri-prod/ @wafflestudio/pupuri
 apps/ggzz-dev/ @wafflestudio/ggzz
 apps/k8s-monitoring/ @PFCJeong
