@@ -32,7 +32,7 @@ argo-cd:
         p, role:waffle-k8s-admin, repositories, create, *, allow
         p, role:waffle-k8s-admin, repositories, update, *, allow
         p, role:waffle-k8s-admin, repositories, delete, *, allow
-
+        
         g, wafflestudio:snutt-server, role:snutt-server
         p, role:snutt-server, applications, *, default/snutt-core, allow
         p, role:snutt-server, applications, *, default/snutt-core-dev, allow
@@ -49,6 +49,12 @@ argo-cd:
         p, role:snutt-frontend, applications, *, default/snutt-ev-web, allow
         p, role:snutt-frontend, applications, *, default/snutt-ev-web-dev, allow
         
+        g, wafflestudio:siksha, role:siksha
+        p, role:siksha, applications, *, default/siksha-api-server, allow
+        p, role:siksha, applications, *, default/siksha-api-server-dev, allow
+        p, role:siksha, applications, *, default/siksha-crawler, allow
+        p, role:siksha, applications, *, default/siksha-crawler-dev, allow
+        
         g, wafflestudio:waffledotcom-backend, role:waffledotcom-backend
         p, role:waffledotcom-backend, applications, *, default/waffledotcom-server, allow
         p, role:waffledotcom-backend, applications, *, default/waffledotcom-server-dev, allow
@@ -56,6 +62,32 @@ argo-cd:
         p, role:waffledotcom-backend, applications, *, default/wacruit-judge-dev, allow
         p, role:waffledotcom-backend, applications, *, default/wacruit-server, allow
         p, role:waffledotcom-backend, applications, *, default/wacruit-server-dev, allow
+        
+        g, wafflestudio:seminar, role:seminar
+        p, role:seminar, applications, *, default/seminar-android-project-backend, allow
+        
+        g, wafflestudio:pupuri, role:pupuri
+        p, role:pupuri, applications, *, default/pupuri-bot, allow
+        
+        g, wafflestudio:sso, role:sso
+        p, role:sso, applications, *, default/sso-kong-gateway, allow
+        p, role:sso, applications, *, default/sso-kong-gateway-dev, allow
+        p, role:sso, applications, *, default/sso-account-server, allow
+        p, role:sso, applications, *, default/sso-account-server-dev, allow
+        
+        g, wafflestudio:music-sns, role:music-sns
+        p, role:music-sns, applications, *, default/feelin-core-server, allow
+        p, role:music-sns, applications, *, default/feelin-core-server-dev, allow
+        p, role:music-sns, applications, *, default/feelin-social-server, allow
+        p, role:music-sns, applications, *, default/feelin-social-server-dev, allow
+        p, role:music-sns, applications, *, default/feelin-web, allow
+        p, role:music-sns, applications, *, default/feelin-web-dev, allow
+        
+        g, wafflestudio:ggzz, role:ggzz
+        p, role:ggzz, applications, *, default/ggzz-server-dev, allow
+        
+        g, wafflestudio:interactive-web, role:interactive-web
+        p, role:interactive-web, applications, *, default/webgam-server-dev, allow
     params:
       server.insecure: true
   server:
