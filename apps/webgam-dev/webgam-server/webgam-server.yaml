@@ -6,7 +6,7 @@ metadata:
     app: webgam-server
   namespace: webgam-dev
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: webgam-server
