@@ -114,6 +114,10 @@ spec:
         regex: ^\/v1\/shared-tables(\/.*)?$
     - uri:
         regex: ^\/v1\/vacancy-notifications/lectures(\/.*)?$
+    - uri:
+        regex: ^\/v1\/configs(\/.*)?$
+    - uri:
+        regex: ^\/v1\/admin\/configs(\/.*)?$
     route:
     - destination:
         host: snutt-timetable
