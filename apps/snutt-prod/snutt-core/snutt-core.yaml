@@ -130,6 +130,10 @@ spec:
     ################# new apis ##############
     - uri:
         regex: ^\/v1\/bookmarks(\/.*)?$
+    - uri:
+        regex: ^\/v1\/configs(\/.*)?$
+    - uri:
+        regex: ^\/v1\/admin\/configs(\/.*)?$
     route:
     - destination:
         host: snutt-timetable
