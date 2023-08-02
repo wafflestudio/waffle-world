@@ -117,6 +117,8 @@ spec:
     - uri:
         regex: ^\/v1\/configs(\/.*)?$
     - uri:
+        regex: ^\/v1\/friends(\/.*)?$
+    - uri:
         regex: ^\/v1\/admin\/configs(\/.*)?$
     route:
     - destination:
