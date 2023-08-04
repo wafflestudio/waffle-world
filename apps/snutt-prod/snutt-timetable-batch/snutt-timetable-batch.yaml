@@ -40,7 +40,7 @@ spec:
               value: "true"
 ---
 apiVersion: batch/v1
-kind: Job
+kind: CronJob
 metadata:
   name: snutt-timetable-batch-user-nickname
   labels:
@@ -66,10 +66,10 @@ spec:
               resources:
                 requests:
                   cpu: 200m
-                  memory: 2Gi
+                  memory: 1Gi
                 limits:
                   cpu: 1000m
-                  memory: 2Gi
+                  memory: 1Gi
               env:
                 - name: JOB_NAME
                   value: "userNicknameCreateJob"
