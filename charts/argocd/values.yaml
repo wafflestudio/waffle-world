@@ -21,7 +21,8 @@ argo-cd:
             clientSecret: $dex.github.clientSecret
             orgs:
             - name: wafflestudio
-      admin.enabled: "false"
+      admin.enabled: false
+      exec.enabled: true
     rbac:
       policy.default: role:readonly
       policy.csv: |
@@ -32,62 +33,99 @@ argo-cd:
         p, role:waffle-k8s-admin, repositories, create, *, allow
         p, role:waffle-k8s-admin, repositories, update, *, allow
         p, role:waffle-k8s-admin, repositories, delete, *, allow
+        p, role:waffle-k8s-admin, exec, create, */*, allow
         
         g, wafflestudio:snutt-server, role:snutt-server
         p, role:snutt-server, applications, *, default/snutt-core, allow
+        p, role:snutt-server, exec, create, default/snutt-core, allow
         p, role:snutt-server, applications, *, default/snutt-core-dev, allow
+        p, role:snutt-server, exec, create, default/snutt-core-dev, allow
         p, role:snutt-server, applications, *, default/snutt-ev, allow
+        p, role:snutt-server, exec, create, default/snutt-ev, allow
         p, role:snutt-server, applications, *, default/snutt-ev-dev, allow
+        p, role:snutt-server, exec, create, default/snutt-ev-dev, allow
         p, role:snutt-server, applications, *, default/snutt-ev-batch, allow
+        p, role:snutt-server, exec, create, default/snutt-ev-batch, allow
         p, role:snutt-server, applications, *, default/snutt-ev-batch-dev, allow
+        p, role:snutt-server, exec, create, default/snutt-ev-batch-dev, allow
         p, role:snutt-server, applications, *, default/snutt-timetable, allow
+        p, role:snutt-server, exec, create, default/snutt-timetable, allow
         p, role:snutt-server, applications, *, default/snutt-timetable-dev, allow
+        p, role:snutt-server, exec, create, default/snutt-timetable-dev, allow
         p, role:snutt-server, applications, *, default/snutt-timetable-batch, allow
+        p, role:snutt-server, exec, create, default/snutt-timetable-batch, allow
         p, role:snutt-server, applications, *, default/snutt-timetable-batch-dev, allow
+        p, role:snutt-server, exec, create, default/snutt-timetable-batch-dev, allow
         
         g, wafflestudio:snutt-frontend, role:snutt-frontend
         p, role:snutt-frontend, applications, *, default/snutt-ev-web, allow
+        p, role:snutt-frontend, exec, create, default/snutt-ev-web, allow
         p, role:snutt-frontend, applications, *, default/snutt-ev-web-dev, allow
+        p, role:snutt-frontend, exec, create, default/snutt-ev-web-dev, allow
         
         g, wafflestudio:siksha, role:siksha
         p, role:siksha, applications, *, default/siksha-api-server, allow
+        p, role:siksha, exec, create, default/siksha-api-server, allow
         p, role:siksha, applications, *, default/siksha-api-server-dev, allow
+        p, role:siksha, exec, create, default/siksha-api-server-dev, allow
         p, role:siksha, applications, *, default/siksha-crawler, allow
+        p, role:siksha, exec, create, default/siksha-crawler, allow
         p, role:siksha, applications, *, default/siksha-crawler-dev, allow
+        p, role:siksha, exec, create, default/siksha-crawler-dev, allow
         
         g, wafflestudio:waffledotcom-backend, role:waffledotcom-backend
         p, role:waffledotcom-backend, applications, *, default/waffledotcom-server, allow
+        p, role:waffledotcom-backend, exec, create, default/waffledotcom-server, allow
         p, role:waffledotcom-backend, applications, *, default/waffledotcom-server-dev, allow
+        p, role:waffledotcom-backend, exec, create, default/waffledotcom-server-dev, allow
         p, role:waffledotcom-backend, applications, *, default/wacruit-judge, allow
+        p, role:waffledotcom-backend, exec, create, default/wacruit-judge, allow
         p, role:waffledotcom-backend, applications, *, default/wacruit-judge-dev, allow
+        p, role:waffledotcom-backend, exec, create, default/wacruit-judge-dev, allow
         p, role:waffledotcom-backend, applications, *, default/wacruit-server, allow
+        p, role:waffledotcom-backend, exec, create, default/wacruit-server, allow
         p, role:waffledotcom-backend, applications, *, default/wacruit-server-dev, allow
+        p, role:waffledotcom-backend, exec, create, default/wacruit-server-dev, allow
         
         g, wafflestudio:seminar, role:seminar
         p, role:seminar, applications, *, default/seminar-android-project-backend, allow
+        p, role:seminar, exec, create, default/seminar-android-project-backend, allow
         
         g, wafflestudio:pupuri, role:pupuri
         p, role:pupuri, applications, *, default/pupuri-bot, allow
+        p, role:pupuri, exec, create, default/pupuri-bot, allow
         
         g, wafflestudio:sso, role:sso
         p, role:sso, applications, *, default/sso-kong-gateway, allow
+        p, role:sso, exec, create, default/sso-kong-gateway, allow
         p, role:sso, applications, *, default/sso-kong-gateway-dev, allow
+        p, role:sso, exec, create, default/sso-kong-gateway-dev, allow
         p, role:sso, applications, *, default/sso-account-server, allow
+        p, role:sso, exec, create, default/sso-account-server, allow
         p, role:sso, applications, *, default/sso-account-server-dev, allow
+        p, role:sso, exec, create, default/sso-account-server-dev, allow
         
         g, wafflestudio:music-sns, role:music-sns
         p, role:music-sns, applications, *, default/feelin-core-server, allow
+        p, role:music-sns, exec, create, default/feelin-core-server, allow
         p, role:music-sns, applications, *, default/feelin-core-server-dev, allow
+        p, role:music-sns, exec, create, default/feelin-core-server-dev, allow
         p, role:music-sns, applications, *, default/feelin-social-server, allow
+        p, role:music-sns, exec, create, default/feelin-social-server, allow
         p, role:music-sns, applications, *, default/feelin-social-server-dev, allow
+        p, role:music-sns, exec, create, default/feelin-social-server-dev, allow
         p, role:music-sns, applications, *, default/feelin-web, allow
+        p, role:music-sns, exec, create, default/feelin-web, allow
         p, role:music-sns, applications, *, default/feelin-web-dev, allow
+        p, role:music-sns, exec, create, default/feelin-web-dev, allow
         
         g, wafflestudio:ggzz, role:ggzz
         p, role:ggzz, applications, *, default/ggzz-server-dev, allow
+        p, role:ggzz, exec, create, default/ggzz-server-dev, allow
         
         g, wafflestudio:interactive-web, role:interactive-web
         p, role:interactive-web, applications, *, default/webgam-server-dev, allow
+        p, role:interactive-web, exec, create, default/webgam-server-dev, allow
     params:
       server.insecure: true
   server:
