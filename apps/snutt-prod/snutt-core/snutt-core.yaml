@@ -152,6 +152,7 @@ spec:
         - OPTIONS
       allowOrigins:
         - exact: 'https://snutt.wafflestudio.com'
+        - exact: 'https://snutt-admin.wafflestudio.com'
   - name: "snutt-core-route"
     timeout: 10s
     route:
