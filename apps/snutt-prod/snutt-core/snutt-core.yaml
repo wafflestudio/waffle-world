@@ -131,6 +131,8 @@ spec:
     - uri:
         regex: ^\/v1\/bookmarks(\/.*)?$
     - uri:
+        regex: ^\/v1\/vacancy-notifications/lectures(\/.*)?$
+    - uri:
         regex: ^\/v1\/configs(\/.*)?$
     - uri:
         regex: ^\/v1\/friends(\/.*)?$
