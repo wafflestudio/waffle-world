@@ -42,6 +42,47 @@ spec:
 apiVersion: batch/v1
 kind: CronJob
 metadata:
+  name: snu4t-batch-vacancy-noti
+  labels:
+    app: snu4t-batch-vacancy-noti
+  namespace: snutt-prod
+spec:
+  concurrencyPolicy: Forbid
+  schedule: "30 23 * * 0-4"
+  successfulJobsHistoryLimit: 2
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          annotations:
+            sidecar.istio.io/inject: "false"
+        spec:
+          restartPolicy: OnFailure
+          serviceAccountName: snutt-timetable-batch
+          containers:
+            - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-timetable-batch:33
+            name: snu4t-batch-vacancy-noti
+            resources:
+              requests:
+                cpu: 200m
+                memory: 2Gi
+              limits:
+                cpu: 1000m
+                memory: 2Gi
+            env:
+            - name: JOB_NAME
+              value: "vacancyNotificationJob"
+            - name: JAVA_OPTS
+              value: "-XX:InitialRAMPercentage=80.0 -XX:MaxRAMPercentage=80.0 -Duser.timezone=UTC"
+            - name: SPRING_PROFILES_ACTIVE
+              value: "prod"
+            - name: TRUFFLE_ENABLED
+              value: "true"
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
   name: snutt-timetable-batch-user-nickname
   labels:
     app: snutt-timetable-batch-user-nickname
