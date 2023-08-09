@@ -102,10 +102,14 @@ spec:
     - uri:
         regex: ^(?:\/v1)?\/user\/device(\/.*)?$
     - uri:
+        regex: ^(?:\/v1)?\/user\/info\/?$
+    - uri:
         regex: ^(?:\/v1)?\/notification(\/.*)?$
     - uri:
         regex: ^(?:\/v1)?\/admin/insert_noti\/?$
     ################# new apis ##############
+    - uri:
+        regex: ^\/v1\/users(\/.*)?$
     - uri:
         regex: ^\/v1\/bookmarks(\/.*)?$
     - uri:
