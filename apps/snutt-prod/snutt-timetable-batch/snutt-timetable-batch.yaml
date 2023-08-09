@@ -62,7 +62,7 @@ spec:
           serviceAccountName: snutt-timetable-batch
           containers:
             - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-timetable-batch:33
-            name: snutt-timetable-batch-seat-noti
+            name: snu4t-batch-vacancy-noti
             resources:
               requests:
                 cpu: 200m
