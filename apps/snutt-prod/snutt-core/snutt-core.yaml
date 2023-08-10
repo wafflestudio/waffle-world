@@ -37,8 +37,8 @@ spec:
             cpu: 200m
             memory: 256Mi
           limits:
-            cpu: 200m
-            memory: 256Mi
+            cpu: 400m
+            memory: 512Mi
         ports:
         - containerPort: 3000
         livenessProbe:
