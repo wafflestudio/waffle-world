@@ -100,8 +100,6 @@ spec:
     - uri:
         regex: ^(?:\/v1)?\/tables\/(\w{24})\/theme$
     - uri:
-        regex: ^(?:\/v1)?\/admin/insert_noti\/?$
-    - uri:
         regex: ^(?:\/v1)?\/auth\/register_local\/?$
     - uri:
         regex: ^(?:\/v1)?\/auth\/login_local\/?$
