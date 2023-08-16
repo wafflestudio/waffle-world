@@ -90,7 +90,15 @@ spec:
     - method:
         exact: GET
       uri:
-        regex: ^(?:\/v1)?\/tables\/?$
+        regex: ^(?:\/v1)?\/tables(\/.*)?$
+    - uri:
+        regex: ^(?:\/v1)?\/tables?$
+    - uri:
+        regex: ^(?:\/v1)?\/tables\/(\w{24})$
+    - uri:
+        regex: ^(?:\/v1)?\/tables\/(\w{24})\/copy$
+    - uri:
+        regex: ^(?:\/v1)?\/tables\/(\w{24})\/theme$
     - uri:
         regex: ^(?:\/v1)?\/auth\/register_local\/?$
     - uri:
@@ -112,8 +120,6 @@ spec:
         regex: ^\/v1\/users(\/.*)?$
     - uri:
         regex: ^\/v1\/bookmarks(\/.*)?$
-    - uri:
-        regex: ^\/v1\/tables\/(\w{24})\/links$
     - uri:
         regex: ^\/v1\/tables\/(\w{24})\/primary$
     - uri:
