@@ -146,6 +146,8 @@ spec:
         - content-type
         - x-access-apikey
         - x-access-token
+        - x-app-version
+        - x-app-type
       allowMethods:
         - POST
         - GET
