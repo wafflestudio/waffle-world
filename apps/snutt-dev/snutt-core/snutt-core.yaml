@@ -140,6 +140,12 @@ spec:
       - content-type
       - x-access-apikey
       - x-access-token
+      - x-app-version
+      - x-app-type
+      - x-os-type
+      - x-os-version
+      - x-device-id
+      - x-device-model
       allowMethods:
       - POST
       - GET
