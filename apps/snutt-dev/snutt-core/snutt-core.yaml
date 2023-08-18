@@ -144,6 +144,8 @@ spec:
       - x-app-type
       - x-os-type
       - x-os-version
+      - x-device-id
+      - x-device-model
       allowMethods:
       - POST
       - GET
