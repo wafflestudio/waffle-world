@@ -137,20 +137,22 @@ spec:
         host: snutt-timetable
     corsPolicy:
       allowHeaders:
-        - content-type
-        - x-access-apikey
-        - x-access-token
-        - x-app-version
-        - x-app-type
+      - content-type
+      - x-access-apikey
+      - x-access-token
+      - x-app-version
+      - x-app-type
+      - x-os-type
+      - x-os-version
       allowMethods:
-        - POST
-        - GET
-        - PUT
-        - DELETE
-        - OPTIONS
+      - POST
+      - GET
+      - PUT
+      - DELETE
+      - OPTIONS
       allowOrigins:
-        - exact: 'https://snutt-dev.wafflestudio.com'
-        - exact: 'https://snutt-admin-dev.wafflestudio.com'
+      - exact: 'https://snutt-dev.wafflestudio.com'
+      - exact: 'https://snutt-admin-dev.wafflestudio.com'
   - name: "snutt-core-route"
     timeout: 10s
     route:
