@@ -38,6 +38,10 @@ data:
       userarn: arn:aws:iam::405906814034:user/ganzidaeyong@wafflestudio.com
       groups:
       - system:masters
+    - username: JuTaK97
+      userarn: arn:aws:iam::405906814034:user/JuTaK97
+      groups:
+      - system:masters
     
     - username: subeenpark-io
       userarn: arn:aws:iam::405906814034:user/subeenpark-io
