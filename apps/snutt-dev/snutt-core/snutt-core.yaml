@@ -30,7 +30,7 @@ spec:
           operator: Equal
           value: dev
       containers:
-      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-dev/snutt-core:166
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-dev/snutt-core:167
         name: snutt-core
         resources:
           requests:
