@@ -114,6 +114,14 @@ spec:
       uri:
         regex: ^(?:\/v1)?\/tables\/?$
     - uri:
+        regex: ^(?:\/v1)?\/tables?$
+    - uri:
+        regex: ^(?:\/v1)?\/tables\/(\w{24})$
+    - uri:
+        regex: ^(?:\/v1)?\/tables\/(\w{24})\/copy$
+    - uri:
+        regex: ^(?:\/v1)?\/tables\/(\w{24})\/theme$
+    - uri:
         regex: ^(?:\/v1)?\/auth\/register_local\/?$
     - uri:
         regex: ^(?:\/v1)?\/auth\/login_local\/?$
