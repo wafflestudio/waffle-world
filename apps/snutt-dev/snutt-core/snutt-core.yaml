@@ -87,9 +87,7 @@ spec:
     timeout: 10s
     match:
     ############## migrated apis ############
-    - method:
-        exact: GET
-      uri:
+    - uri:
         regex: ^(?:\/v1)?\/tables(\/.*)?$
     - uri:
         regex: ^(?:\/v1)?\/tables?$
