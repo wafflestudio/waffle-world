@@ -30,7 +30,7 @@ spec:
           operator: Equal
           value: dev
       containers:
-        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/ggzz-dev/ggzz-server:19
+        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/ggzz-dev/ggzz-server:21
           name: ggzz-server
           resources:
             requests:
