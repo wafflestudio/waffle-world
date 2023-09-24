@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: coupong
+  namespace: coupong-prod
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/wafflestudio/waffle-world.git
+    targetRevision: HEAD
+    path: apps/coupong-prod/coupong-server
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: coupong-prod
