@@ -1,3 +1,10 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: coupong-prod
+  labels:
+    istio-injection: enabled
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -29,7 +36,7 @@ spec:
           operator: Equal
           value: prod
       containers:
-        - image: pfcjeong/coupong:latest
+        - image: pfcjeong/coupong:0.0.1-SNAPSHOT
           imagePullPolicy: Always
           name: coupong
           resources:
@@ -41,6 +48,11 @@ spec:
               memory: 384Mi
           ports:
             - containerPort: 8080
+          readinessProbe:
+            initialDelaySeconds: 60
+            httpGet:
+              path: "/actuator/health/readiness"
+              port: 8080
 ---
 apiVersion: v1
 kind: Service
