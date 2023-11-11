@@ -6,7 +6,7 @@ metadata:
     app: react-project-backend
   namespace: seminar
 spec:
-  replicas: 0
+  replicas: 1
   selector:
     matchLabels:
       app: react-project-backend
@@ -24,6 +24,13 @@ spec:
       containers:
       - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/seminar/react-project-backend:2
         name: react-project-backend
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 100m
+            memory: 128Mi
         ports:
         - containerPort: 8080
 ---
