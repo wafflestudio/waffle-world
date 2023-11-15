@@ -90,6 +90,8 @@ argo-cd:
         g, wafflestudio:seminar, role:seminar
         p, role:seminar, applications, *, default/seminar-android-project-backend, allow
         p, role:seminar, exec, create, default/seminar-android-project-backend, allow
+        p, role:seminar, applications, *, default/seminar-react-project-backend, allow
+        p, role:seminar, exec, create, default/seminar-react-project-backend, allow
         
         g, wafflestudio:pupuri, role:pupuri
         p, role:pupuri, applications, *, default/pupuri-bot, allow
