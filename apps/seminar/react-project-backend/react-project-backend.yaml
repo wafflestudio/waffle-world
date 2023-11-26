@@ -29,7 +29,7 @@ spec:
           operator: Equal
           value: prod
       containers:
-      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/seminar/react-project-backend:3
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/seminar/react-project-backend:4
         name: react-project-backend
         resources:
           requests:
