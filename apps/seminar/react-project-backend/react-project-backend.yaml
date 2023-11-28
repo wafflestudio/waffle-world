@@ -40,6 +40,32 @@ spec:
             memory: 128Mi
         ports:
         - containerPort: 8080
+        volumeMounts:
+        - mountPath: /app/storage
+          name: react-backend-volume
+      volumes:
+      - react-seminar-pd:
+        persistentVolumeClaim:
+          claimName: react-backend-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  namespace: seminar
+  name: react-backend-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 10Mi
+  storageClassName: slow
+  selector:
+    matchLabels:
+      release: "stable"
+    matchExpressions:
+      - {key: environment, operator: In, values: [dev]}
 ---
 apiVersion: v1
 kind: Service
