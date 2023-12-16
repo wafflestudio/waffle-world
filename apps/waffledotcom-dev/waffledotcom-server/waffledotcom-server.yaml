@@ -42,6 +42,14 @@ spec:
             - containerPort: 8080
 ---
 apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: waffledotcom-server
+  namespace: waffledotcom-dev
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/waffledotcom-dev-role
+---
+apiVersion: v1
 kind: Service
 metadata:
   namespace: waffledotcom-dev
