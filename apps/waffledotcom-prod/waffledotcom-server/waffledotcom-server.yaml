@@ -21,6 +21,7 @@ spec:
       labels:
         app: waffledotcom-server
     spec:
+      serviceAccountName: waffledotcom-server
       nodeSelector:
         phase: prod
       tolerations:
@@ -47,7 +48,7 @@ metadata:
   name: waffledotcom-server
   namespace: waffledotcom-prod
   annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/waffledotcom-prod-role
+    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/waffledotcom-server-prod-role
 ---
 apiVersion: v1
 kind: Service
