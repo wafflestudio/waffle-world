@@ -21,6 +21,7 @@ spec:
       labels:
         app: waffledotcom-server
     spec:
+      serviceAccountName: waffledotcom-server
       nodeSelector:
         phase: prod
       tolerations:
@@ -40,6 +41,14 @@ spec:
               memory: 128Mi
           ports:
             - containerPort: 8080
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: waffledotcom-server
+  namespace: waffledotcom-prod
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/waffledotcom-server-prod-role
 ---
 apiVersion: v1
 kind: Service
