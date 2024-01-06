@@ -30,7 +30,7 @@ spec:
           operator: Equal
           value: prod
       containers:
-      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-timetable:56
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-timetable:57
         name: snutt-timetable
         resources:
           requests:
