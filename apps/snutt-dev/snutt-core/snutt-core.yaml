@@ -87,18 +87,8 @@ spec:
     timeout: 10s
     match:
     ############## migrated apis ############
-    - method:
-        exact: GET
-      uri:
+    - uri:
         regex: ^(?:\/v1)?\/tables(\/.*)?$
-    - uri:
-        regex: ^(?:\/v1)?\/tables\/?$
-    - uri:
-        regex: ^(?:\/v1)?\/tables\/(\w{24})\/?$
-    - uri:
-        regex: ^(?:\/v1)?\/tables\/(\w{24})\/copy\/?$
-    - uri:
-        regex: ^(?:\/v1)?\/tables\/(\w{24})\/theme\/?$
     - uri:
         regex: ^(?:\/v1)?\/auth\/register_local\/?$
     - uri:
@@ -120,8 +110,6 @@ spec:
         regex: ^\/v1\/users(\/.*)?$
     - uri:
         regex: ^\/v1\/bookmarks(\/.*)?$
-    - uri:
-        regex: ^\/v1\/tables\/(\w{24})\/primary$
     - uri:
         regex: ^\/v1\/shared-tables(\/.*)?$
     - uri:
