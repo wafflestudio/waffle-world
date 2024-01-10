@@ -120,6 +120,8 @@ spec:
         regex: ^\/v1\/friends(\/.*)?$
     - uri:
         regex: ^\/v1\/admin\/configs(\/.*)?$
+    - uri:
+        regex: ^\/v1\/themes(\/.*)?$
     route:
     - destination:
         host: snutt-timetable
