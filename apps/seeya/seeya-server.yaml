@@ -73,9 +73,6 @@ spec:
   hosts:
   - seeya-api.wafflestudio.com
   http:
-  - match:
-    - uri:
-        prefix: /api
   - route:
     - destination:
         host: seeya-server
