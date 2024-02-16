@@ -128,6 +128,18 @@ argo-cd:
         g, wafflestudio:interactive-web, role:interactive-web
         p, role:interactive-web, applications, *, default/webgam-server-dev, allow
         p, role:interactive-web, exec, create, default/webgam-server-dev, allow
+        
+        g, wafflestudio:seeya, role:seeya
+        p, role:seeya, applications, *, default/seeya-server, allow
+        p, role:seeya, exec, create, default/seeya-server, allow
+        
+        g, wafflestudio:snugo, role:snugo
+        p, role:snugo, applications, *, default/snugo-server, allow
+        p, role:snugo, exec, create, default/snugo-server, allow
+        
+        g, wafflestudio:areyouhere, role:areyouhere
+        p, role:areyouhere, applications, *, default/areyouhere-server, allow
+        p, role:areyouhere, exec, create, default/areyouhere-server, allow
     params:
       server.insecure: true
   server:
