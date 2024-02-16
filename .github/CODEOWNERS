@@ -20,3 +20,4 @@ apps/wacruit-prod/ @wafflestudio/waffledotcom-backend
 apps/pupuri-prod/ @wafflestudio/pupuri
 apps/ggzz-dev/ @wafflestudio/ggzz
 apps/k8s-monitoring/ @PFCJeong
+apps/areyouhere/ @rayark1
