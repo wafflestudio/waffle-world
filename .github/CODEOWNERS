@@ -1,4 +1,4 @@
-* @davin111 @wafflestudio/waffle-k8s-admin
+* @wafflestudio/waffle-k8s-admin
 apps/istio-util/ @wafflestudio/waffle-k8s-admin
 apps/snutt-dev/ @wafflestudio/snutt-server
 apps/snutt-dev/snutt-ev-web/ @wafflestudio/snutt-frontend
