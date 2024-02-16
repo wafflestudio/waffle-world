@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: icebreaker
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/wafflestudio/waffle-world.git
+    targetRevision: HEAD
+    path: apps/icebreaker/icebreaker-server
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: icebreaker
