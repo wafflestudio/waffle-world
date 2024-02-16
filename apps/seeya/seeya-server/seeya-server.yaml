@@ -29,7 +29,7 @@ spec:
           operator: Equal
           value: dev
       containers:
-        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/seeya/seeya-server:5
+        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/seeya/seeya-server:6
           name: seeya-server
           resources:
             requests:
