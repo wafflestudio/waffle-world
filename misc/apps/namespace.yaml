@@ -129,7 +129,7 @@ kind: Namespace
 metadata:
   name: wacruit-prod
   labels:
-    istio-injection: enabl
+    istio-injection: enabled
 ---
 apiVersion: v1
 kind: Namespace
