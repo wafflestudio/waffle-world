@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: seeya-server
+  name: snugo-server
   labels:
-    app: seeya-server
-  namespace: seeya
+    app: snugo-server
+  namespace: snugo
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: seeya-server
+      app: snugo-server
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -19,7 +19,7 @@ spec:
   template:
     metadata:
       labels:
-        app: seeya-server
+        app: snugo-server
     spec:
       nodeSelector:
         phase: dev
@@ -29,8 +29,8 @@ spec:
           operator: Equal
           value: dev
       containers:
-        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/seeya/seeya-server:13
-          name: seeya-server
+        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snugo/snugo-server:23
+          name: snugo-server
           resources:
             requests:
               cpu: 100m
@@ -44,12 +44,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: seeya
-  name: seeya-server
+  namespace: snugo
+  name: snugo-server
 spec:
   type: ClusterIP
   selector:
-    app: seeya-server
+    app: snugo-server
   ports:
     - port: 80
       targetPort: 8080
@@ -57,15 +57,15 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  namespace: seeya
-  name: seeya-server
+  namespace: snugo
+  name: snugo-server
 spec:
   gateways:
   - istio-ingress/waffle-ingressgateway
   - mesh
   hosts:
-  - seeya-api.wafflestudio.com
+  - snugo-api.wafflestudio.com
   http:
   - route:
     - destination:
-        host: seeya-server
+        host: snugo-server
