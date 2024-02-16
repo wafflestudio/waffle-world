@@ -1,4 +1,4 @@
-* @davin111 @wafflestudio/waffle-k8s-admin
+* @wafflestudio/waffle-k8s-admin
 apps/istio-util/ @wafflestudio/waffle-k8s-admin
 apps/snutt-dev/ @wafflestudio/snutt-server
 apps/snutt-dev/snutt-ev-web/ @wafflestudio/snutt-frontend
@@ -20,4 +20,5 @@ apps/wacruit-prod/ @wafflestudio/waffledotcom-backend
 apps/pupuri-prod/ @wafflestudio/pupuri
 apps/ggzz-dev/ @wafflestudio/ggzz
 apps/k8s-monitoring/ @PFCJeong
-apps/snugo/snugo-server/ @asp345 @hjlim7831
+apps/seeya/ @wafflestudio/seeya
+apps/snugo/snugo-server/ @wafflestudio/snugo
