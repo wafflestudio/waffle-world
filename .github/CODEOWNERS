@@ -20,4 +20,5 @@ apps/wacruit-prod/ @wafflestudio/waffledotcom-backend
 apps/pupuri-prod/ @wafflestudio/pupuri
 apps/ggzz-dev/ @wafflestudio/ggzz
 apps/k8s-monitoring/ @PFCJeong
-apps/seeya/ @minkyu97 @esc5221
+apps/seeya/ @wafflestudio/seeya
+apps/snugo/snugo-server/ @wafflestudio/snugo
