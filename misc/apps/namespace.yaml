@@ -129,4 +129,11 @@ kind: Namespace
 metadata:
   name: wacruit-prod
   labels:
+    istio-injection: enabl
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: seeya
+  labels:
     istio-injection: enabled
