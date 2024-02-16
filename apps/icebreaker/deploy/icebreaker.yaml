@@ -1,0 +1,144 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: icebreaker
+  labels:
+    istio-injection: enabled
+--- # front
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: icebreaker-web
+  labels:
+    app: icebreaker-web
+  namespace: icebreaker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: icebreaker-web
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  revisionHistoryLimit: 4
+  template:
+    metadata:
+      labels:
+        app: icebreaker-web
+    spec:
+      nodeSelector:
+        phase: dev
+      tolerations:
+        - effect: NoSchedule
+          key: phase
+          operator: Equal
+          value: dev
+      containers:
+        - image: pfcjeong/icebreaker-web:0.0.1-SNAPSHOT
+          imagePullPolicy: Always
+          name: icebreaker-web
+          resources:
+            requests:
+              cpu: 100m
+              memory: 384Mi
+            limits:
+              cpu: 100m
+              memory: 384Mi
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: icebreaker
+  name: icebreaker-web
+spec:
+  type: ClusterIP
+  selector:
+    app: icebreaker-web
+  ports:
+    - port: 80
+      targetPort: 80
+--- # back
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: icebreaker-server
+  labels:
+    app: icebreaker-server
+  namespace: icebreaker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: icebreaker-server
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  revisionHistoryLimit: 4
+  template:
+    metadata:
+      labels:
+        app: icebreaker-server
+    spec:
+      nodeSelector:
+        phase: dev
+      tolerations:
+        - effect: NoSchedule
+          key: phase
+          operator: Equal
+          value: dev
+      containers:
+        - image: pfcjeong/icebreaker-web:0.0.1-SNAPSHOT # FIXME: @강지혁, @심영인
+          imagePullPolicy: Always
+          name: icebreaker-server
+          resources:
+            requests:
+              cpu: 300m
+              memory: 512Mi
+            limits:
+              cpu: 300m
+              memory: 512Mi
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: icebreaker
+  name: icebreaker-server
+spec:
+  type: ClusterIP
+  selector:
+    app: icebreaker-server
+  ports:
+    - port: 80
+      targetPort: 8080
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  namespace: icebreaker
+  name: icebreaker
+spec:
+  gateways:
+    - istio-ingress/waffle-ingressgateway
+    - mesh
+  hosts:
+    - icebreaker.wafflestudio.com
+  http:
+    - name: "server"
+      match:
+        - uri:
+            prefix: "/api"
+      route:
+        - destination:
+            host: icebreaker-server
+    - name: "web"
+      route:
+        - destination:
+            host: icebreaker-web
