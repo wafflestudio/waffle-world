@@ -29,7 +29,10 @@ spec:
           operator: Equal
           value: dev
       containers:
-        - image: # ECR URI
+        - image: busybox # 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/areyouhere/areyouhere-server:1
+          command: # image 수정하면서
+          - sleep # 이 line 들
+          - "3600" # 삭제하세요
           name: areyouhere-server
           resources:
             requests:
