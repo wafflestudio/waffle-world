@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/wafflestudio/waffle-world.git
     targetRevision: HEAD
-    path: apps/icebreaker/icebreaker-server
+    path: apps/icebreaker/deploy
   destination:
     server: https://kubernetes.default.svc
     namespace: icebreaker
