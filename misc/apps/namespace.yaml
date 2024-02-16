@@ -140,6 +140,14 @@ metadata:
 ---
 apiVersion: v1
 kind: Namespace
+metadata:
   name: snugo
+  labels:
+    istio-injection: enabled
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: areyouhere
   labels:
     istio-injection: enabled
