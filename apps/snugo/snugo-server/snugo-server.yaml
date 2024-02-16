@@ -29,7 +29,7 @@ spec:
           operator: Equal
           value: dev
       containers:
-        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snugo/snugo-server:18
+        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snugo/snugo-server:19
           name: snugo-server
           resources:
             requests:
