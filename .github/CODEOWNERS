@@ -22,3 +22,4 @@ apps/ggzz-dev/ @wafflestudio/ggzz
 apps/k8s-monitoring/ @PFCJeong
 apps/seeya/ @wafflestudio/seeya
 apps/snugo/snugo-server/ @wafflestudio/snugo
+apps/areyouhere/ @wafflestudio/areyouhere
