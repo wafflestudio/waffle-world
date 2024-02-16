@@ -21,7 +21,6 @@ spec:
       labels:
         app: snugo-server
     spec:
-      serviceAccountName: snugo-server
       nodeSelector:
         phase: dev
       tolerations:
@@ -30,23 +29,17 @@ spec:
           operator: Equal
           value: dev
       containers:
-        - image: # TODO: ECR 주소 추가
+        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snugo/snugo-server
           name: snugo-server
           resources:
             requests:
               cpu: 100m
-              memory: 192Mi
+              memory: 256Mi
             limits:
-              cpu: 100m
-              memory: 192Mi
+              cpu: 200m
+              memory: 256Mi
           ports:
             - containerPort: 8080
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: snugo-server
-  namespace: snugo
 ---
 apiVersion: v1
 kind: Service

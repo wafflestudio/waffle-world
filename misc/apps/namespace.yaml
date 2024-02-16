@@ -130,3 +130,11 @@ metadata:
   name: wacruit-prod
   labels:
     istio-injection: enabled
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: snugo
+  labels:
+    istio-injection: enabled
+
