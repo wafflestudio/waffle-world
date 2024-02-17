@@ -15,4 +15,5 @@ spec:
     server: {{ .Values.spec.destination.server }}
     namespace: argocd
   syncPolicy:
+    - CreateNamespace=true
     {{- .Values.spec.syncPolicy | toYaml | nindent 4 }}
