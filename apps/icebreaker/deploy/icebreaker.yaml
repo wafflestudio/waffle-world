@@ -93,7 +93,7 @@ spec:
           operator: Equal
           value: dev
       containers:
-        - image: pfcjeong/icebreaker-web:0.0.1-SNAPSHOT # FIXME: @강지혁, @심영인
+        - image: kangjirm/icebreaker:latest
           imagePullPolicy: Always
           name: icebreaker-server
           resources:
@@ -105,6 +105,12 @@ spec:
               memory: 512Mi
           ports:
             - containerPort: 8080
+          volumeMounts:
+            - mountPath: /app/storage
+              name: tmp-dir
+      volumes:
+        - emptyDir: {}
+          name: tmp-dir
 ---
 apiVersion: v1
 kind: Service
