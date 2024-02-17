@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: babble-server
+  labels:
+    app: babble-server
+  namespace: babble
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: babble-server
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  revisionHistoryLimit: 4
+  template:
+    metadata:
+      labels:
+        app: babble-server
+    spec:
+      nodeSelector:
+        phase: dev
+      tolerations:
+        - effect: NoSchedule
+          key: phase
+          operator: Equal
+          value: dev
+      containers:
+        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/babble/babble-server:1
+          name: babble-server
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi
+          ports:
+            - containerPort: 8080

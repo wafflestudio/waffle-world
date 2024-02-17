@@ -151,3 +151,10 @@ metadata:
   name: areyouhere
   labels:
     istio-injection: enabled
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: babble
+  labels:
+    istio-injection: enabled
