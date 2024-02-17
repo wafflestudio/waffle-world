@@ -141,6 +141,12 @@ spec:
       match:
         - uri:
             prefix: "/api"
+        - uri:
+            prefix: "/swagger-ui"
+        - uri:
+            prefix: "/v3/api-docs"
+        - uri:
+            prefix: "/webjars/swagger-ui"
       route:
         - destination:
             host: icebreaker-server
