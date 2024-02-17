@@ -144,6 +144,8 @@ spec:
         - uri:
             prefix: "/swagger-ui"
         - uri:
+            prefix: "/swagger-ui.html"
+        - uri:
             prefix: "/v3/api-docs"
         - uri:
             prefix: "/webjars/swagger-ui"
