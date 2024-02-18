@@ -140,16 +140,24 @@ argo-cd:
         g, wafflestudio:areyouhere, role:areyouhere
         p, role:areyouhere, applications, *, default/areyouhere-server, allow
         p, role:areyouhere, exec, create, default/areyouhere-server, allow
+        
+        g, wafflestudio:icebreaker, role:icebreaker
+        p, role:icebreaker, applications, *, default/icebreaker, allow
+        p, role:icebreaker, exec, create, default/icebreaker, allow
+        
+        g, wafflestudio:babble, role:babble
+        p, role:babble, applications, *, default/babble-server, allow
+        p, role:babble, exec, create, default/babble-server, allow
     params:
       server.insecure: true
   server:
     resources:
       requests:
         cpu: 50m
-        memory: 96Mi
+        memory: 128Mi
       limits:
         cpu: 100m
-        memory: 96Mi
+        memory: 128Mi
   controller:
     resources:
       requests:
@@ -198,4 +206,3 @@ argo-cd:
       limits:
         cpu: 200m
         memory: 64Mi
-
