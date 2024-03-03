@@ -6,7 +6,7 @@ metadata:
     app: areyouhere-server
   namespace: areyouhere
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: areyouhere-server

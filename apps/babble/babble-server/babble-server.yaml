@@ -6,7 +6,7 @@ metadata:
     app: babble-server
   namespace: babble
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: babble-server
@@ -61,11 +61,11 @@ metadata:
   name: babble-server
 spec:
   gateways:
-  - istio-ingress/waffle-ingressgateway
-  - mesh
+    - istio-ingress/waffle-ingressgateway
+    - mesh
   hosts:
-  - babble.wafflestudio.com
+    - babble.wafflestudio.com
   http:
-  - route:
-    - destination:
-        host: babble-server
+    - route:
+        - destination:
+            host: babble-server

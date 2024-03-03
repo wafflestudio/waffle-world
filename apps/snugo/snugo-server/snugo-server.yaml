@@ -6,7 +6,7 @@ metadata:
     app: snugo-server
   namespace: snugo
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: snugo-server
@@ -61,11 +61,11 @@ metadata:
   name: snugo-server
 spec:
   gateways:
-  - istio-ingress/waffle-ingressgateway
-  - mesh
+    - istio-ingress/waffle-ingressgateway
+    - mesh
   hosts:
-  - snugo-api.wafflestudio.com
+    - snugo-api.wafflestudio.com
   http:
-  - route:
-    - destination:
-        host: snugo-server
+    - route:
+        - destination:
+            host: snugo-server
