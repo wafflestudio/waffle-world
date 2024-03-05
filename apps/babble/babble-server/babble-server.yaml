@@ -67,5 +67,5 @@ spec:
   - babble.wafflestudio.com
   http:
   - route:
-      - destination:
-          host: babble-server
+    - destination:
+        host: babble-server
