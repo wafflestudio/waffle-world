@@ -29,7 +29,7 @@ spec:
           operator: Equal
           value: dev
       containers:
-        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/areyouhere/areyouhere-server:74
+        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/areyouhere/areyouhere-server:75
           name: areyouhere-server
           resources:
             requests:
