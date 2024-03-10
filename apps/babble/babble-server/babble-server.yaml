@@ -6,7 +6,7 @@ metadata:
     app: babble-server
   namespace: babble
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: babble-server

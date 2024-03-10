@@ -6,7 +6,7 @@ metadata:
     app: snugo-server
   namespace: snugo
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: snugo-server
