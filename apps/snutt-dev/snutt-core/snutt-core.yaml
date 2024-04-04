@@ -122,6 +122,8 @@ spec:
         regex: ^\/v1\/admin\/configs(\/.*)?$
     - uri:
         regex: ^\/v1\/themes(\/.*)?$
+    - uri:
+        regex: ^\/v1\/buildings(\/.*)?$
     route:
     - destination:
         host: snutt-timetable
