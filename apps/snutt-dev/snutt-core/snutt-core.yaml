@@ -104,6 +104,8 @@ spec:
     - uri:
         regex: ^(?:\/v1)?\/notification(\/.*)?$
     - uri:
+        regex: ^(?:\/v1)?\/popups(\/.*)?$
+    - uri:
         regex: ^(?:\/v1)?\/admin/insert_noti\/?$
     ################# new apis ##############
     - uri:
@@ -117,13 +119,17 @@ spec:
     - uri:
         regex: ^\/v1\/configs(\/.*)?$
     - uri:
-        regex: ^\/v1\/friends(\/.*)?$
-    - uri:
-        regex: ^\/v1\/admin\/configs(\/.*)?$
+        regex: ^\/v1\/friends(\/.*)?
     - uri:
         regex: ^\/v1\/themes(\/.*)?$
     - uri:
         regex: ^\/v1\/buildings(\/.*)?$
+    - uri:
+        regex: ^\/v1\/admin\/configs(\/.*)?$
+    - uri:
+        regex: ^\/v1\/admin\/images(\/.*)?$
+    - uri:
+        regex: ^\/v1\/admin\/popups(\/.*)?$
     route:
     - destination:
         host: snutt-timetable
