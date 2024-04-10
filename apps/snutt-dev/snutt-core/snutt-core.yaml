@@ -30,25 +30,25 @@ spec:
           operator: Equal
           value: dev
       containers:
-      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-dev/snutt-core:178
-        name: snutt-core
-        resources:
-          requests:
-            cpu: 100m
-            memory: 192Mi
-          limits:
-            cpu: 100m
-            memory: 192Mi
-        ports:
-        - containerPort: 3000
-        livenessProbe:
-          httpGet:
-            path: /health-check
-            port: 3000
-        readinessProbe:
-          httpGet:
-            path: /health-check
-            port: 3000
+        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-dev/snutt-core:178
+          name: snutt-core
+          resources:
+            requests:
+              cpu: 100m
+              memory: 192Mi
+            limits:
+              cpu: 100m
+              memory: 192Mi
+          ports:
+            - containerPort: 3000
+          livenessProbe:
+            httpGet:
+              path: /health-check
+              port: 3000
+          readinessProbe:
+            httpGet:
+              path: /health-check
+              port: 3000
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -68,8 +68,8 @@ spec:
   selector:
     app: snutt-core
   ports:
-  - port: 80
-    targetPort: 3000
+    - port: 80
+      targetPort: 3000
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
@@ -83,78 +83,80 @@ spec:
   hosts:
     - snutt-api-dev.wafflestudio.com
   http:
-  - name: "dev-snutt-timetable-route"
-    timeout: 10s
-    match:
-    ############## migrated apis ############
-    - uri:
-        regex: ^(?:\/v1)?\/tables(\/.*)?$
-    - uri:
-        regex: ^(?:\/v1)?\/auth\/register_local\/?$
-    - uri:
-        regex: ^(?:\/v1)?\/auth\/login_local\/?$
-    - uri:
-        regex: ^(?:\/v1)?\/auth\/logout\/?$
-    - uri:
-        regex: ^(?:\/v1)?\/search_query\/?$
-    - uri:
-        regex: ^(?:\/v1)?\/user\/device(\/.*)?$
-    - uri:
-        regex: ^(?:\/v1)?\/user\/info\/?$
-    - uri:
-        regex: ^(?:\/v1)?\/notification(\/.*)?$
-    - uri:
-        regex: ^(?:\/v1)?\/popups(\/.*)?$
-    - uri:
-        regex: ^(?:\/v1)?\/admin/insert_noti\/?$
-    ################# new apis ##############
-    - uri:
-        regex: ^\/v1\/users(\/.*)?$
-    - uri:
-        regex: ^\/v1\/bookmarks(\/.*)?$
-    - uri:
-        regex: ^\/v1\/shared-tables(\/.*)?$
-    - uri:
-        regex: ^\/v1\/vacancy-notifications/lectures(\/.*)?$
-    - uri:
-        regex: ^\/v1\/configs(\/.*)?$
-    - uri:
-        regex: ^\/v1\/friends(\/.*)?
-    - uri:
-        regex: ^\/v1\/themes(\/.*)?$
-    - uri:
-        regex: ^\/v1\/buildings(\/.*)?$
-    - uri:
-        regex: ^\/v1\/admin\/configs(\/.*)?$
-    - uri:
-        regex: ^\/v1\/admin\/images(\/.*)?$
-    - uri:
-        regex: ^\/v1\/admin\/popups(\/.*)?$
-    route:
-    - destination:
-        host: snutt-timetable
-    corsPolicy:
-      allowHeaders:
-      - content-type
-      - x-access-apikey
-      - x-access-token
-      - x-app-version
-      - x-app-type
-      - x-os-type
-      - x-os-version
-      - x-device-id
-      - x-device-model
-      allowMethods:
-      - POST
-      - GET
-      - PUT
-      - DELETE
-      - OPTIONS
-      allowOrigins:
-      - exact: 'https://snutt-dev.wafflestudio.com'
-      - exact: 'https://snutt-admin-dev.wafflestudio.com'
-  - name: "snutt-core-route"
-    timeout: 10s
-    route:
-    - destination:
-        host: snutt-core
+    - name: "dev-snutt-timetable-route"
+      timeout: 10s
+      match:
+        ############## migrated apis ############
+        - uri:
+            regex: ^(?:\/v1)?\/tables(\/.*)?$
+        - uri:
+            regex: ^(?:\/v1)?\/auth\/register_local\/?$
+        - uri:
+            regex: ^(?:\/v1)?\/auth\/login_local\/?$
+        - uri:
+            regex: ^(?:\/v1)?\/auth\/logout\/?$
+        - uri:
+            regex: ^(?:\/v1)?\/search_query\/?$
+        - uri:
+            regex: ^(?:\/v1)?\/user\/device(\/.*)?$
+        - uri:
+            regex: ^(?:\/v1)?\/user\/info\/?$
+        - uri:
+            regex: ^(?:\/v1)?\/user\/account\/?$
+        - uri:
+            regex: ^(?:\/v1)?\/notification(\/.*)?$
+        - uri:
+            regex: ^(?:\/v1)?\/popups(\/.*)?$
+        - uri:
+            regex: ^(?:\/v1)?\/admin/insert_noti\/?$
+        ################# new apis ##############
+        - uri:
+            regex: ^\/v1\/users(\/.*)?$
+        - uri:
+            regex: ^\/v1\/bookmarks(\/.*)?$
+        - uri:
+            regex: ^\/v1\/shared-tables(\/.*)?$
+        - uri:
+            regex: ^\/v1\/vacancy-notifications/lectures(\/.*)?$
+        - uri:
+            regex: ^\/v1\/configs(\/.*)?$
+        - uri:
+            regex: ^\/v1\/friends(\/.*)?
+        - uri:
+            regex: ^\/v1\/themes(\/.*)?$
+        - uri:
+            regex: ^\/v1\/buildings(\/.*)?$
+        - uri:
+            regex: ^\/v1\/admin\/configs(\/.*)?$
+        - uri:
+            regex: ^\/v1\/admin\/images(\/.*)?$
+        - uri:
+            regex: ^\/v1\/admin\/popups(\/.*)?$
+      route:
+        - destination:
+            host: snutt-timetable
+      corsPolicy:
+        allowHeaders:
+          - content-type
+          - x-access-apikey
+          - x-access-token
+          - x-app-version
+          - x-app-type
+          - x-os-type
+          - x-os-version
+          - x-device-id
+          - x-device-model
+        allowMethods:
+          - POST
+          - GET
+          - PUT
+          - DELETE
+          - OPTIONS
+        allowOrigins:
+          - exact: "https://snutt-dev.wafflestudio.com"
+          - exact: "https://snutt-admin-dev.wafflestudio.com"
+    - name: "snutt-core-route"
+      timeout: 10s
+      route:
+        - destination:
+            host: snutt-core
