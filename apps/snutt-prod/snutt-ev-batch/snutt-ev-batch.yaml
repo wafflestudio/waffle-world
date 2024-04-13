@@ -1,9 +1,9 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: snutt-ev-batch-lecture-sync
+  name: snutt-ev-batch-lecture-sync-latest-semester
   labels:
-    app: snutt-ev-batch-lecture-sync
+    app: snutt-ev-batch-lecture-sync-latest-semester
   namespace: snutt-prod
 spec:
   concurrencyPolicy: Forbid
@@ -21,7 +21,7 @@ spec:
           serviceAccountName: snutt-ev-batch
           containers:
           - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-ev-batch:8
-            name: snutt-ev-batch-lecture-sync
+            name: snutt-ev-batch-lecture-sync-latest-semester
             resources:
               requests:
                 cpu: 200m
@@ -32,6 +32,49 @@ spec:
             env:
             - name: JOB_NAME
               value: "NEXT_SEMESTER_SYNC_JOB"
+            - name: JAVA_OPTS
+              value: "-XX:InitialRAMPercentage=80.0 -XX:MaxRAMPercentage=80.0 -Duser.timezone=UTC"
+            - name: SPRING_PROFILES_ACTIVE
+              value: "prod"
+            - name: TRUFFLE_ENABLED
+              value: "true"
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: snutt-ev-batch-lecture-sync-all
+  labels:
+    app: snutt-ev-batch-lecture-sync-all
+  namespace: snutt-prod
+spec:
+  concurrencyPolicy: Forbid
+  # 실행 방법
+  # kubectl create job snutt-ev-batch-snuev-migration --from=cronjob/snutt-ev-batch-snuev-migration
+  schedule: "0 0 31 2 *"
+  successfulJobsHistoryLimit: 2
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          annotations:
+            sidecar.istio.io/inject: "false"
+        spec:
+          restartPolicy: OnFailure
+          serviceAccountName: snutt-ev-batch
+          containers:
+          - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-ev-batch:8
+            name: snutt-ev-batch-lecture-sync-all
+            resources:
+              requests:
+                cpu: 200m
+                memory: 1Gi
+              limits:
+                cpu: 1000m
+                memory: 1Gi
+            env:
+            - name: JOB_NAME
+              value: "SYNC_JOB"
             - name: JAVA_OPTS
               value: "-XX:InitialRAMPercentage=80.0 -XX:MaxRAMPercentage=80.0 -Duser.timezone=UTC"
             - name: SPRING_PROFILES_ACTIVE
