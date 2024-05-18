@@ -145,6 +145,8 @@ spec:
     - uri:
         regex: ^\/v1\/themes(\/.*)?$
     - uri:
+        regex: ^\/v1\/buildings(\/.*)?$
+    - uri:
         regex: ^\/v1\/admin\/configs(\/.*)?$
     - uri:
         regex: ^\/v1\/admin\/images(\/.*)?$
