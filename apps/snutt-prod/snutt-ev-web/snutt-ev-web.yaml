@@ -54,7 +54,7 @@ spec:
             port: 3000
           failureThreshold: 10
 ---
-apiVersion: autoscaling/v2beta2
+apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: snutt-ev-web-hpa
