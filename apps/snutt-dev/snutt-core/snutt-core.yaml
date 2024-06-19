@@ -136,6 +136,8 @@ spec:
         regex: ^\/v1\/admin\/images(\/.*)?$
     - uri:
         regex: ^\/v1\/admin\/popups(\/.*)?$
+    - uri:
+        regex: ^\/v1\/ev\/lectures(\/.*)?$
     route:
     - destination:
         host: snutt-timetable
