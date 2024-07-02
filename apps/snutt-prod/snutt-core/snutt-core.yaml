@@ -137,13 +137,13 @@ spec:
     - uri:
         regex: ^\/v1\/bookmarks(\/.*)?$
     - uri:
-        regex: ^\/v1\/tables\/(\w{24})\/primary$
+        regex: ^\/v1\/shared-tables(\/.*)?$
     - uri:
         regex: ^\/v1\/vacancy-notifications/lectures(\/.*)?$
     - uri:
         regex: ^\/v1\/configs(\/.*)?$
     - uri:
-        regex: ^\/v1\/friends(\/.*)?$
+        regex: ^\/v1\/friends(\/.*)?
     - uri:
         regex: ^\/v1\/themes(\/.*)?$
     - uri:
@@ -154,6 +154,8 @@ spec:
         regex: ^\/v1\/admin\/images(\/.*)?$
     - uri:
         regex: ^\/v1\/admin\/popups(\/.*)?$
+    - uri:
+        regex: ^\/v1\/ev\/lectures(\/.*)?$
     route:
     - destination:
         host: snutt-timetable
