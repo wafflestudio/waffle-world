@@ -28,7 +28,7 @@ spec:
                 memory: 1Gi
               limits:
                 cpu: 1000m
-                memory: 1Gi
+                memory: 2Gi
             env:
             - name: JOB_NAME
               value: "NEXT_SEMESTER_SYNC_JOB"
@@ -71,7 +71,7 @@ spec:
                 memory: 1Gi
               limits:
                 cpu: 1000m
-                memory: 1Gi
+                memory: 2Gi
             env:
             - name: JOB_NAME
               value: "SYNC_JOB"
