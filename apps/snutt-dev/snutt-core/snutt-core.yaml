@@ -113,7 +113,7 @@ spec:
         regex: ^(?:\/v1)?\/admin/insert_noti\/?$
     ################# new apis ##############
     - uri:
-        regex: ^\/v1\/auth\/login_google\/?$
+        regex: ^\/v1\/auth\/login\/(.+)\/?$
     - uri:
         regex: ^\/v1\/users(\/.*)?$
     - uri:
