@@ -116,6 +116,8 @@ spec:
     - uri:
         regex: ^(?:\/v1)?\/auth\/login_local\/?$
     - uri:
+        regex: ^(?:\/v1)?\/auth\/login_fb\/?$
+    - uri:
         regex: ^(?:\/v1)?\/auth\/logout\/?$
     - uri:
         regex: ^(?:\/v1)?\/search_query\/?$
@@ -132,6 +134,8 @@ spec:
     - uri:
         regex: ^(?:\/v1)?\/admin/insert_noti\/?$
     ################# new apis ##############
+    - uri:
+        regex: ^\/v1\/auth\/login\/(.+)\/?$
     - uri:
         regex: ^\/v1\/users(\/.*)?$
     - uri:
