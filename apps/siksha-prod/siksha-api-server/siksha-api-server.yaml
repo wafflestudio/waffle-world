@@ -30,7 +30,7 @@ spec:
           operator: Equal
           value: prod
       containers:
-      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/siksha-prod/siksha-api-server:7
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/siksha-prod/siksha-api-server:8
         name: siksha-api-server
         resources:
           requests:
