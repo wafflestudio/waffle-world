@@ -57,7 +57,7 @@ spec:
   - istio-ingress/waffle-ingressgateway
   - mesh
   hosts:
-  - #TODO
+  - wacruit-server.wacruit-dev.svc.cluster.local
     http:
   - route:
     - destination:
