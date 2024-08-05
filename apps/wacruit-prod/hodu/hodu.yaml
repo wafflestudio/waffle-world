@@ -26,11 +26,11 @@ spec:
         name: hodu
         resources:
           requests:
-            cpu: 100m
-            memory: 192Mi
+            cpu: 200m
+            memory: 256Mi
           limits:
             cpu: 200m
-            memory: 192Mi
+            memory: 256Mi
         ports:
           - containerPort: 8080
 ---
