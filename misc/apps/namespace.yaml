@@ -158,3 +158,18 @@ metadata:
   name: babble
   labels:
     istio-injection: enabled
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: hodu-dev
+  labels:
+    istio-injection: enabled
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: hodu-prod
+  labels:
+    istio-injection: enabled
+
