@@ -7,10 +7,6 @@ apps/snutt-prod/snutt-ev-web/ @wafflestudio/snutt-frontend
 apps/truffle-prod/ @davin111 @PFCJeong
 apps/sso-dev/ @wafflestudio/sso
 apps/sso-prod/ @wafflestudio/sso
-apps/seminar/ @wafflestudio/seminar
-apps/webgam-dev/ @wafflestudio/interactive-web
-apps/feelin-dev/ @wafflestudio/music-sns
-apps/feelin-prod/ @wafflestudio/music-sns
 apps/siksha-dev/ @wafflestudio/siksha
 apps/siksha-prod/ @wafflestudio/siksha
 apps/waffledotcom-dev/ @wafflestudio/waffledotcom-backend
@@ -18,10 +14,4 @@ apps/waffledotcom-prod/ @wafflestudio/waffledotcom-backend
 apps/wacruit-dev/ @wafflestudio/waffledotcom-backend
 apps/wacruit-prod/ @wafflestudio/waffledotcom-backend
 apps/pupuri-prod/ @wafflestudio/pupuri
-apps/ggzz-dev/ @wafflestudio/ggzz
 apps/k8s-monitoring/ @PFCJeong
-apps/seeya/ @wafflestudio/seeya
-apps/snugo/snugo-server/ @wafflestudio/snugo
-apps/areyouhere/ @wafflestudio/areyouhere
-apps/icebreaker/ @wafflestudio/icebreaker
-apps/babble/ @wafflestudio/babble
