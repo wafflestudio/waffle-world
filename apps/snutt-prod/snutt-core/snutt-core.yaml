@@ -128,6 +128,8 @@ spec:
     - uri:
         regex: ^(?:\/v1)?\/user\/account\/?$
     - uri:
+        regex: ^(?:\/v1)?\/user\/password\/?$
+    - uri:
         regex: ^(?:\/v1)?\/notification(\/.*)?$
     - uri:
         regex: ^(?:\/v1)?\/popups(\/.*)?$
