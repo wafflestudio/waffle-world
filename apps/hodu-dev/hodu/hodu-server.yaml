@@ -23,10 +23,10 @@ spec:
     spec:
       serviceAccountName: hodu-server
       containers:
-        securityContext:
-            privileged: true
       - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/hodu/hodu-server:240812-1
         name: hodu-server
+        securityContext:
+          privileged: true
         resources:
           requests:
             cpu: 100m
