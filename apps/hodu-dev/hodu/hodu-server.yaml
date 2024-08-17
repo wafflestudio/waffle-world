@@ -23,7 +23,9 @@ spec:
     spec:
       serviceAccountName: hodu-server
       containers:
-      - image: #TODO
+        securityContext:
+            privileged: true
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/hodu/hodu-server:240812-1
         name: hodu-server
         resources:
           requests:
@@ -66,7 +68,8 @@ spec:
   - istio-ingress/waffle-ingressgateway
   - mesh
   hosts:
-  - #TODO
+  - hodu-dev.wafflestudio.com
+  - hodu-server
     http:
   - route:
     - destination:
