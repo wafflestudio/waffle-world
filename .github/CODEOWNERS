@@ -25,3 +25,5 @@ apps/snugo/snugo-server/ @wafflestudio/snugo
 apps/areyouhere/ @wafflestudio/areyouhere
 apps/icebreaker/ @wafflestudio/icebreaker
 apps/babble/ @wafflestudio/babble
+apps/hodu-dev/ @wafflestudio/hodu
+apps/hodu-prod/ @wafflestudio/hodu
