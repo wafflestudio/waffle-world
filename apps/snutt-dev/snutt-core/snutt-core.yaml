@@ -98,6 +98,10 @@ spec:
     - uri:
         regex: ^(?:\/v1)?\/auth\/logout\/?$
     - uri:
+        regex: ^(?:\/v1)?\/auth\/id\/find\/?$
+    - uri:
+        regex: ^(?:\/v1)?\/auth\/password(\/.*)?$
+    - uri:
         regex: ^(?:\/v1)?\/search_query\/?$
     - uri:
         regex: ^(?:\/v1)?\/user\/device(\/.*)?$
@@ -107,6 +111,8 @@ spec:
         regex: ^(?:\/v1)?\/user\/account\/?$
     - uri:
         regex: ^(?:\/v1)?\/user\/password\/?$
+    - uri:
+        regex: ^(?:\/v1)?\/user\/email(\/.*)?$
     - uri:
         regex: ^(?:\/v1)?\/notification(\/.*)?$
     - uri:
