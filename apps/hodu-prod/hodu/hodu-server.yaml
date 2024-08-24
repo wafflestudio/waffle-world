@@ -43,7 +43,7 @@ metadata:
   name: hodu-server
   namespace: hodu-prod
   annotations:
-    eks.amazonaws.com/role-arn: #TODO
+    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/ProdHoduSecretAccessRole
 ---
 apiVersion: v1
 kind: Service
