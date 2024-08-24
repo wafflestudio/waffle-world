@@ -2,15 +2,15 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   namespace: argocd
-  name: ggzz-server-dev
+  name: snutt-theme-market-dev
   finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: HEAD
-    path: apps/ggzz-dev/ggzz-server
+    path: apps/snutt-dev/snutt-theme-market
   destination:
     server: {{ .Values.spec.destination.server }}
     namespace: argocd

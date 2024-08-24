@@ -62,7 +62,9 @@ argo-cd:
         p, role:snutt-frontend, exec, create, default/snutt-ev-web, allow
         p, role:snutt-frontend, applications, *, default/snutt-ev-web-dev, allow
         p, role:snutt-frontend, exec, create, default/snutt-ev-web-dev, allow
-        
+        p, role:snutt-frontend, applications, *, default/snutt-theme-market-dev, allow
+        p, role:snutt-frontend, exec, create, default/snutt-theme-market-dev, allow
+
         g, wafflestudio:siksha, role:siksha
         p, role:siksha, applications, *, default/siksha-api-server, allow
         p, role:siksha, exec, create, default/siksha-api-server, allow
@@ -87,12 +89,6 @@ argo-cd:
         p, role:waffledotcom-backend, applications, *, default/wacruit-server-dev, allow
         p, role:waffledotcom-backend, exec, create, default/wacruit-server-dev, allow
         
-        g, wafflestudio:seminar, role:seminar
-        p, role:seminar, applications, *, default/seminar-android-project-backend, allow
-        p, role:seminar, exec, create, default/seminar-android-project-backend, allow
-        p, role:seminar, applications, *, default/seminar-react-project-backend, allow
-        p, role:seminar, exec, create, default/seminar-react-project-backend, allow
-        
         g, wafflestudio:pupuri, role:pupuri
         p, role:pupuri, applications, *, default/pupuri-bot, allow
         p, role:pupuri, exec, create, default/pupuri-bot, allow
@@ -107,47 +103,9 @@ argo-cd:
         p, role:sso, applications, *, default/sso-account-server-dev, allow
         p, role:sso, exec, create, default/sso-account-server-dev, allow
         
-        g, wafflestudio:music-sns, role:music-sns
-        p, role:music-sns, applications, *, default/feelin-core-server, allow
-        p, role:music-sns, exec, create, default/feelin-core-server, allow
-        p, role:music-sns, applications, *, default/feelin-core-server-dev, allow
-        p, role:music-sns, exec, create, default/feelin-core-server-dev, allow
-        p, role:music-sns, applications, *, default/feelin-social-server, allow
-        p, role:music-sns, exec, create, default/feelin-social-server, allow
-        p, role:music-sns, applications, *, default/feelin-social-server-dev, allow
-        p, role:music-sns, exec, create, default/feelin-social-server-dev, allow
-        p, role:music-sns, applications, *, default/feelin-web, allow
-        p, role:music-sns, exec, create, default/feelin-web, allow
-        p, role:music-sns, applications, *, default/feelin-web-dev, allow
-        p, role:music-sns, exec, create, default/feelin-web-dev, allow
-        
-        g, wafflestudio:ggzz, role:ggzz
-        p, role:ggzz, applications, *, default/ggzz-server-dev, allow
-        p, role:ggzz, exec, create, default/ggzz-server-dev, allow
-        
-        g, wafflestudio:interactive-web, role:interactive-web
-        p, role:interactive-web, applications, *, default/webgam-server-dev, allow
-        p, role:interactive-web, exec, create, default/webgam-server-dev, allow
-        
-        g, wafflestudio:seeya, role:seeya
-        p, role:seeya, applications, *, default/seeya-server, allow
-        p, role:seeya, exec, create, default/seeya-server, allow
-        
-        g, wafflestudio:snugo, role:snugo
-        p, role:snugo, applications, *, default/snugo-server, allow
-        p, role:snugo, exec, create, default/snugo-server, allow
-        
         g, wafflestudio:areyouhere, role:areyouhere
         p, role:areyouhere, applications, *, default/areyouhere-server, allow
         p, role:areyouhere, exec, create, default/areyouhere-server, allow
-        
-        g, wafflestudio:icebreaker, role:icebreaker
-        p, role:icebreaker, applications, *, default/icebreaker, allow
-        p, role:icebreaker, exec, create, default/icebreaker, allow
-        
-        g, wafflestudio:babble, role:babble
-        p, role:babble, applications, *, default/babble-server, allow
-        p, role:babble, exec, create, default/babble-server, allow
     params:
       server.insecure: true
   server:
