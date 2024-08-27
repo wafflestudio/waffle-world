@@ -15,3 +15,10 @@ apps/wacruit-dev/ @wafflestudio/waffledotcom-backend
 apps/wacruit-prod/ @wafflestudio/waffledotcom-backend
 apps/pupuri-prod/ @wafflestudio/pupuri
 apps/k8s-monitoring/ @PFCJeong
+apps/seeya/ @wafflestudio/seeya
+apps/snugo/snugo-server/ @wafflestudio/snugo
+apps/areyouhere/ @wafflestudio/areyouhere
+apps/icebreaker/ @wafflestudio/icebreaker
+apps/babble/ @wafflestudio/babble
+apps/hodu-dev/ @wafflestudio/hodu
+apps/hodu-prod/ @wafflestudio/hodu
