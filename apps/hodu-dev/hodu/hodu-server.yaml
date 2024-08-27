@@ -70,7 +70,7 @@ spec:
   hosts:
   - hodu-dev.wafflestudio.com
   - hodu-server
-    http:
+  http:
   - route:
     - destination:
         host: hodu-server
