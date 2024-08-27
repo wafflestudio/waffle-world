@@ -119,6 +119,8 @@ spec:
         regex: ^(?:\/v1)?\/popups(\/.*)?$
     - uri:
         regex: ^(?:\/v1)?\/admin/insert_noti\/?$
+    - uri:
+        regex: ^(?:\/v1)?\/tags(\/.*)?$
     ################# new apis ##############
     - uri:
         regex: ^\/v1\/auth\/login\/(.+)\/?$
