@@ -143,6 +143,7 @@ spec:
       - POST
       - GET
       - PUT
+      - PATCH
       - DELETE
       - OPTIONS
       allowOrigins:
