@@ -93,9 +93,59 @@ spec:
   - istio-ingress/waffle-ingressgateway
   - mesh
   hosts:
-  - snu4t-api-dev.wafflestudio.com
+  - snutt-api-dev.wafflestudio.com
   http:
-  - timeout: 10s
+  - name: "legacy-route"
+    timeout: 10s
+    match:
+    - uri:
+        regex: ^(?:\/v1)?\/course_books(\/.*)?$
+    - uri:
+        regex: ^(?:\/v1)?\/colors(\/.*)?$
+    - uri:
+        regex: ^(?:\/v1)?\/auth\/request_temp\/?$
+    - uri:
+        regex: ^(?:\/v1)?\/auth\/login_apple\/?$
+    - uri:
+        regex: ^(?:\/v1)?\/user\/facebook\/?$
+    - uri:
+        regex: ^(?:\/v1)?\/admin\/change_pw\/?$
+    - uri:
+        regex: ^(?:\/v1)?\/admin\/recent_fcm_log\/?$
+    - uri:
+        regex: ^(?:\/v1)?\/admin\/coursebooks\/?$
+    - uri:
+        regex: ^(?:\/v1)?\/admin\/statistics\/?$
+    - uri:
+        regex: ^(?:\/v1)?\/ev-service(\/.*)?$
+    - uri:
+        regex: ^(?:\/v1)?\/feedback\/?$
+    route:
+    - destination:
+        host: snutt-core
+  - name: "dev-snutt-timetable-route"
+    timeout: 10s
     route:
     - destination:
         host: snutt-timetable
+    corsPolicy:
+      allowHeaders:
+      - content-type
+      - x-access-apikey
+      - x-access-token
+      - x-app-version
+      - x-app-type
+      - x-os-type
+      - x-os-version
+      - x-device-id
+      - x-device-model
+      allowMethods:
+      - POST
+      - GET
+      - PUT
+      - PATCH
+      - DELETE
+      - OPTIONS
+      allowOrigins:
+      - exact: 'https://snutt-dev.wafflestudio.com'
+      - exact: 'https://snutt-admin-dev.wafflestudio.com'
