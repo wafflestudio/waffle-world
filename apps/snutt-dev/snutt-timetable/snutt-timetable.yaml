@@ -120,6 +120,12 @@ spec:
         regex: ^(?:\/v1)?\/ev-service(\/.*)?$
     - uri:
         regex: ^(?:\/v1)?\/feedback\/?$
+    - uri:
+        regex: ^\/member\/?$
+    - uri:
+        regex: ^\/privacy_policy\/?$
+    - uri:
+        regex: ^\/terms_of_service\/?$
     route:
     - destination:
         host: snutt-core
