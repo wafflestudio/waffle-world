@@ -148,6 +148,8 @@ spec:
         regex: ^\/privacy_policy\/?$
     - uri:
         regex: ^\/terms_of_service\/?$
+    - uri:
+        regex: ^(?:\/v1)?\/auth\/password(\/.*)?$
     route:
     - destination:
         host: snutt-core
