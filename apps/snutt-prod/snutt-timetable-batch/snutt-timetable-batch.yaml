@@ -47,6 +47,7 @@ metadata:
     app: snu4t-batch-vacancy-noti
   namespace: snutt-prod
 spec:
+  suspend: true
   concurrencyPolicy: Forbid
   schedule: "30 23 * * 0-4"
   successfulJobsHistoryLimit: 2
