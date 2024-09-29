@@ -191,6 +191,7 @@ spec:
   - to:
     - operation:
         methods: ["POST", "DELETE", "PUT", "PATCH"]
+        notPaths: ["/v1/feedback", "/feedback"]
     when:
       - key: request.headers[Origin]
         notValues: ["https://snutt-admin.wafflestudio.com*"]
