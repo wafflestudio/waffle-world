@@ -180,7 +180,7 @@ spec:
       - exact: 'https://snutt.wafflestudio.com'
       - exact: 'https://snutt-admin.wafflestudio.com'
 ---
-apiVersion: security.istio.io/v1
+apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
   name: snutt-prod
