@@ -188,9 +188,9 @@ metadata:
 spec:
   action: DENY
   rules:
-    - to:
-      - operation:
+  - to:
+    - operation:
         methods: ["POST", "DELETE", "PUT", "PATCH"]
-  when:
-    - key: request.headers[Origin]
-    - notValues: ["https://snutt-admin.wafflestudio.com*"]
+    when:
+      - key: request.headers[Origin]
+        notValues: ["https://snutt-admin.wafflestudio.com*"]
