@@ -74,8 +74,8 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: snutt-timetable
-  minReplicas: 0
-  maxReplicas: 0
+  minReplicas: 1
+  maxReplicas: 3
   metrics:
   - type: Resource
     resource:
