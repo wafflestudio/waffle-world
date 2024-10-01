@@ -179,19 +179,3 @@ spec:
       allowOrigins:
       - exact: 'https://snutt.wafflestudio.com'
       - exact: 'https://snutt-admin.wafflestudio.com'
----
-apiVersion: security.istio.io/v1beta1
-kind: AuthorizationPolicy
-metadata:
-  namespace: snutt-prod
-  name: snutt-timetable
-spec:
-  action: DENY
-  rules:
-  - to:
-    - operation:
-        methods: ["POST", "DELETE", "PUT", "PATCH"]
-        notPaths: ["/v1/feedback", "/feedback"]
-    when:
-      - key: request.headers[Origin]
-        notValues: ["https://snutt-admin.wafflestudio.com*"]
