@@ -149,3 +149,4 @@ spec:
       allowOrigins:
       - exact: 'https://snutt-dev.wafflestudio.com'
       - exact: 'https://snutt-admin-dev.wafflestudio.com'
+      - exact: 'https://snutt-ev-web-dev.wafflestudio.com'
