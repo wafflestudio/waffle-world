@@ -107,8 +107,6 @@ spec:
     - uri:
         regex: ^(?:\/v1)?\/auth\/login_apple\/?$
     - uri:
-        regex: ^(?:\/v1)?\/user\/facebook\/?$
-    - uri:
         regex: ^(?:\/v1)?\/admin\/change_pw\/?$
     - uri:
         regex: ^(?:\/v1)?\/admin\/recent_fcm_log\/?$
