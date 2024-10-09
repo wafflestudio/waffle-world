@@ -41,6 +41,19 @@ spec:
               memory: 128Mi
           ports:
             - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /api/v1/health/
+              port: 8080
+          readinessProbe:
+            httpGet:
+              path: /api/v1/health/
+              port: 8080
+          startupProbe:
+            httpGet:
+              path: /api/v1/health/
+              port: 8080
+            failureThreshold: 20
 ---
 apiVersion: v1
 kind: ServiceAccount
