@@ -17,6 +17,13 @@ spec:
           annotations:
             sidecar.istio.io/inject: "false"
         spec:
+          nodeSelector:
+            phase: batch
+          tolerations:
+            - effect: NoSchedule
+              key: phase
+              operator: Equal
+              value: batch
           restartPolicy: OnFailure
           containers:
           - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/siksha-prod/siksha-crawler:18
