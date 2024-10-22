@@ -99,8 +99,6 @@ spec:
     timeout: 10s
     match:
     - uri:
-        regex: ^(?:\/v1)?\/course_books(\/.*)?$
-    - uri:
         regex: ^(?:\/v1)?\/colors(\/.*)?$
     - uri:
         regex: ^(?:\/v1)?\/auth\/request_temp\/?$
