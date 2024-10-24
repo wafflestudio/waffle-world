@@ -6,7 +6,7 @@ metadata:
     app: waffledotcom-server
   namespace: waffledotcom-dev
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: waffledotcom-server
