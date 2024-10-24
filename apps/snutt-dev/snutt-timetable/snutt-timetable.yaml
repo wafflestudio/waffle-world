@@ -101,21 +101,9 @@ spec:
     - uri:
         regex: ^(?:\/v1)?\/colors(\/.*)?$
     - uri:
-        regex: ^(?:\/v1)?\/auth\/request_temp\/?$
-    - uri:
         regex: ^(?:\/v1)?\/auth\/login_apple\/?$
     - uri:
-        regex: ^(?:\/v1)?\/admin\/change_pw\/?$
-    - uri:
-        regex: ^(?:\/v1)?\/admin\/recent_fcm_log\/?$
-    - uri:
-        regex: ^(?:\/v1)?\/admin\/coursebooks\/?$
-    - uri:
-        regex: ^(?:\/v1)?\/admin\/statistics\/?$
-    - uri:
         regex: ^(?:\/v1)?\/ev-service(\/.*)?$
-    - uri:
-        regex: ^(?:\/v1)?\/feedback\/?$
     route:
     - destination:
         host: snutt-core
