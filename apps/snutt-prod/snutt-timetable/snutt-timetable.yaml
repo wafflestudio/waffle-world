@@ -126,6 +126,8 @@ spec:
         regex: ^(?:\/v1)?\/auth\/login_apple\/?$
     - uri:
         regex: ^(?:\/v1)?\/ev-service(\/.*)?$
+    - uri:
+        regex: ^(?:\/v1)?\/auth\/password(\/.*)?$
     route:
     - destination:
         host: snutt-core
