@@ -66,6 +66,20 @@ argo-cd:
         p, role:siksha, exec, create, default/siksha-crawler, allow
         p, role:siksha, applications, *, default/siksha-crawler-dev, allow
         p, role:siksha, exec, create, default/siksha-crawler-dev, allow
+
+        g, wafflestudio:siksha-server-data, role:siksha-server-data
+        p, role:siksha-server-data, applications, *, default/siksha-api-server, allow
+        p, role:siksha-server-data, exec, create, default/siksha-api-server, allow
+        p, role:siksha-server-data, applications, *, default/siksha-api-server-dev, allow
+        p, role:siksha-server-data, exec, create, default/siksha-api-server-dev, allow
+        p, role:siksha-server-data, applications, *, default/siksha-crawler, allow
+        p, role:siksha-server-data, exec, create, default/siksha-crawler, allow
+        p, role:siksha-server-data, applications, *, default/siksha-crawler-dev, allow
+        p, role:siksha-server-data, exec, create, default/siksha-crawler-dev, allow
+        p, role:siksha-server-data, batch/cronjobs, create, default/siksha-crawler, allow
+        p, role:siksha-server-data, batch/cronjobs, create, default/siksha-crawler-dev, allow
+        p, role:siksha-server-data, batch/jobs, create, default/siksha-crawler, allow
+        p, role:siksha-server-data, batch/jobs, create, default/siksha-crawler-dev, allow
         
         g, wafflestudio:waffledotcom-backend, role:waffledotcom-backend
         p, role:waffledotcom-backend, applications, *, default/waffledotcom-server, allow
