@@ -57,7 +57,7 @@ argo-cd:
         p, role:snutt-frontend, applications, *, default/snutt-theme-market-dev, allow
         p, role:snutt-frontend, exec, create, default/snutt-theme-market-dev, allow
 
-        g, wafflestudio:siksha, role:siksha
+        g, wafflestudio:Siksha, role:siksha
         p, role:siksha, applications, *, default/siksha-api-server, allow
         p, role:siksha, exec, create, default/siksha-api-server, allow
         p, role:siksha, applications, *, default/siksha-api-server-dev, allow
@@ -67,7 +67,7 @@ argo-cd:
         p, role:siksha, applications, *, default/siksha-crawler-dev, allow
         p, role:siksha, exec, create, default/siksha-crawler-dev, allow
 
-        g, wafflestudio:siksha-server-data, role:siksha-server-data
+        g, wafflestudio:Siksha-server-data, role:siksha-server-data
         p, role:siksha-server-data, applications, *, default/siksha-api-server, allow
         p, role:siksha-server-data, exec, create, default/siksha-api-server, allow
         p, role:siksha-server-data, applications, *, default/siksha-api-server-dev, allow
@@ -76,8 +76,6 @@ argo-cd:
         p, role:siksha-server-data, exec, create, default/siksha-crawler, allow
         p, role:siksha-server-data, applications, *, default/siksha-crawler-dev, allow
         p, role:siksha-server-data, exec, create, default/siksha-crawler-dev, allow
-        p, role:siksha-server-data, jobs, create, default/siksha-crawler, allow
-        p, role:siksha-server-data, jobs, create, default/siksha-crawler-dev, allow
         
         g, wafflestudio:waffledotcom-backend, role:waffledotcom-backend
         p, role:waffledotcom-backend, applications, *, default/waffledotcom-server, allow
