@@ -95,13 +95,21 @@ spec:
   hosts:
   - snutt-api-dev.wafflestudio.com
   http:
+  # /auth/login_apple 요청을 /auth/login/apple로 rewrite한 후 snutt-timetable로 라우팅
+  - name: "login-apple-rewrite-to-timetable"
+    match:
+    - uri:
+        regex: ^(?:\/v1)?\/auth\/login_apple\/?$
+    rewrite:
+      uri: /auth/login/apple
+    route:
+    - destination:
+        host: snutt-timetable
   - name: "legacy-route"
     timeout: 10s
     match:
     - uri:
         regex: ^(?:\/v1)?\/colors(\/.*)?$
-    - uri:
-        regex: ^(?:\/v1)?\/auth\/login_apple\/?$
     - uri:
         regex: ^(?:\/v1)?\/ev-service(\/.*)?$
     route:
