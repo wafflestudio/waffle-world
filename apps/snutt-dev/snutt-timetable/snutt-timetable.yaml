@@ -95,18 +95,6 @@ spec:
   hosts:
   - snutt-api-dev.wafflestudio.com
   http:
-  - name: "legacy-route"
-    timeout: 10s
-    match:
-    - uri:
-        regex: ^(?:\/v1)?\/colors(\/.*)?$
-    - uri:
-        regex: ^(?:\/v1)?\/auth\/login_apple\/?$
-    - uri:
-        regex: ^(?:\/v1)?\/ev-service(\/.*)?$
-    route:
-    - destination:
-        host: snutt-core
   - name: "dev-snutt-timetable-route"
     timeout: 10s
     route:
