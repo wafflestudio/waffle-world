@@ -13,3 +13,7 @@ spec:
       protocol: HTTP
     hosts:
     - "*"
+  connectionPool:
+    http:
+      maxRequestsPerConnection: 100
+      idleTimeout: 30s
