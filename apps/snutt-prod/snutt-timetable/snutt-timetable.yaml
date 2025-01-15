@@ -158,3 +158,16 @@ spec:
       - exact: 'https://snutt.wafflestudio.com'
       - exact: 'https://snutt-admin.wafflestudio.com'
       - exact: 'https://snutt-ev-web.wafflestudio.com'
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  namespace: snutt-prod
+  name: snutt-timetable
+spec:
+  host: snutt-timetable
+  trafficPolicy:
+    connectionPool:
+      http:
+        maxRequestsPerConnection: 100
+        idleTimeout: 30s
