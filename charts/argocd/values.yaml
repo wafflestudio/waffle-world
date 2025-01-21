@@ -28,10 +28,6 @@ argo-cd:
         p, role:waffle-k8s-admin, exec, create, */*, allow
         
         g, wafflestudio:snutt-server, role:snutt-server
-        p, role:snutt-server, applications, *, default/snutt-core, allow
-        p, role:snutt-server, exec, create, default/snutt-core, allow
-        p, role:snutt-server, applications, *, default/snutt-core-dev, allow
-        p, role:snutt-server, exec, create, default/snutt-core-dev, allow
         p, role:snutt-server, applications, *, default/snutt-ev, allow
         p, role:snutt-server, exec, create, default/snutt-ev, allow
         p, role:snutt-server, applications, *, default/snutt-ev-dev, allow
