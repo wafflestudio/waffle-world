@@ -144,6 +144,7 @@ spec:
       - exact: 'https://snutt.wafflestudio.com'
       - exact: 'https://snutt-admin.wafflestudio.com'
       - exact: 'https://snutt-ev-web.wafflestudio.com'
+      - exact: 'https://snutt-theme-market.wafflestudio.com'
 ---
 apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
