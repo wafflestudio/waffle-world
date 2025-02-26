@@ -123,3 +123,4 @@ spec:
       - exact: 'https://snutt-admin-dev.wafflestudio.com'
       - exact: 'https://snutt-ev-web-dev.wafflestudio.com'
       - exact: 'https://snutt-theme-market-dev.wafflestudio.com'
+      - exact: 'http://localhost:3000'
