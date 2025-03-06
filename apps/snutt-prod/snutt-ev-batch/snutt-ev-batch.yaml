@@ -27,7 +27,7 @@ spec:
           restartPolicy: OnFailure
           serviceAccountName: snutt-ev-batch
           containers:
-          - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-ev-batch:14
+          - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-ev-batch:15
             name: snutt-ev-batch-lecture-sync-latest-semester
             resources:
               requests:
@@ -77,7 +77,7 @@ spec:
           restartPolicy: OnFailure
           serviceAccountName: snutt-ev-batch
           containers:
-          - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-ev-batch:14
+          - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-ev-batch:15
             name: snutt-ev-batch-lecture-sync-all
             resources:
               requests:
@@ -128,7 +128,7 @@ spec:
           restartPolicy: OnFailure
           serviceAccountName: snutt-ev-batch
           containers:
-          - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-ev-batch:14
+          - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-ev-batch:15
             name: snutt-ev-batch-snuev-migration
             resources:
               requests:
