@@ -78,3 +78,7 @@ spec:
   - route:
     - destination:
         host: siksha-api-server
+    headers:
+      request:
+        set:
+          X-Forwarded-Proto: "https"
