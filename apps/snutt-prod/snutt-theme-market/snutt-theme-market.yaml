@@ -6,7 +6,7 @@ metadata:
     app: snutt-theme-market
   namespace: snutt-prod
 spec:
-  replicas: 3
+  # replicas: HPA
   selector:
     matchLabels:
       app: snutt-theme-market
@@ -34,10 +34,10 @@ spec:
         resources:
           requests:
             cpu: 200m
-            memory: 256Mi
+            memory: 384Mi
           limits:
             cpu: 400m
-            memory: 512Mi
+            memory: 384Mi
         ports:
         - containerPort: 3000
         livenessProbe:
@@ -53,6 +53,28 @@ spec:
             path: /api/health-check
             port: 3000
           failureThreshold: 10
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: snutt-theme-market-hpa
+  labels:
+    app: snutt-theme-market
+  namespace: snutt-prod
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: snutt-theme-market
+  minReplicas: 1
+  maxReplicas: 3
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 40
 ---
 apiVersion: v1
 kind: Service
