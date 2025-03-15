@@ -1,0 +1,107 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: snutt-theme-market
+  labels:
+    app: snutt-theme-market
+  namespace: snutt-prod
+spec:
+  # replicas: HPA
+  selector:
+    matchLabels:
+      app: snutt-theme-market
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  revisionHistoryLimit: 4
+  template:
+    metadata:
+      labels:
+        app: snutt-theme-market
+    spec:
+      nodeSelector:
+        phase: prod
+      tolerations:
+        - effect: NoSchedule
+          key: phase
+          operator: Equal
+          value: prod
+      containers:
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-theme-market:1
+        name: snutt-theme-market
+        resources:
+          requests:
+            cpu: 200m
+            memory: 384Mi
+          limits:
+            cpu: 400m
+            memory: 384Mi
+        ports:
+        - containerPort: 3000
+        livenessProbe:
+          httpGet:
+            path: /api/health-check
+            port: 3000
+        readinessProbe:
+          httpGet:
+            path: /api/health-check
+            port: 3000
+        startupProbe:
+          httpGet:
+            path: /api/health-check
+            port: 3000
+          failureThreshold: 10
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: snutt-theme-market-hpa
+  labels:
+    app: snutt-theme-market
+  namespace: snutt-prod
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: snutt-theme-market
+  minReplicas: 1
+  maxReplicas: 3
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 40
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: snutt-prod
+  name: snutt-theme-market
+spec:
+  type: ClusterIP
+  selector:
+    app: snutt-theme-market
+  ports:
+  - port: 80
+    targetPort: 3000
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  namespace: snutt-prod
+  name: snutt-theme-market
+spec:
+  gateways:
+  - istio-ingress/waffle-ingressgateway
+  - mesh
+  hosts:
+  - snutt-theme-market.wafflestudio.com
+  http:
+  - timeout: 10s
+    route:
+    - destination:
+        host: snutt-theme-market

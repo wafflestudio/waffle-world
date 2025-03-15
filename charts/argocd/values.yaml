@@ -50,6 +50,8 @@ argo-cd:
         p, role:snutt-frontend, exec, create, default/snutt-ev-web, allow
         p, role:snutt-frontend, applications, *, default/snutt-ev-web-dev, allow
         p, role:snutt-frontend, exec, create, default/snutt-ev-web-dev, allow
+        p, role:snutt-frontend, applications, *, default/snutt-theme-market, allow
+        p, role:snutt-frontend, exec, create, default/snutt-theme-market, allow
         p, role:snutt-frontend, applications, *, default/snutt-theme-market-dev, allow
         p, role:snutt-frontend, exec, create, default/snutt-theme-market-dev, allow
 
