@@ -29,7 +29,7 @@ spec:
           operator: Equal
           value: prod
       containers:
-      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-theme-market:4
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-prod/snutt-theme-market:5
         name: snutt-theme-market
         resources:
           requests:
