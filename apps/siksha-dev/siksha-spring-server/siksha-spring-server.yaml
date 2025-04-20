@@ -6,7 +6,7 @@ metadata:
     app: siksha-spring-server
   namespace: siksha-dev
 spec:
-  replicas: 0
+  replicas: 1
   selector:
     matchLabels:
       app: siksha-spring-server
