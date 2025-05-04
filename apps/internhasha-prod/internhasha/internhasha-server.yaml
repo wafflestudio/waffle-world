@@ -29,11 +29,8 @@ spec:
           operator: Equal
           value: prod
       containers:
-        - image: busybox #internhasha/internhasha-server:prod-1
-          command:
-          - sleep
-          - "3600"
-          name: internhasha-server 
+        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/internhasha-prod/internhasha-server:v.250504
+          name: internhasha-server
           resources:
             requests:
               cpu: 200m
@@ -43,21 +40,20 @@ spec:
               memory: 256Mi
           ports:
             - containerPort: 8080
-          # 실제 이미지로 교체 후 적용
-          # startupProbe:
-          #   httpGet:
-          #     path: /actuator/health/startup
-          #     port: 8080
-          #   initialDelaySeconds: 10
-          #   failureThreshold: 20
-          # livenessProbe:
-          #   httpGet:
-          #     path: /actuator/health/liveness
-          #     port: 8080
-          # readinessProbe:
-          #   httpGet:
-          #     path: /actuator/health/readiness
-          #     port: 8080
+          startupProbe:
+            httpGet:
+              path: /actuator/health/startup
+              port: 8080
+            initialDelaySeconds: 10
+            failureThreshold: 20
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8080
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8080
 ---
 apiVersion: v1
 kind: Service

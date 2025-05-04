@@ -29,10 +29,7 @@ spec:
           operator: Equal
           value: dev
       containers:
-        - image: busybox #internhasha/internhasha-server:dev-1
-          command:
-          - sleep
-          - "3600"
+        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/internhasha-dev/internhasha-server:00
           name: internhasha-server
           resources:
             requests:
@@ -43,20 +40,20 @@ spec:
               memory: 128Mi
           ports:
             - containerPort: 8080
-          # startupProbe:
-          #   httpGet:
-          #     path: /actuator/health/startup
-          #     port: 8080
-          #   initialDelaySeconds: 10
-          #   failureThreshold: 20
-          # livenessProbe:
-          #   httpGet:
-          #     path: /actuator/health/liveness
-          #     port: 8080
-          # readinessProbe:
-          #   httpGet:
-          #     path: /actuator/health/readiness
-          #     port: 8080
+          startupProbe:
+            httpGet:
+              path: /actuator/health/startup
+              port: 8080
+            initialDelaySeconds: 10
+            failureThreshold: 20
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8080
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8080
 ---
 apiVersion: v1
 kind: Service
