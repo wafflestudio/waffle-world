@@ -40,10 +40,10 @@ spec:
           resources:
             requests:
               cpu: 200m
-              memory: 256Mi
+              memory: 768Mi
             limits:
-              cpu: 200m
-              memory: 256Mi
+              cpu: 400m
+              memory: 768Mi
           ports:
             - containerPort: 8080
           startupProbe:
