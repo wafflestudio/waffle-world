@@ -33,6 +33,8 @@ spec:
         - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/internhasha-prod/internhasha-server:v.250504
           name: internhasha-server
           env:
+            - name: JAVA_OPTS
+              value: "-XX:InitialRAMPercentage=80.0 -XX:MaxRAMPercentage=80.0
             - name: SPRING_PROFILES_ACTIVE
               value: "prod"
           resources:

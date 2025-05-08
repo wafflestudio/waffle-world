@@ -33,15 +33,17 @@ spec:
         - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/internhasha-dev/internhasha-server:00
           name: internhasha-server
           env:
+            - name: JAVA_OPTS
+              value: "-XX:InitialRAMPercentage=80.0 -XX:MaxRAMPercentage=80.0
             - name: SPRING_PROFILES_ACTIVE
               value: "dev"
           resources:
             requests:
               cpu: 100m
-              memory: 128Mi
+              memory: 256Mi
             limits:
               cpu: 100m
-              memory: 128Mi
+              memory: 256Mi
           ports:
             - containerPort: 8080
           startupProbe:
