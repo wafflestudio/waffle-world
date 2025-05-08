@@ -34,7 +34,7 @@ spec:
           name: internhasha-server
           env:
             - name: JAVA_OPTS
-              value: "-XX:InitialRAMPercentage=80.0 -XX:MaxRAMPercentage=80.0
+              value: "-XX:InitialRAMPercentage=80.0 -XX:MaxRAMPercentage=80.0"
             - name: SPRING_PROFILES_ACTIVE
               value: "dev"
           resources:
