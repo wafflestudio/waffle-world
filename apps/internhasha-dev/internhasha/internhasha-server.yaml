@@ -30,7 +30,7 @@ spec:
           operator: Equal
           value: dev
       containers:
-        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/internhasha-dev/internhasha-server:3
+        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/internhasha-dev/internhasha-server:latest
           name: internhasha-server
           env:
             - name: JAVA_OPTS
