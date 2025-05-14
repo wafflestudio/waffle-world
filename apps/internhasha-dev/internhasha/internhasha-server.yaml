@@ -39,11 +39,11 @@ spec:
               value: "dev"
           resources:
             requests:
-              cpu: 200m
-              memory: 768Mi
+              cpu: 100m
+              memory: 512Mi
             limits:
-              cpu: 400m
-              memory: 768Mi
+              cpu: 200m
+              memory: 512Mi
           ports:
             - containerPort: 8080
           startupProbe:
