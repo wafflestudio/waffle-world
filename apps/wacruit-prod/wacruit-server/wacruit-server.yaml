@@ -5,6 +5,8 @@ metadata:
   labels:
     app: wacruit-server
   namespace: wacruit-prod
+  annotations:
+    notifications.argoproj.io/subscribe.sync-completed.pupuri-bot: "true"
 spec:
   replicas: 1
   selector:
@@ -70,11 +72,11 @@ metadata:
   name: wacruit-server
 spec:
   gateways:
-  - istio-ingress/waffle-ingressgateway
-  - mesh
+    - istio-ingress/waffle-ingressgateway
+    - mesh
   hosts:
-  - wacruit-server.wacruit-prod.svc.cluster.local
+    - wacruit-server.wacruit-prod.svc.cluster.local
   http:
-  - route:
-    - destination:
-        host: wacruit-server
+    - route:
+        - destination:
+            host: wacruit-server
