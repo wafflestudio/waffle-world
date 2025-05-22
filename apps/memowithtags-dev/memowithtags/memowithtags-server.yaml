@@ -30,7 +30,7 @@ spec:
           operator: Equal
           value: dev
       containers:
-        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/memowithtags-dev/memowithtags-server:11
+        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/memowithtags-dev/memowithtags-server:1
           name: memowithtags-server
           env:
             - name: JAVA_OPTS
