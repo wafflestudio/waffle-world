@@ -86,7 +86,7 @@ spec:
   - istio-ingress/waffle-ingressgateway
   - mesh
   hosts:
-  - siksha-spring-dev.wafflestudio.com
+  - siksha-server-dev.wafflestudio.com
   http:
   - route:
     - destination:
