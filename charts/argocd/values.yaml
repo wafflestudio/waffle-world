@@ -1,3 +1,6 @@
+app:
+  metadata:
+    namespace: argocd
 argo-cd:
   configs:
     cm:
@@ -26,7 +29,7 @@ argo-cd:
         p, role:waffle-k8s-admin, repositories, update, *, allow
         p, role:waffle-k8s-admin, repositories, delete, *, allow
         p, role:waffle-k8s-admin, exec, create, */*, allow
-        
+
         g, wafflestudio:snutt-server, role:snutt-server
         p, role:snutt-server, applications, *, default/snutt-ev, allow
         p, role:snutt-server, exec, create, default/snutt-ev, allow
@@ -44,7 +47,7 @@ argo-cd:
         p, role:snutt-server, exec, create, default/snutt-timetable-batch, allow
         p, role:snutt-server, applications, *, default/snutt-timetable-batch-dev, allow
         p, role:snutt-server, exec, create, default/snutt-timetable-batch-dev, allow
-        
+
         g, wafflestudio:snutt-frontend, role:snutt-frontend
         p, role:snutt-frontend, applications, *, default/snutt-ev-web, allow
         p, role:snutt-frontend, exec, create, default/snutt-ev-web, allow
@@ -78,7 +81,7 @@ argo-cd:
         p, role:siksha-server-data, exec, create, default/siksha-crawler-dev, allow
         p, role:siksha-server-data, applications, *, default/siksha-spring-server-dev, allow
         p, role:siksha-server-data, exec, create, default/siksha-spring-server-dev, allow
-        
+
         g, wafflestudio:waffledotcom-backend, role:waffledotcom-backend
         p, role:waffledotcom-backend, applications, *, default/waffledotcom-server, allow
         p, role:waffledotcom-backend, exec, create, default/waffledotcom-server, allow
@@ -92,11 +95,11 @@ argo-cd:
         p, role:waffledotcom-backend, exec, create, default/wacruit-server, allow
         p, role:waffledotcom-backend, applications, *, default/wacruit-server-dev, allow
         p, role:waffledotcom-backend, exec, create, default/wacruit-server-dev, allow
-        
+
         g, wafflestudio:pupuri, role:pupuri
         p, role:pupuri, applications, *, default/pupuri-bot, allow
         p, role:pupuri, exec, create, default/pupuri-bot, allow
-        
+
         g, wafflestudio:sso, role:sso
         p, role:sso, applications, *, default/sso-kong-gateway, allow
         p, role:sso, exec, create, default/sso-kong-gateway, allow
@@ -106,7 +109,7 @@ argo-cd:
         p, role:sso, exec, create, default/sso-account-server, allow
         p, role:sso, applications, *, default/sso-account-server-dev, allow
         p, role:sso, exec, create, default/sso-account-server-dev, allow
-        
+
         g, wafflestudio:areyouhere, role:areyouhere
         p, role:areyouhere, applications, *, default/areyouhere-server, allow
         p, role:areyouhere, exec, create, default/areyouhere-server, allow
