@@ -12,10 +12,10 @@ data:
       value: application/json
 
   template.sync-completed: |
-    {
+    {{`{
       "namespace": "{{.app.metadata.namespace}}",
       "app":       "{{.app.metadata.name}}"
-    }
+    }`}}
 
   trigger.sync-completed: |
     - description: Application sync completed
