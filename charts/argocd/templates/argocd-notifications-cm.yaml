@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-notifications-cm
+  namespace: argocd
+data:
+  service.webhook.pupuri-bot: |
+    url: https://pupuri-bot.wafflestudio.com/argocd/webhook-endpoint
+    method: POST
+    headers:
+    - name: Content-Type
+      value: application/json
+
+  template.sync-completed: |
+    {{`{
+      "namespace": "{{.app.metadata.namespace}}",
+      "app":       "{{.app.metadata.name}}"
+    }`}}
+
+  trigger.sync-completed: |
+    - description: Application sync completed
+      oncePer: app
+      send:
+        - webhook:pupuri-bot
+      when: app.status.operationState.phase in ['Succeeded']
+
+  subscription.sync-completed: |
+    recipients:
+      - pupuri-bot
