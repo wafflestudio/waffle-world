@@ -21,5 +21,5 @@ apps/hodu-dev/ @wafflestudio/hodu
 apps/hodu-prod/ @wafflestudio/hodu
 apps/internhasha-dev/ @wafflestudio/internhasha
 apps/internhasha-prod/ @wafflestudio/internhasha
-apps/internhasha-dev/ @wafflestudio/memowithtags
-apps/internhasha-prod/ @wafflestudio/memowithtags
+apps/memowithtags-dev/ @wafflestudio/memowithtags
+apps/memowithtags-prod/ @wafflestudio/memowithtags
