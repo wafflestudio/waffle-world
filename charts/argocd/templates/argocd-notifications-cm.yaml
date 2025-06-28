@@ -24,6 +24,6 @@ data:
         - webhook:pupuri-bot
       when: app.status.operationState.phase in ['Succeeded']
 
-  subscription.sync-completed: |
+  subscriptions.sync-completed: |
     recipients:
       - pupuri-bot
