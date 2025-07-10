@@ -123,3 +123,17 @@ metadata:
   name: internhasha-prod
   labels:
     istio-injection: enabled
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: memowithtags-dev
+  labels:
+    istio-injection: enabled
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: memowithtags-prod
+  labels:
+    istio-injection: enabled
