@@ -46,6 +46,18 @@ data:
       userarn: arn:aws:iam::405906814034:user/gs18113
       groups:
       - system:masters
+    - username: asp345
+      userarn: arn:aws:iam::405906814034:user/asp345
+      groups:
+      - system:masters
+    - username: endermaru
+      userarn: arn:aws:iam::405906814034:user/endermaru
+      groups:
+      - system:masters
+    - username: junghoonkim
+      userarn: arn:aws:iam::405906814034:user/junghoonkim
+      groups:
+      - system:masters
     
     - username: ars-ki-00
       userarn: arn:aws:iam::405906814034:user/ars-ki-00
