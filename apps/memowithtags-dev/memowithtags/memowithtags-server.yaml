@@ -92,7 +92,7 @@ spec:
     - istio-ingress/waffle-ingressgateway
     - mesh
   hosts:
-    - dev-api-memowithtags.wafflestudio.com
+    - memowithtags-api-dev.wafflestudio.com
   http:
     - route:
         - destination:
