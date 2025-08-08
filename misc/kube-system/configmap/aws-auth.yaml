@@ -22,24 +22,12 @@ data:
       groups:
       - system:masters
       - snutt-developers
-    - username: kevin990222
-      userarn: arn:aws:iam::405906814034:user/kevin990222
-      groups:
-      - system:masters
-    - username: eastshine2741
-      userarn: arn:aws:iam::405906814034:user/eastshine2741
-      groups:
-      - system:masters
     - username: anandashin
       userarn: arn:aws:iam::405906814034:user/anandashin
       groups:
       - system:masters
     - username: JunBye
       userarn: arn:aws:iam::405906814034:user/JunBye
-      groups:
-      - system:masters
-    - username: huGgW
-      userarn: arn:aws:iam::405906814034:user/huGgW
       groups:
       - system:masters
     - username: gs18113
