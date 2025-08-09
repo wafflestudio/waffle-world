@@ -6,7 +6,7 @@ metadata:
     app: hodu-server
   namespace: hodu-prod
 spec:
-  replicas: 0
+  replicas: 1
   selector:
     matchLabels:
       app: hodu-server
