@@ -14,12 +14,8 @@ apps/waffledotcom-prod/ @wafflestudio/waffledotcom-backend
 apps/wacruit-dev/ @wafflestudio/waffledotcom-backend
 apps/wacruit-prod/ @wafflestudio/waffledotcom-backend
 apps/pupuri-prod/ @wafflestudio/pupuri
-apps/k8s-monitoring/ @PFCJeong
+apps/k8s-monitoring/ @PFCJeong @wafflestudio/waffle-k8s-admin
 apps/snugo/snugo-server/ @wafflestudio/snugo
 apps/areyouhere/ @wafflestudio/areyouhere
 apps/hodu-dev/ @wafflestudio/hodu
 apps/hodu-prod/ @wafflestudio/hodu
-apps/internhasha-dev/ @wafflestudio/internhasha
-apps/internhasha-prod/ @wafflestudio/internhasha
-apps/memowithtags-dev/ @wafflestudio/memowithtags
-apps/memowithtags-prod/ @wafflestudio/memowithtags
