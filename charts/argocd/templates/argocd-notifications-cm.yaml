@@ -5,25 +5,25 @@ metadata:
   namespace: argocd
 data:
   service.webhook.pupuri-bot: |
-    url: https://pupuri-bot.wafflestudio.com/argocd/webhook-endpoint
+    url: https://pupuri-api.wafflestudio.com/argocd/webhook-endpoint
     method: POST
     headers:
-    - name: Content-Type
-      value: application/json
+      - name: Content-Type
+        value: application/json
 
-  template.sync-completed: |
-    {{`{
-      "namespace": "{{.app.metadata.namespace}}",
-      "app":       "{{.app.metadata.name}}"
-    }`}}
+  templates.sync-completed: |-
+    {{`{"namespace":"`}}{{"{{.app.metadata.namespace}}"}}{{`","app":"`}}{{"{{.app.metadata.name}}"}}{{`"}`}}
 
-  trigger.sync-completed: |
+  triggers.sync-completed: |-
     - description: Application sync completed
       oncePer: app
+      when: app.status.operationState.phase in ['Succeeded']
       send:
         - webhook:pupuri-bot
-      when: app.status.operationState.phase in ['Succeeded']
 
-  subscriptions.sync-completed: |
+  subscriptions.sync-completed: |-
     recipients:
       - pupuri-bot
+
+  controller.disableAnnotations: "true"
+
