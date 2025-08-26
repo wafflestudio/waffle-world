@@ -18,7 +18,7 @@ spec:
             sidecar.istio.io/inject: "false"
         spec:
           nodeSelector:
-            kubernetes.io/arch: amd64
+            kubernetes.io/arch: arm64
             phase: batch
           tolerations:
             - effect: NoSchedule
@@ -69,7 +69,7 @@ spec:
             sidecar.istio.io/inject: "false"
         spec:
           nodeSelector:
-            kubernetes.io/arch: amd64
+            kubernetes.io/arch: arm64
             phase: batch
           tolerations:
             - effect: NoSchedule
@@ -121,7 +121,7 @@ spec:
             sidecar.istio.io/inject: "false"
         spec:
           nodeSelector:
-            kubernetes.io/arch: amd64
+            kubernetes.io/arch: arm64
             phase: batch
           tolerations:
             - effect: NoSchedule
