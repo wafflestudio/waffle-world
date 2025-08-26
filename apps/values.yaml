@@ -3,9 +3,9 @@ spec:
     repoURL: https://github.com/wafflestudio/waffle-world.git
   destination:
     server: https://kubernetes.default.svc
-  syncPolicy:
-    automated:
-      prune: false
-      selfHeal: false
+  # syncPolicy:
+  #   automated:
+  #     prune: false
+  #     selfHeal: false
     syncOptions:
     - Validate=false
