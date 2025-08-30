@@ -34,35 +34,24 @@ spec:
         resources:
           requests:
             cpu: 200m
-            memory: 256Mi
+            memory: 512Mi
           limits:
             cpu: 200m
-            memory: 256Mi
+            memory: 512Mi
         ports:
         - containerPort: 3000
         livenessProbe:
           httpGet:
             path: /api/health-check
             port: 3000
-          initialDelaySeconds: 5
-          timeoutSeconds: 5
-          periodSeconds: 15
-          failureThreshold: 10
         readinessProbe:
           httpGet:
             path: /api/health-check
             port: 3000
-          initialDelaySeconds: 5
-          timeoutSeconds: 5
-          periodSeconds: 15
-          failureThreshold: 10
         startupProbe:
           httpGet:
             path: /api/health-check
             port: 3000
-          initialDelaySeconds: 5
-          timeoutSeconds: 5
-          periodSeconds: 15
           failureThreshold: 10
 ---
 apiVersion: v1
