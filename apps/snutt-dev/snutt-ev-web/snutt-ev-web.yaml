@@ -44,14 +44,25 @@ spec:
           httpGet:
             path: /api/health-check
             port: 3000
+          initialDelaySeconds: 5
+          timeoutSeconds: 5
+          periodSeconds: 15
+          failureThreshold: 10
         readinessProbe:
           httpGet:
             path: /api/health-check
             port: 3000
+          initialDelaySeconds: 5
+          timeoutSeconds: 5
+          periodSeconds: 15
+          failureThreshold: 10
         startupProbe:
           httpGet:
             path: /api/health-check
             port: 3000
+          initialDelaySeconds: 5
+          timeoutSeconds: 5
+          periodSeconds: 15
           failureThreshold: 10
 ---
 apiVersion: v1
