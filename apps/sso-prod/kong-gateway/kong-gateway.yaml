@@ -22,6 +22,7 @@ spec:
         app: kong-gateway
     spec:
       nodeSelector:
+        kubernetes.io/arch: amd64
         phase: prod
       tolerations:
         - effect: NoSchedule
