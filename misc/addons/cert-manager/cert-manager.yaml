@@ -5198,6 +5198,7 @@ spec:
           securityContext:
             allowPrivilegeEscalation: false
       nodeSelector:
+        kubernetes.io/arch: amd64
         kubernetes.io/os: linux
 ---
 # Source: cert-manager/templates/deployment.yaml
@@ -5255,6 +5256,7 @@ spec:
               fieldRef:
                 fieldPath: metadata.namespace
       nodeSelector:
+        kubernetes.io/arch: amd64
         kubernetes.io/os: linux
 ---
 # Source: cert-manager/templates/webhook-deployment.yaml
@@ -5330,6 +5332,7 @@ spec:
               fieldRef:
                 fieldPath: metadata.namespace
       nodeSelector:
+        kubernetes.io/arch: amd64
         kubernetes.io/os: linux
 ---
 # Source: cert-manager/templates/webhook-mutating-webhook.yaml

@@ -23,6 +23,7 @@ spec:
     spec:
       serviceAccountName: siksha-spring-server
       nodeSelector:
+        kubernetes.io/arch: amd64
         phase: dev
       tolerations:
         - effect: NoSchedule

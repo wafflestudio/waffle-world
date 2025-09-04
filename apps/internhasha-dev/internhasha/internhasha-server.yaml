@@ -23,6 +23,7 @@ spec:
     spec:
       serviceAccountName: internhasha
       nodeSelector:
+        kubernetes.io/arch: arm64
         phase: dev
       tolerations:
         - effect: NoSchedule

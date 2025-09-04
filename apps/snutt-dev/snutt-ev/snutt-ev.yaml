@@ -23,6 +23,7 @@ spec:
     spec:
       serviceAccountName: snutt-ev
       nodeSelector:
+        kubernetes.io/arch: amd64
         phase: dev
       tolerations:
         - effect: NoSchedule
