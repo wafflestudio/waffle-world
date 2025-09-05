@@ -36,10 +36,10 @@ spec:
         resources:
           requests:
             cpu: 100m
-            memory: 512Mi
+            memory: 384Mi
           limits:
             cpu: 200m
-            memory: 512Mi
+            memory: 640Mi
         ports:
         - containerPort: 8080
         livenessProbe:
