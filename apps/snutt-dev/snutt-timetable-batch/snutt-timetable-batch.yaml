@@ -33,10 +33,10 @@ spec:
             resources:
               requests:
                 cpu: 200m
-                memory: 2Gi
+                memory: 1Gi
               limits:
                 cpu: 1000m
-                memory: 2Gi
+                memory: 3Gi
             env:
             - name: JOB_NAME
               value: "sugangSnuMigrationJob"
@@ -85,7 +85,7 @@ spec:
                 memory: 1Gi
               limits:
                 cpu: 1000m
-                memory: 1Gi
+                memory: 3Gi
             env:
             - name: JOB_NAME
               value: "userNicknameCreateJob"
