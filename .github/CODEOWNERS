@@ -19,3 +19,7 @@ apps/snugo/snugo-server/ @wafflestudio/snugo
 apps/areyouhere/ @wafflestudio/areyouhere
 apps/hodu-dev/ @wafflestudio/hodu
 apps/hodu-prod/ @wafflestudio/hodu
+apps/internhasha-dev @wafflestudio/internhasha
+apps/internhasha-prod @wafflestudio/internhasha
+apps/memowithtags-dev @wafflestudio/memo-with-tags
+apps/memowithtags-prod @wafflestudio/memo-with-tags
