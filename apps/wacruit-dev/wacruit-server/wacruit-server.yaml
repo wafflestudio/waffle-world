@@ -23,7 +23,7 @@ spec:
     spec:
       serviceAccountName: wacruit-server
       nodeSelector:
-        kubernetes.io/arch: amd64
+        kubernetes.io/arch: arm64
         phase: dev
       tolerations:
         - effect: NoSchedule
