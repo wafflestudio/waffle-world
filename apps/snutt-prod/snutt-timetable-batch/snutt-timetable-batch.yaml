@@ -18,7 +18,7 @@ spec:
             sidecar.istio.io/inject: "false"
         spec:
           nodeSelector:
-            kubernetes.io/arch: amd64
+            kubernetes.io/arch: arm64
             phase: batch
           tolerations:
             - effect: NoSchedule
@@ -33,7 +33,7 @@ spec:
             resources:
               requests:
                 cpu: 200m
-                memory: 2Gi
+                memory: 1Gi
               limits:
                 cpu: 1000m
                 memory: 2Gi
@@ -67,7 +67,7 @@ spec:
             sidecar.istio.io/inject: "false"
         spec:
           nodeSelector:
-            kubernetes.io/arch: amd64
+            kubernetes.io/arch: arm64
             phase: batch
           tolerations:
             - effect: NoSchedule
@@ -82,7 +82,7 @@ spec:
             resources:
               requests:
                 cpu: 200m
-                memory: 2Gi
+                memory: 1Gi
               limits:
                 cpu: 1000m
                 memory: 2Gi
@@ -116,7 +116,7 @@ spec:
             sidecar.istio.io/inject: "false"
         spec:
           nodeSelector:
-            kubernetes.io/arch: amd64
+            kubernetes.io/arch: arm64
             phase: batch
           tolerations:
             - effect: NoSchedule
