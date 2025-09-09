@@ -6,7 +6,7 @@ metadata:
     app: kong-gateway
   namespace: sso-dev
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: kong-gateway
