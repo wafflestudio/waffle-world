@@ -31,7 +31,7 @@ spec:
           operator: Equal
           value: prod
       containers:
-        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/waffledotcom-prod/waffledotcom-server:v1.0.3
+        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/waffledotcom-prod/waffledotcom-server:main
           name: waffledotcom-server
           resources:
             requests:
