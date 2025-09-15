@@ -71,11 +71,12 @@ metadata:
   name: wacruit-server
 spec:
   gateways:
-  - istio-ingress/waffle-ingressgateway
-  - mesh
+    - istio-ingress/waffle-ingressgateway
+    - mesh
   hosts:
-  - wacruit-server.wacruit-dev.svc.cluster.local
+    - wacruit-server.wacruit-dev.svc.cluster.local
+    - wacruit-dev.wafflestudio.com
   http:
-  - route:
-    - destination:
-        host: wacruit-server
+    - route:
+      - destination:
+          host: wacruit-server
