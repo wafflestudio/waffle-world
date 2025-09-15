@@ -77,7 +77,7 @@ spec:
     - mesh
   hosts:
     - wacruit-server.wacruit-prod.svc.cluster.local
-    - wacruit-dev.wafflestudio.com
+    - wacruit.wafflestudio.com
   http:
     - route:
         - destination:
