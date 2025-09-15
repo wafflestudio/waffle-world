@@ -31,7 +31,7 @@ spec:
           operator: Equal
           value: dev
       containers:
-        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/wacruit-dev/wacruit-server:121
+        - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/wacruit-dev/wacruit-server:120
           name: wacruit-server
           resources:
             requests:
@@ -71,11 +71,12 @@ metadata:
   name: wacruit-server
 spec:
   gateways:
-  - istio-ingress/waffle-ingressgateway
-  - mesh
+    - istio-ingress/waffle-ingressgateway
+    - mesh
   hosts:
-  - wacruit-server.wacruit-dev.svc.cluster.local
+    - wacruit-server.wacruit-dev.svc.cluster.local
+    - wacruit-dev.wafflestudio.com
   http:
-  - route:
-    - destination:
-        host: wacruit-server
+    - route:
+      - destination:
+          host: wacruit-server
