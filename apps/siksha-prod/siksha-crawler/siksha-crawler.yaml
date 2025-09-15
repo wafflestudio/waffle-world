@@ -27,5 +27,5 @@ spec:
               value: batch
           restartPolicy: OnFailure
           containers:
-          - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/siksha-prod/siksha-crawler:28
+          - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/siksha-prod/siksha-crawler:29
             name: siksha-crawler
