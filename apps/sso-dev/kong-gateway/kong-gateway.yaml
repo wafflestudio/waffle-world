@@ -118,7 +118,7 @@ spec:
   hosts:
   - api-gateway-dev.wafflestudio.com
   - sso-dev.wafflestudio.com
-  - wacruit-dev.wafflestudio.com
+#  - wacruit-dev.wafflestudio.com
   http:
   - route:
     - destination:

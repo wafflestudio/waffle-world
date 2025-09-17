@@ -119,7 +119,7 @@ spec:
   - api-gateway.wafflestudio.com
   - sso.wafflestudio.com
   - truffle.wafflestudio.com
-  - wacruit.wafflestudio.com
+#  - wacruit.wafflestudio.com
   http:
   - route:
     - destination:
