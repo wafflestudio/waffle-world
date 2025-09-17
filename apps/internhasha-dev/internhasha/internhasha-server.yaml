@@ -6,7 +6,7 @@ metadata:
     app: internhasha-server
   namespace: internhasha-dev
 spec:
-  replicas: 0
+  replicas: 2
   selector:
     matchLabels:
       app: internhasha-server
@@ -41,7 +41,7 @@ spec:
           resources:
             requests:
               cpu: 100m
-              memory: 512Mi
+              memory: 256Mi
             limits:
               cpu: 200m
               memory: 512Mi
