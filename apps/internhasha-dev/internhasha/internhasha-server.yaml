@@ -6,7 +6,7 @@ metadata:
     app: internhasha-server
   namespace: internhasha-dev
 spec:
-  replicas: 2
+  replicas: 0
   selector:
     matchLabels:
       app: internhasha-server
