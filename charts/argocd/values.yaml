@@ -113,6 +113,12 @@ argo-cd:
         g, wafflestudio:areyouhere, role:areyouhere
         p, role:areyouhere, applications, *, default/areyouhere-server, allow
         p, role:areyouhere, exec, create, default/areyouhere-server, allow
+
+        g, wafflestudio:memo-with-tags, role:memo-with-tags
+        p, role:memo-with-tags, applications, *, default/memowithtags, allow
+        p, role:memo-with-tags, exec, create, default/memowithtags, allow
+        p, role:memo-with-tags, applications, *, default/memowithtags-dev, allow
+        p, role:memo-with-tags, exec, create, default/memowithtags-dev, allow
     params:
       server.insecure: true
   server:
