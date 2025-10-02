@@ -34,6 +34,18 @@ data:
       userarn: arn:aws:iam::405906814034:user/gs18113
       groups:
       - system:masters
+    - username: kih00
+      userarn: arn:aws:iam::405906814034:user/kih00
+      groups:
+      - system:masters
+    - username: ChrisLee02
+      userarn: arn:aws:iam::405906814034:user/ChrisLee02
+      groups:
+      - system:masters
+    - username: arcstone09
+      userarn: arn:aws:iam::405906814034:user/arcstone09
+      groups:
+      - system:masters
     - username: asp345
       userarn: arn:aws:iam::405906814034:user/asp345
       groups:
