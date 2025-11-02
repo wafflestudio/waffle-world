@@ -1,0 +1,154 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: waffice-server
+  labels:
+    app: waffice-server
+  namespace: waffice-prod
+spec:
+  # replicas: HPA
+  selector:
+    matchLabels:
+      app: waffice-server
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  revisionHistoryLimit: 4
+  template:
+    metadata:
+      labels:
+        app: waffice-server
+    spec:
+      serviceAccountName: waffice-server
+      nodeSelector:
+        kubernetes.io/arch: arm64
+        phase: prod
+      tolerations:
+        - effect: NoSchedule
+          key: phase
+          operator: Equal
+          value: prod
+      containers:
+      - image: 123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/waffice-prod/waffice-server:latest
+        name: waffice-server
+        resources:
+          requests:
+            cpu: 200m
+            memory: 512Mi
+          limits:
+            cpu: 400m
+            memory: 768Mi
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /health-check
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health-check
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        startupProbe:
+          httpGet:
+            path: /health-check
+            port: 8080
+          failureThreshold: 10
+          periodSeconds: 5
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: prod
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: waffice-server
+  namespace: waffice-prod
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::123456789012:role/waffice-server-prod-role
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: waffice-prod
+  name: waffice-server
+spec:
+  type: ClusterIP
+  selector:
+    app: waffice-server
+  ports:
+  - port: 80
+    targetPort: 8080
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  namespace: waffice-prod
+  name: waffice-server
+spec:
+  gateways:
+  - istio-ingress/waffle-ingressgateway
+  - mesh
+  hosts:
+  - internal-server.wafflestudio.com
+  http:
+  - name: "waffice-server-route"
+    timeout: 10s
+    route:
+    - destination:
+        host: waffice-server
+    corsPolicy:
+      allowHeaders:
+      - content-type
+      - authorization
+      - x-requested-with
+      allowMethods:
+      - POST
+      - GET
+      - PUT
+      - PATCH
+      - DELETE
+      - OPTIONS
+      allowOrigins:
+      - exact: 'https://internal-server.wafflestudio.com'
+      - regex: 'https://.*\.wafflestudio\.com'
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  namespace: waffice-prod
+  name: waffice-server
+spec:
+  host: waffice-server
+  trafficPolicy:
+    connectionPool:
+      http:
+        maxRequestsPerConnection: 100
+        idleTimeout: 30s
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: waffice-server-hpa
+  labels:
+    app: waffice-server
+  namespace: waffice-prod
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: waffice-server
+  minReplicas: 1
+  maxReplicas: 3
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 40

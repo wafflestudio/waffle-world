@@ -1,0 +1,132 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: waffice-server
+  labels:
+    app: waffice-server
+  namespace: waffice-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: waffice-server
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  revisionHistoryLimit: 4
+  template:
+    metadata:
+      labels:
+        app: waffice-server
+    spec:
+      serviceAccountName: waffice-server
+      nodeSelector:
+        kubernetes.io/arch: arm64
+        phase: dev
+      tolerations:
+        - effect: NoSchedule
+          key: phase
+          operator: Equal
+          value: dev
+      containers:
+      - image: 123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/waffice-dev/waffice-server:latest
+        name: waffice-server
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: 200m
+            memory: 512Mi
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /health-check
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health-check
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        startupProbe:
+          httpGet:
+            path: /health-check
+            port: 8080
+          failureThreshold: 20
+          periodSeconds: 5
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: dev
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: waffice-server
+  namespace: waffice-dev
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::123456789012:role/waffice-server-dev-role
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: waffice-dev
+  name: waffice-server
+spec:
+  type: ClusterIP
+  selector:
+    app: waffice-server
+  ports:
+  - port: 80
+    targetPort: 8080
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  namespace: waffice-dev
+  name: waffice-server
+spec:
+  gateways:
+  - istio-ingress/waffle-ingressgateway
+  - mesh
+  hosts:
+  - internal-server-dev.wafflestudio.com
+  http:
+  - name: "waffice-server-route"
+    timeout: 10s
+    route:
+    - destination:
+        host: waffice-server
+    corsPolicy:
+      allowHeaders:
+      - content-type
+      - authorization
+      - x-requested-with
+      allowMethods:
+      - POST
+      - GET
+      - PUT
+      - PATCH
+      - DELETE
+      - OPTIONS
+      allowOrigins:
+      - exact: 'https://internal-server-dev.wafflestudio.com'
+      - regex: 'https://.*\.wafflestudio\.com'
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  namespace: waffice-dev
+  name: waffice-server
+spec:
+  host: waffice-server
+  trafficPolicy:
+    connectionPool:
+      http:
+        maxRequestsPerConnection: 100
+        idleTimeout: 30s
