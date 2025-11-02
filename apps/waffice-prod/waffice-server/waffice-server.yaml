@@ -6,7 +6,7 @@ metadata:
     app: waffice-server
   namespace: waffice-prod
 spec:
-  # replicas: HPA
+  replicas: 0
   selector:
     matchLabels:
       app: waffice-server
