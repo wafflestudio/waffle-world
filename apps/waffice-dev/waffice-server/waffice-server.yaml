@@ -102,18 +102,3 @@ spec:
     route:
     - destination:
         host: waffice-server
-    corsPolicy:
-      allowHeaders:
-      - content-type
-      - authorization
-      - x-requested-with
-      allowMethods:
-      - POST
-      - GET
-      - PUT
-      - PATCH
-      - DELETE
-      - OPTIONS
-      allowOrigins:
-      - exact: 'https://internal-server-dev.wafflestudio.com'
-      - regex: 'https://.*\.wafflestudio\.com'
