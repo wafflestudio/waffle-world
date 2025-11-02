@@ -117,16 +117,3 @@ spec:
       allowOrigins:
       - exact: 'https://internal-server-dev.wafflestudio.com'
       - regex: 'https://.*\.wafflestudio\.com'
----
-apiVersion: networking.istio.io/v1beta1
-kind: DestinationRule
-metadata:
-  namespace: waffice-dev
-  name: waffice-server
-spec:
-  host: waffice-server
-  trafficPolicy:
-    connectionPool:
-      http:
-        maxRequestsPerConnection: 100
-        idleTimeout: 30s

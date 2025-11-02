@@ -118,19 +118,6 @@ spec:
       - exact: 'https://internal-server.wafflestudio.com'
       - regex: 'https://.*\.wafflestudio\.com'
 ---
-apiVersion: networking.istio.io/v1beta1
-kind: DestinationRule
-metadata:
-  namespace: waffice-prod
-  name: waffice-server
-spec:
-  host: waffice-server
-  trafficPolicy:
-    connectionPool:
-      http:
-        maxRequestsPerConnection: 100
-        idleTimeout: 30s
----
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
