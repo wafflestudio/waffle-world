@@ -119,6 +119,12 @@ argo-cd:
         p, role:memo-with-tags, exec, create, default/memowithtags, allow
         p, role:memo-with-tags, applications, *, default/memowithtags-dev, allow
         p, role:memo-with-tags, exec, create, default/memowithtags-dev, allow
+        
+        g, wafflestudio:waffice, role:waffice
+        p, role:waffice, applications, *, default/waffice-server, allow
+        p, role:waffice, exec, create, default/waffice-server, allow
+        p, role:waffice, applications, *, default/waffice-server-dev, allow
+        p, role:waffice, exec, create, default/waffice-server-dev, allow
     params:
       server.insecure: true
   server:

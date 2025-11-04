@@ -31,7 +31,7 @@ spec:
           operator: Equal
           value: prod
       containers:
-      - image: 123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/waffice-prod/waffice-server:latest
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/waffice-prod/waffice-server:latest
         name: waffice-server
         resources:
           requests:
@@ -70,7 +70,7 @@ metadata:
   name: waffice-server
   namespace: waffice-prod
   annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::123456789012:role/waffice-server-prod-role
+    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/waffice-server-prod-role
 ---
 apiVersion: v1
 kind: Service
