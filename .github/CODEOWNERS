@@ -23,3 +23,5 @@ apps/internhasha-dev @wafflestudio/internhasha
 apps/internhasha-prod @wafflestudio/internhasha
 apps/memowithtags-dev @wafflestudio/memo-with-tags
 apps/memowithtags-prod @wafflestudio/memo-with-tags
+apps/waffice-dev @wafflestudio/waffice
+apps/waffice-prod @wafflestudio/waffice

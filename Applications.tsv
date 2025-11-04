@@ -38,4 +38,6 @@ wacruit-server	wacruit-prod	wacruit-server
 wacruit-judge	wacruit-prod	wacruit-judge-worker
 waffledotcom-server	waffledotcom-dev	waffledotcom-server
 waffledotcom-server	waffledotcom-prod	waffledotcom-server
+waffice-server	waffice-dev	waffice-server
+waffice-server	waffice-prod	waffice-server
 
