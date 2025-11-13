@@ -95,7 +95,7 @@ spec:
   - istio-ingress/waffle-ingressgateway
   - mesh
   hosts:
-  - internal-server-dev.wafflestudio.com
+  - waffice-api-dev.wafflestudio.com
   http:
   - name: "waffice-server-route"
     timeout: 10s
