@@ -44,15 +44,15 @@ spec:
         - containerPort: 8080
         livenessProbe:
           httpGet:
-            path: /health-check
+            path: /actuator/health/liveness
             port: 8080
         readinessProbe:
           httpGet:
-            path: /health-check
+            path: /actuator/health/readiness
             port: 8080
         startupProbe:
           httpGet:
-            path: /health-check
+            path: /actuator/health/liveness
             port: 8080
           failureThreshold: 20
         env:
