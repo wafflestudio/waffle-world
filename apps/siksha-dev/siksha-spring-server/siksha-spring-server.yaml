@@ -117,5 +117,5 @@ subjects:
     namespace: siksha-dev
 roleRef:
   kind: Role
-  name: cronjob-trigger-role
+  name: siksha-crawler-trigger-role
   apiGroup: rbac.authorization.k8s.io
