@@ -92,3 +92,30 @@ spec:
   - route:
     - destination:
         host: siksha-spring-server
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: siksha-crawler-trigger-role
+  namespace: siksha-dev
+rules:
+  - apiGroups: ["batch"]
+    resources: ["cronjobs"]
+    verbs: ["get"]
+  - apiGroups: ["batch"]
+    resources: ["jobs"]
+    verbs: ["create"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: siksha-crawler-trigger-rb
+  namespace: siksha-dev
+subjects:
+  - kind: ServiceAccount
+    name: siksha-spring-server
+    namespace: siksha-dev
+roleRef:
+  kind: Role
+  name: siksha-crawler-trigger-role
+  apiGroup: rbac.authorization.k8s.io
