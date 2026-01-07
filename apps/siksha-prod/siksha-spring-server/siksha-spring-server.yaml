@@ -38,7 +38,7 @@ spec:
             memory: 512Mi
           limits:
             cpu: 400m
-            memory: 1Gi
+            memory: 768Mi
         ports:
         - containerPort: 8080
 ---
