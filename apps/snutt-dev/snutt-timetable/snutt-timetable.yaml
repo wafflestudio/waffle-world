@@ -31,7 +31,7 @@ spec:
           operator: Equal
           value: dev
       containers:
-      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-dev/snutt-timetable:27
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/snutt-dev/snutt-timetable:28
         name: snutt-timetable
         resources:
           requests:
