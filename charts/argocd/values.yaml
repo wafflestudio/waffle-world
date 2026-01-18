@@ -68,8 +68,6 @@ configs:
       p, role:siksha, exec, create, default/siksha-crawler, allow
       p, role:siksha, applications, *, default/siksha-crawler-dev, allow
       p, role:siksha, exec, create, default/siksha-crawler-dev, allow
-      p, role:siksha, applications, *, default/siksha-spring-server, allow
-      p, role:siksha, exec, create, default/siksha-spring-server, allow
       p, role:siksha, applications, *, default/siksha-spring-server-dev, allow
       p, role:siksha, exec, create, default/siksha-spring-server-dev, allow
 
@@ -82,8 +80,6 @@ configs:
       p, role:siksha-server-data, exec, create, default/siksha-crawler, allow
       p, role:siksha-server-data, applications, *, default/siksha-crawler-dev, allow
       p, role:siksha-server-data, exec, create, default/siksha-crawler-dev, allow
-      p, role:siksha-server-data, applications, *, default/siksha-spring-server, allow
-      p, role:siksha-server-data, exec, create, default/siksha-spring-server, allow
       p, role:siksha-server-data, applications, *, default/siksha-spring-server-dev, allow
       p, role:siksha-server-data, exec, create, default/siksha-spring-server-dev, allow
 
