@@ -31,7 +31,7 @@ spec:
           operator: Equal
           value: dev
       containers:
-      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/waffice-dev/waffice-server:20260131-154813
+      - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/waffice-dev/waffice-server:20260201-055835
         name: waffice-server
         resources:
           requests:
