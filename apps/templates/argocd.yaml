@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  namespace: argocd
+  name: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+  - repoURL: https://argoproj.github.io/argo-helm
+    chart: argo-cd
+    targetRevision: 9.2.3
+    helm:
+      valueFiles:
+      - $values/apps/argocd/values.yaml
+  - repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: HEAD
+    ref: values
+  - repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: HEAD
+    path: apps/argocd
+    directory:
+      include: "*.yaml"
+      exclude: "values.yaml"
+  destination:
+    server: {{ .Values.spec.destination.server }}
+    namespace: argocd
+  syncPolicy:
+    {{- .Values.spec.syncPolicy | toYaml | nindent 4 }}

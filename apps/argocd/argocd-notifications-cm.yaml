@@ -12,7 +12,7 @@ data:
         value: application/json
 
   templates.sync-completed: |-
-    {{`{"namespace":"`}}{{"{{.app.metadata.namespace}}"}}{{`","app":"`}}{{"{{.app.metadata.name}}"}}{{`"}`}}
+    {"namespace":"{{.app.metadata.namespace}}","app":"{{.app.metadata.name}}"}
 
   triggers.sync-completed: |-
     - description: Application sync completed
@@ -26,4 +26,3 @@ data:
       - pupuri-bot
 
   controller.disableAnnotations: "true"
-
