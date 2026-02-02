@@ -7,13 +7,20 @@ metadata:
   - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
-  source:
-    repoURL: {{ .Values.spec.source.repoURL }}
-    targetRevision: HEAD
-    path: charts/prometheus
+  sources:
+  - repoURL: https://prometheus-community.github.io/helm-charts
+    chart: kube-prometheus-stack
+    targetRevision: 48.1.1
     helm:
+      releaseName: prometheus
       valueFiles:
-        - values.yaml
+      - $values/charts/prometheus/values.yaml
+  - repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: HEAD
+    ref: values
+  - repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: HEAD
+    path: charts/prometheus/templates
   destination:
     server: {{ .Values.spec.destination.server }}
     namespace: monitoring
@@ -21,3 +28,4 @@ spec:
     {{- .Values.spec.syncPolicy | toYaml | nindent 4 }}
     syncOptions:
     - CreateNamespace=true
+    - ServerSideApply=true
