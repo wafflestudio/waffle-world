@@ -10,6 +10,15 @@ kube-prometheus-stack:
         value: infra
     defaultDashboardsTimezone: Asia/Seoul
     adminPassword: # secret
+    sidecar:
+      dashboards:
+        enabled: true
+        label: grafana_dashboard
+        labelValue: "1"
+        searchNamespace: ALL
+        folderAnnotation: grafana_folder
+        provider:
+          foldersFromFilesStructure: true
     grafana.ini:
       server:
         root_url: https://grafana.wafflestudio.com
