@@ -25,6 +25,8 @@ spec:
           enabled: true
           defaultDashboardsTimezone: Asia/Seoul
           adminPassword: # secret
+					podAnnotations:
+            sidecar.istio.io/inject: "true"
           sidecar:
             dashboards:
               enabled: true
