@@ -7,13 +7,156 @@ metadata:
   - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
-  source:
-    repoURL: {{ .Values.spec.source.repoURL }}
-    targetRevision: HEAD
-    path: charts/prometheus
+  sources:
+  - repoURL: https://prometheus-community.github.io/helm-charts
+    chart: kube-prometheus-stack
+    targetRevision: 48.1.1
     helm:
-      valueFiles:
-        - values.yaml
+      releaseName: prometheus
+      valuesObject:
+        grafana:
+          enabled: true
+          nodeSelector:
+            phase: infra
+          tolerations:
+            - effect: NoSchedule
+              key: phase
+              operator: Equal
+              value: infra
+          defaultDashboardsTimezone: Asia/Seoul
+          adminPassword: # secret
+          sidecar:
+            dashboards:
+              enabled: true
+              label: grafana_dashboard
+              labelValue: "1"
+              searchNamespace: ALL
+              folderAnnotation: grafana_folder
+              provider:
+                foldersFromFilesStructure: true
+          grafana.ini:
+            server:
+              root_url: https://grafana.wafflestudio.com
+            auth.github:
+              enabled: true
+              allow_sign_up: true
+              scopes: user:email,read:org
+              auth_url: https://github.com/login/oauth/authorize
+              token_url: https://github.com/login/oauth/access_token
+              api_url: https://api.github.com/user
+              allowed_organizations: wafflestudio
+              client_id: 75c8b088348e91be1e97
+              client_secret: # secret
+        kube-state-metrics:
+          nodeSelector:
+            phase: infra
+          tolerations:
+            - effect: NoSchedule
+              key: phase
+              operator: Equal
+              value: infra
+        alertmanager:
+          alertmanagerSpec:
+            nodeSelector:
+              phase: infra
+            tolerations:
+              - effect: NoSchedule
+                key: phase
+                operator: Equal
+                value: infra
+        prometheusOperator:
+          nodeSelector:
+            phase: infra
+          tolerations:
+            - effect: NoSchedule
+              key: phase
+              operator: Equal
+              value: infra
+          admissionWebhooks:
+            patch:
+              nodeSelector:
+                phase: infra
+              tolerations:
+                - effect: NoSchedule
+                  key: phase
+                  operator: Equal
+                  value: infra
+        prometheus:
+          enabled: true
+          prometheusSpec:
+            nodeSelector:
+              phase: infra
+            tolerations:
+              - effect: NoSchedule
+                key: phase
+                operator: Equal
+                value: infra
+            retention: 10d
+            resources:
+              requests:
+                memory: 400Mi
+              limits:
+                memory: 1Gi
+            storageSpec:
+              volumeClaimTemplate:
+                spec:
+                  storageClassName: gp2
+                  accessModes: ["ReadWriteOnce"]
+                  resources:
+                    requests:
+                      storage: 20Gi
+            additionalScrapeConfigs:
+              - job_name: 'istiod'
+                kubernetes_sd_configs:
+                  - role: endpoints
+                    namespaces:
+                      names:
+                        - istio-system
+                relabel_configs:
+                  - source_labels: [__meta_kubernetes_service_name, __meta_kubernetes_endpoint_port_name]
+                    action: keep
+                    regex: istiod;http-monitoring
+              - job_name: 'envoy-stats'
+                metrics_path: /stats/prometheus
+                kubernetes_sd_configs:
+                  - role: pod
+                relabel_configs:
+                  - source_labels: [__meta_kubernetes_pod_container_port_name]
+                    action: keep
+                    regex: '.*-envoy-prom'
+              - job_name: 'istio-mesh'
+                kubernetes_sd_configs:
+                  - role: endpoints
+                    namespaces:
+                      names:
+                        - istio-system
+                relabel_configs:
+                  - source_labels: [__meta_kubernetes_service_name, __meta_kubernetes_endpoint_port_name]
+                    action: keep
+                    regex: istio-telemetry;prometheus
+              - job_name: 'istio-telemetry'
+                kubernetes_sd_configs:
+                  - role: endpoints
+                    namespaces:
+                      names:
+                        - istio-system
+                relabel_configs:
+                  - source_labels: [__meta_kubernetes_service_name, __meta_kubernetes_endpoint_port_name]
+                    action: keep
+                    regex: istio-telemetry;http-monitoring
+              - job_name: 'istio-policy'
+                kubernetes_sd_configs:
+                  - role: endpoints
+                    namespaces:
+                      names:
+                        - istio-system
+                relabel_configs:
+                  - source_labels: [__meta_kubernetes_service_name, __meta_kubernetes_endpoint_port_name]
+                    action: keep
+                    regex: istio-policy;http-policy-monitoring
+  - repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: HEAD
+    path: apps/prometheus
   destination:
     server: {{ .Values.spec.destination.server }}
     namespace: monitoring
@@ -21,3 +164,4 @@ spec:
     {{- .Values.spec.syncPolicy | toYaml | nindent 4 }}
     syncOptions:
     - CreateNamespace=true
+    - ServerSideApply=true
