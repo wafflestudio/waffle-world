@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  namespace: argocd
+  name: metrics-server
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+  - repoURL: https://kubernetes-sigs.github.io/metrics-server/
+    chart: metrics-server
+    targetRevision: 3.12.2
+    helm:
+      releaseName: metrics-server
+      valuesObject:
+        resources:
+          requests:
+            cpu: 100m
+            memory: 200Mi
+  destination:
+    server: {{ .Values.spec.destination.server }}
+    namespace: kube-system
+  syncPolicy:
+    {{- .Values.spec.syncPolicy | toYaml | nindent 4 }}

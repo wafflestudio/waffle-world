@@ -1,0 +1,43 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  namespace: argocd
+  name: cluster-autoscaler
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+  - repoURL: https://kubernetes.github.io/autoscaler
+    chart: cluster-autoscaler
+    targetRevision: 9.46.0
+    helm:
+      releaseName: cluster-autoscaler
+      valuesObject:
+        autoDiscovery:
+          clusterName: wafflestudio-cluster
+        awsRegion: ap-northeast-2
+        rbac:
+          serviceAccount:
+            create: false
+            name: cluster-autoscaler
+        extraArgs:
+          skip-nodes-with-local-storage: false
+          expander: least-waste
+          balance-similar-node-groups: true
+          skip-nodes-with-system-pods: false
+        resources:
+          limits:
+            cpu: 100m
+            memory: 600Mi
+          requests:
+            cpu: 100m
+            memory: 600Mi
+  - repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: HEAD
+    path: apps/cluster-autoscaler
+  destination:
+    server: {{ .Values.spec.destination.server }}
+    namespace: kube-system
+  syncPolicy:
+    {{- .Values.spec.syncPolicy | toYaml | nindent 4 }}
