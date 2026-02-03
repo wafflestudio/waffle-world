@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  namespace: argocd
+  name: istio-ingressgateway
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+  - repoURL: https://istio-release.storage.googleapis.com/charts
+    chart: gateway
+    targetRevision: 1.28.3
+    helm:
+      releaseName: istio-ingressgateway
+      valuesObject:
+        service:
+          type: ClusterIP
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 2000m
+            memory: 1Gi
+  - repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: HEAD
+    path: apps/istio-ingressgateway
+  destination:
+    server: {{ .Values.spec.destination.server }}
+    namespace: istio-ingress
+  syncPolicy:
+    {{- .Values.spec.syncPolicy | toYaml | nindent 4 }}
+    syncOptions:
+    - CreateNamespace=true

@@ -1,0 +1,44 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  namespace: argocd
+  name: istio
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+  - repoURL: https://istio-release.storage.googleapis.com/charts
+    chart: base
+    targetRevision: 1.28.3
+    helm:
+      releaseName: istio-base
+  - repoURL: https://istio-release.storage.googleapis.com/charts
+    chart: istiod
+    targetRevision: 1.28.3
+    helm:
+      releaseName: istiod
+      valuesObject:
+        pilot:
+          resources:
+            requests:
+              cpu: 500m
+              memory: 512Mi
+            limits:
+              memory: 1Gi
+        global:
+          proxy:
+            resources:
+              limits:
+                cpu: 100m
+                memory: 128Mi
+  - repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: HEAD
+    path: apps/istio
+  destination:
+    server: {{ .Values.spec.destination.server }}
+    namespace: istio-system
+  syncPolicy:
+    {{- .Values.spec.syncPolicy | toYaml | nindent 4 }}
+    syncOptions:
+    - CreateNamespace=true
