@@ -16,13 +16,6 @@ spec:
       valuesObject:
         grafana:
           enabled: true
-          nodeSelector:
-            phase: infra
-          tolerations:
-            - effect: NoSchedule
-              key: phase
-              operator: Equal
-              value: infra
           defaultDashboardsTimezone: Asia/Seoul
           adminPassword: # secret
           sidecar:
@@ -47,50 +40,9 @@ spec:
               allowed_organizations: wafflestudio
               client_id: 75c8b088348e91be1e97
               client_secret: # secret
-        kube-state-metrics:
-          nodeSelector:
-            phase: infra
-          tolerations:
-            - effect: NoSchedule
-              key: phase
-              operator: Equal
-              value: infra
-        alertmanager:
-          alertmanagerSpec:
-            nodeSelector:
-              phase: infra
-            tolerations:
-              - effect: NoSchedule
-                key: phase
-                operator: Equal
-                value: infra
-        prometheusOperator:
-          nodeSelector:
-            phase: infra
-          tolerations:
-            - effect: NoSchedule
-              key: phase
-              operator: Equal
-              value: infra
-          admissionWebhooks:
-            patch:
-              nodeSelector:
-                phase: infra
-              tolerations:
-                - effect: NoSchedule
-                  key: phase
-                  operator: Equal
-                  value: infra
         prometheus:
           enabled: true
           prometheusSpec:
-            nodeSelector:
-              phase: infra
-            tolerations:
-              - effect: NoSchedule
-                key: phase
-                operator: Equal
-                value: infra
             retention: 10d
             resources:
               requests:
