@@ -48,7 +48,7 @@ metadata:
   name: siksha-spring-server
   namespace: siksha-prod
   annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/siksha-spring-server-prod-role
+    eks.amazonaws.com/role-arn: arn:aws:iam::405906814034:role/siksha-api-server-prod-role
 ---
 apiVersion: v1
 kind: Service
