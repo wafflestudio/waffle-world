@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  namespace: prometheus
+  namespace: monitoring
   name: prometheus-grafana
 spec:
   gateways:
@@ -12,4 +12,4 @@ spec:
   http:
   - route:
     - destination:
-        host: prometheus-grafana
+        host: prometheus-grafana.monitoring.svc.cluster.local
