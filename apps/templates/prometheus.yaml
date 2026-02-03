@@ -14,6 +14,13 @@ spec:
     helm:
       releaseName: prometheus
       valuesObject:
+        alertmanager:
+          alertmanagerSpec:
+            resources:
+              requests:
+                memory: 50Mi
+              limits:
+                memory: 100Mi
         grafana:
           enabled: true
           defaultDashboardsTimezone: Asia/Seoul
@@ -46,7 +53,7 @@ spec:
             retention: 10d
             resources:
               requests:
-                memory: 200Mi
+                memory: 100Mi
               limits:
                 memory: 512Mi
             storageSpec:
