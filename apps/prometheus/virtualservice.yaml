@@ -1,15 +1,17 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  namespace: monitoring
   name: prometheus-grafana
+  namespace: monitoring
 spec:
   gateways:
-  - istio-ingress/waffle-ingressgateway
+    - istio-ingress/waffle-ingressgateway
+    - mesh
   hosts:
-  - grafana.wafflestudio.com
-  - mesh
+    - grafana.wafflestudio.com
   http:
-  - route:
-    - destination:
-        host: prometheus-grafana.monitoring.svc.cluster.local
+    - route:
+        - destination:
+            host: prometheus-grafana.monitoring.svc.cluster.local
+            port:
+              number: 80
