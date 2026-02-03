@@ -46,9 +46,9 @@ spec:
             retention: 10d
             resources:
               requests:
-                memory: 400Mi
+                memory: 200Mi
               limits:
-                memory: 1Gi
+                memory: 512Mi
             storageSpec:
               volumeClaimTemplate:
                 spec:
