@@ -25,6 +25,11 @@ spec:
           enabled: true
           defaultDashboardsTimezone: Asia/Seoul
           adminPassword: # secret
+          envValueFrom:
+            GF_AUTH_GITHUB_CLIENT_SECRET:
+              secretKeyRef:
+                name: prometheus-grafana
+                key: github-client-secret
           podAnnotations:
             sidecar.istio.io/inject: "true"
           sidecar:
@@ -48,7 +53,6 @@ spec:
               api_url: https://api.github.com/user
               allowed_organizations: wafflestudio
               client_id: 75c8b088348e91be1e97
-              client_secret: # secret
         prometheus:
           enabled: true
           prometheusSpec:
