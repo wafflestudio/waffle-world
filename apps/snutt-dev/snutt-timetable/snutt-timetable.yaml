@@ -6,7 +6,7 @@ metadata:
     app: snutt-timetable
   namespace: snutt-dev
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: snutt-timetable
