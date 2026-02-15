@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  namespace: argocd
+  name: aws-load-balancer-controller
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+  - repoURL: https://aws.github.io/eks-charts
+    chart: aws-load-balancer-controller
+    targetRevision: 1.11.0
+    helm:
+      releaseName: aws-load-balancer-controller
+      valuesObject:
+        clusterName: wafflestudio-cluster
+        serviceAccount:
+          create: false
+          name: aws-load-balancer-controller
+        resources:
+          limits:
+            cpu: 200m
+            memory: 500Mi
+          requests:
+            cpu: 100m
+            memory: 200Mi
+  - repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: HEAD
+    path: apps/aws-load-balancer-controller
+  destination:
+    server: {{ .Values.spec.destination.server }}
+    namespace: kube-system
+  syncPolicy:
+    {{- .Values.spec.syncPolicy | toYaml | nindent 4 }}
