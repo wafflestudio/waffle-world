@@ -24,12 +24,6 @@ spec:
       serviceAccountName: siksha-spring-server
       nodeSelector:
         kubernetes.io/arch: arm64
-        phase: dev
-      tolerations:
-        - effect: NoSchedule
-          key: phase
-          operator: Equal
-          value: dev
       containers:
       - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/siksha-dev/siksha-spring-server:71
         name: siksha-spring-server
