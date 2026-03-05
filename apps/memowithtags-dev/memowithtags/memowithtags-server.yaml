@@ -24,12 +24,6 @@ spec:
       serviceAccountName: memowithtags
       nodeSelector:
         kubernetes.io/arch: arm64
-        phase: dev
-      tolerations:
-        - effect: NoSchedule
-          key: phase
-          operator: Equal
-          value: dev
       containers:
         - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/memowithtags-dev/memowithtags-server:17
           name: memowithtags-server
