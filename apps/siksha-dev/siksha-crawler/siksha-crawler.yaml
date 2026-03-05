@@ -19,12 +19,6 @@ spec:
         spec:
           nodeSelector:
             kubernetes.io/arch: arm64
-            phase: batch
-          tolerations:
-            - effect: NoSchedule
-              key: phase
-              operator: Equal
-              value: batch
           restartPolicy: OnFailure
           containers:
           - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/siksha-dev/siksha-crawler:47
