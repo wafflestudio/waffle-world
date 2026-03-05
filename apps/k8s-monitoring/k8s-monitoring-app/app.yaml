@@ -24,12 +24,6 @@ spec:
       serviceAccountName: k8s-monitoring-sa
       nodeSelector:
         kubernetes.io/arch: arm64
-        phase: prod
-      tolerations:
-        - effect: NoSchedule
-          key: phase
-          operator: Equal
-          value: prod
       containers:
         - image: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com/k8s-monitoring:0.0.3-arm
           imagePullPolicy: Always
