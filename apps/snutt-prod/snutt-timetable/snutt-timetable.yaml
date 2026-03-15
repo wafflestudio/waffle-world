@@ -6,7 +6,7 @@ metadata:
     app: snutt-timetable
   namespace: snutt-prod
 spec:
-  # replicas: HPA
+  replicas: 0
   selector:
     matchLabels:
       app: snutt-timetable
@@ -56,28 +56,6 @@ spec:
           value: "prod"
         - name: TRUFFLE_ENABLED
           value: "true"
----
-apiVersion: autoscaling/v2
-kind: HorizontalPodAutoscaler
-metadata:
-  name: snutt-timetable-hpa
-  labels:
-    app: snutt-timetable
-  namespace: snutt-prod
-spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: snutt-timetable
-  minReplicas: 1
-  maxReplicas: 3
-  metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
-        averageUtilization: 40
 ---
 apiVersion: v1
 kind: ServiceAccount

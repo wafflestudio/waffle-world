@@ -7,6 +7,7 @@ metadata:
   namespace: snutt-prod
 spec:
   concurrencyPolicy: Forbid
+  suspend: true
   schedule: "45 */12 * * *"
   successfulJobsHistoryLimit: 2
   failedJobsHistoryLimit: 3
@@ -50,6 +51,7 @@ metadata:
   namespace: snutt-prod
 spec:
   concurrencyPolicy: Forbid
+  suspend: true
   schedule: "30 23 * * 0-4"
   successfulJobsHistoryLimit: 2
   failedJobsHistoryLimit: 3
@@ -93,6 +95,7 @@ metadata:
   namespace: snutt-prod
 spec:
   concurrencyPolicy: Forbid
+  suspend: true
   schedule: "0 0 31 2 *"
   successfulJobsHistoryLimit: 2
   failedJobsHistoryLimit: 3
