@@ -8,7 +8,7 @@ metadata:
   annotations:
     notifications.argoproj.io/subscribe.sync-completed.pupuri-bot: "true"
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: wacruit-server
