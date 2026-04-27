@@ -6,7 +6,6 @@ metadata:
     app: siksha-crawler
   namespace: siksha-prod
 spec:
-  suspend: true
   concurrencyPolicy: Forbid
   schedule: "0 20 * * *" 
   successfulJobsHistoryLimit: 1
